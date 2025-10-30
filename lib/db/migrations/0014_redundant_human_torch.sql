@@ -1,0 +1,1 @@
+CREATE INDEX IF NOT EXISTS "idx_hadith_collection_number" ON "HadithText" USING btree ("collection","hadithNumber");

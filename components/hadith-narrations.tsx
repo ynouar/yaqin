@@ -11,10 +11,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { HadithCard, type HadithCardData } from "@/components/hadith/hadith-card";
+import { NarrationCard, type NarrationData } from "@/components/hadith/narration-card";
 import { cn } from "@/lib/utils";
 
-type HadithData = HadithCardData;
+type HadithData = NarrationData;
 
 type HadithNarrationsOutput =
   | {
@@ -88,7 +88,7 @@ export const HadithNarrations = ({
         <CarouselContent className="items-start">
           {output.hadiths.map((hadith, index) => (
             <CarouselItem className="flex" key={`${hadith.reference}-${index}`}>
-              <HadithCard hadith={hadith} />
+              <NarrationCard hadith={hadith} variant="default" />
             </CarouselItem>
           ))}
         </CarouselContent>

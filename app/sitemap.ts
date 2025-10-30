@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { SURAH_METADATA } from '@/lib/quran-metadata';
 import { getAllTopicsSorted } from '@/lib/topics';
+import { getCollectionStats } from '@/lib/db/queries';
+import { COLLECTION_METADATA } from '@/lib/hadith-metadata';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
 
@@ -101,5 +103,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: topic.priority,
   }));
 
-  return [...staticPages, ...surahPages, ...versePages, ...topicPages];
+  // All hadith pages (12,416 total across 4 collections)
+  const hadithPages: MetadataRoute.Sitemap = [];
+  for (const collection of COLLECTION_METADATA) {
+    const stats = await getCollectionStats(collection.slug);
+    if (stats) {
+      for (let hadithNum = stats.minNumber; hadithNum <= stats.maxNumber; hadithNum++) {
+        hadithPages.push({
+          url: `${siteUrl}/hadith/${collection.slug}/${hadithNum}`,
+          lastModified: currentDate,
+          changeFrequency: 'yearly' as const,
+          priority: 0.5,
+        });
+      }
+    }
+  }
+
+  return [...staticPages, ...surahPages, ...versePages, ...topicPages, ...hadithPages];
 }

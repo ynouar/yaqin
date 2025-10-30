@@ -283,6 +283,11 @@ export const hadithText = pgTable(
     // Indexes for filtering
     collectionIdx: index("hadith_collection_idx").on(table.collection),
     gradeIdx: index("hadith_grade_idx").on(table.grade),
+    // Composite index for fast individual hadith lookups by collection + number
+    collectionNumberIdx: index("idx_hadith_collection_number").on(
+      table.collection,
+      table.hadithNumber
+    ),
     // GIN index for full-text search (created via migration, searchVector is a generated column)
     searchIdx: index("hadith_search_idx").using("gin", sql`"searchVector"`),
   })

@@ -938,12 +938,12 @@ export async function getVerseWithContext({
         translation: v.translation || v.textEnglish,
         surahNameTranslated: v.surahNameTranslated || v.surahNameEnglish,
       })),
-      contextAfter: contextAfter.map((v) => ({
-        ...v,
-        translation: v.translation || v.textEnglish,
-        surahNameTranslated: v.surahNameTranslated || v.surahNameEnglish,
-      })),
-    };
+        contextAfter: contextAfter.map((v) => ({
+          ...v,
+          translation: v.translation || v.textEnglish,
+          surahNameTranslated: v.surahNameTranslated || v.surahNameEnglish,
+        })),
+      };
   } catch (error) {
     console.error("Failed to get verse with context:", error);
     throw new ChatSDKError(
@@ -1039,6 +1039,123 @@ export async function getVerseBySurahAndAyah({
     throw new ChatSDKError(
       "bad_request:database",
       "Failed to get verse by surah and ayah"
+    );
+  }
+}
+
+// =======================
+// Hadith Queries
+// =======================
+
+/**
+ * Get a single hadith by collection and hadith number
+ */
+export async function getHadithByCollectionAndNumber({
+  collection,
+  hadithNumber,
+}: {
+  collection: string;
+  hadithNumber: number;
+}) {
+  try {
+    const { hadithText } = await import("./schema");
+
+    const [hadith] = await db
+      .select()
+      .from(hadithText)
+      .where(
+        and(
+          eq(hadithText.collection, collection),
+          eq(hadithText.hadithNumber, hadithNumber)
+        )
+      )
+      .limit(1)
+      .execute();
+
+    return hadith || null;
+  } catch (error) {
+    console.error("Failed to get hadith by collection and number:", error);
+    throw new ChatSDKError(
+      "bad_request:database",
+      "Failed to get hadith by collection and number"
+    );
+  }
+}
+
+/**
+ * Get previous and next hadith numbers in the same collection
+ */
+export async function getAdjacentHadiths(
+  collection: string,
+  hadithNumber: number
+): Promise<{ previous: number | null; next: number | null }> {
+  try {
+    const { hadithText } = await import("./schema");
+
+    // Get previous hadith
+    const [previousHadith] = await db
+      .select({ hadithNumber: hadithText.hadithNumber })
+      .from(hadithText)
+      .where(
+        and(
+          eq(hadithText.collection, collection),
+          lt(hadithText.hadithNumber, hadithNumber)
+        )
+      )
+      .orderBy(desc(hadithText.hadithNumber))
+      .limit(1)
+      .execute();
+
+    // Get next hadith
+    const [nextHadith] = await db
+      .select({ hadithNumber: hadithText.hadithNumber })
+      .from(hadithText)
+      .where(
+        and(
+          eq(hadithText.collection, collection),
+          gt(hadithText.hadithNumber, hadithNumber)
+        )
+      )
+      .orderBy(asc(hadithText.hadithNumber))
+      .limit(1)
+      .execute();
+
+    return {
+      previous: previousHadith?.hadithNumber || null,
+      next: nextHadith?.hadithNumber || null,
+    };
+  } catch (error) {
+    console.error("Failed to get adjacent hadiths:", error);
+    throw new ChatSDKError(
+      "bad_request:database",
+      "Failed to get adjacent hadiths"
+    );
+  }
+}
+
+/**
+ * Get collection statistics
+ */
+export async function getCollectionStats(collection: string) {
+  try {
+    const { hadithText } = await import("./schema");
+
+    const [stats] = await db
+      .select({
+        total: count(hadithText.id),
+        minNumber: sql<number>`MIN(${hadithText.hadithNumber})`,
+        maxNumber: sql<number>`MAX(${hadithText.hadithNumber})`,
+      })
+      .from(hadithText)
+      .where(eq(hadithText.collection, collection))
+      .execute();
+
+    return stats || null;
+  } catch (error) {
+    console.error("Failed to get collection stats:", error);
+    throw new ChatSDKError(
+      "bad_request:database",
+      "Failed to get collection stats"
     );
   }
 }

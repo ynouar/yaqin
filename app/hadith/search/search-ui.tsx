@@ -5,13 +5,13 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Search, ChevronDown, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { HadithCard, type HadithCardData } from "@/components/hadith/hadith-card";
+import { NarrationCard, type NarrationData } from "@/components/hadith/narration-card";
 
 type Collection = "bukhari" | "muslim" | "nawawi40" | "riyadussalihin";
 type GradePreference = "sahih-only" | "sahih-and-hasan" | "all";
 
 interface SearchResponse {
-  results: HadithCardData[];
+  results: NarrationData[];
   query: string;
   count: number;
   filters: {
@@ -326,7 +326,7 @@ export function HadithSearchUI({
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.05 }}
                   >
-                    <HadithCard hadith={hadith} variant="search" />
+                    <NarrationCard hadith={hadith} variant="default" />
                   </motion.div>
                 ))}
               </div>

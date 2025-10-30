@@ -8,7 +8,7 @@ import { getAllTopicSlugs, getTopicBySlug, getRelatedTopics } from "@/lib/topics
 import { findRelevantVerses } from "@/lib/ai/embeddings";
 import { findRelevantHadiths } from "@/lib/ai/embeddings";
 import { VerseCard } from "@/components/quran/verse/verse-card";
-import { HadithCard } from "@/components/hadith/hadith-card";
+import { NarrationCard } from "@/components/hadith/narration-card";
 
 interface TopicPageProps {
   params: Promise<{ slug: string }>;
@@ -224,10 +224,10 @@ export default async function TopicPage({ params }: TopicPageProps) {
 
             <div className="space-y-6">
               {formattedHadiths.map((hadith, index) => (
-                <HadithCard
+                <NarrationCard
                   key={`${hadith.reference}-${index}`}
                   hadith={hadith}
-                  variant="search"
+                  variant="default"
                 />
               ))}
             </div>
