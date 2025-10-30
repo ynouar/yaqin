@@ -1,4 +1,4 @@
-import { ScrollTextIcon } from 'lucide-react';
+import Link from 'next/link';
 
 interface NarrationHeaderProps {
   collection: string;
@@ -22,38 +22,41 @@ export function NarrationHeader({
   links = [],
 }: NarrationHeaderProps) {
   return (
-    <div className="mb-8">
-      <div className="flex items-center gap-3 mb-3">
-        <div className="flex items-center gap-2 text-sky-600 dark:text-sky-400">
-          <ScrollTextIcon className="h-6 w-6" />
-          <h1 className="text-3xl font-bold">
+    <div className="mb-8 border-b pb-6">
+      <div className="flex items-start justify-between mb-4">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold mb-2">
             {collection} #{hadithNumber}
           </h1>
+          <h2 className="text-muted-foreground mb-2">
+            {reference}
+          </h2>
+          {compiler && (
+            <p className="text-sm text-muted-foreground">
+              Compiled by {compiler}
+            </p>
+          )}
         </div>
+
+        {collectionArabic && (
+          <div className="font-arabic text-3xl text-muted-foreground">
+            {collectionArabic}
+          </div>
+        )}
       </div>
 
-      {collectionArabic && (
-        <p className="text-xl text-muted-foreground mb-2 font-arabic" dir="rtl">
-          {collectionArabic}
-        </p>
-      )}
-
-      <p className="text-sm text-muted-foreground mb-4">
-        {reference}
-        {compiler && ` • Compiled by ${compiler}`}
-      </p>
-
+      {/* Links */}
       {links.length > 0 && (
-        <div className="flex flex-wrap gap-3">
+        <div className="flex gap-4">
           {links.map((link, index) => (
-            <a
+            <Link
               key={index}
               href={link.href}
-              className="inline-flex items-center gap-2 text-sm text-sky-600 hover:text-sky-700 dark:text-sky-400 dark:hover:text-sky-300 hover:underline"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               {link.icon}
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       )}

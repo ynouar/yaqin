@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { MessageCircle } from 'lucide-react';
 import { getHadithByCollectionAndNumber, getAdjacentHadiths } from '@/lib/db/queries';
 import { getCollectionMetadata, getAuthenticityDisplay, isValidCollection } from '@/lib/hadith-metadata';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
@@ -8,6 +7,7 @@ import { HadithPageLayout } from '@/components/hadith/layout/hadith-page-layout'
 import { NarrationHeader } from '@/components/hadith/narration/narration-header';
 import { NarrationCard } from '@/components/hadith/narration-card';
 import { PageNavigation } from '@/components/quran/navigation/page-navigation';
+import { BookOpen } from 'lucide-react';
 
 interface PageProps {
   params: Promise<{
@@ -111,7 +111,7 @@ export default async function HadithPage({ params }: PageProps) {
       breadcrumbs={[
         { label: 'Home', href: '/' },
         { label: 'Hadith', href: '/hadith' },
-        { label: collectionMeta?.name || collection, href: `/hadith/${collection}` },
+        { label: collectionMeta?.name || collection }, // No href - collection pages don't exist yet
         { label: `#${hadithNum}` },
       ]}
       jsonLd={breadcrumbSchema}
@@ -128,9 +128,9 @@ export default async function HadithPage({ params }: PageProps) {
         compiler={collectionMeta?.compiler}
         links={[
           {
-            label: 'Ask about this Hadith',
-            href: `/?question=${encodeURIComponent(`Tell me about ${hadith.reference}`)}`,
-            icon: <MessageCircle className="h-4 w-4" />,
+            label: 'Browse All Collections',
+            href: '/hadith',
+            icon: <BookOpen className="h-4 w-4" />,
           },
         ]}
       />
@@ -142,16 +142,6 @@ export default async function HadithPage({ params }: PageProps) {
           variant="highlighted"
         />
       </div>
-
-      {/* Authenticity Information */}
-      {authenticityInfo.level !== 'unknown' && (
-        <div className="mb-8 rounded-lg border border-sky-200 bg-sky-50/50 p-4 dark:border-sky-800/50 dark:bg-sky-950/20">
-          <h3 className="font-semibold mb-2">Authenticity</h3>
-          <p className="text-sm text-muted-foreground">
-            <span className="font-medium">{authenticityInfo.label}:</span> {authenticityInfo.description}
-          </p>
-        </div>
-      )}
 
       {/* Navigation */}
       <PageNavigation
