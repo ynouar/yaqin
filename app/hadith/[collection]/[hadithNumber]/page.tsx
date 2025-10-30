@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getHadithByCollectionAndNumber, getAdjacentHadiths } from '@/lib/db/queries';
 import { getCollectionMetadata, getAuthenticityDisplay, isValidCollection } from '@/lib/hadith-metadata';
-import { createBreadcrumbSchema } from '@/lib/seo/schema';
+import { createBreadcrumbSchema, createHadithArticleSchema } from '@/lib/seo/schema';
 import { HadithPageLayout } from '@/components/hadith/layout/hadith-page-layout';
 import { NarrationHeader } from '@/components/hadith/narration/narration-header';
 import { NarrationCard } from '@/components/hadith/narration-card';
@@ -36,6 +36,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const collectionMeta = getCollectionMetadata(collection);
   const title = `${hadith.reference} - ${hadith.chapterName || 'Hadith'}`;
   const description = hadith.englishText.slice(0, 200) + (hadith.englishText.length > 200 ? '...' : '');
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
+  const canonicalUrl = `${siteUrl}/hadith/${collection}/${hadithNum}`;
 
   return {
     title,
@@ -49,15 +51,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'Islamic narration',
       'Sunnah',
     ].filter(Boolean) as string[],
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+      },
+    },
     openGraph: {
       title,
       description,
       type: 'article',
+      url: canonicalUrl,
+      siteName: 'Criterion',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      site: '@criterion',
     },
   };
 }
@@ -84,14 +100,28 @@ export default async function HadithPage({ params }: PageProps) {
   const adjacent = await getAdjacentHadiths(collection, hadithNum);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
   const authenticityInfo = getAuthenticityDisplay(hadith.grade || 'Unknown');
+  const canonicalUrl = `${siteUrl}/hadith/${collection}/${hadithNum}`;
 
   // Breadcrumb schema
   const breadcrumbSchema = createBreadcrumbSchema([
     { name: 'Home', url: siteUrl },
     { name: 'Hadith', url: `${siteUrl}/hadith` },
     { name: collectionMeta?.name || collection, url: `${siteUrl}/hadith/${collection}` },
-    { name: `#${hadithNum}`, url: `${siteUrl}/hadith/${collection}/${hadithNum}` },
+    { name: `#${hadithNum}`, url: canonicalUrl },
   ]);
+
+  // Article schema for hadith
+  const articleSchema = createHadithArticleSchema({
+    reference: hadith.reference,
+    title: `${hadith.reference} - ${hadith.chapterName || 'Hadith'}`,
+    description: hadith.englishText.slice(0, 200) + (hadith.englishText.length > 200 ? '...' : ''),
+    url: canonicalUrl,
+    collection: hadith.collectionName,
+    compiler: collectionMeta?.compiler,
+    grade: hadith.grade || undefined,
+    arabicText: hadith.arabicText,
+    englishText: hadith.englishText,
+  });
 
   // Format hadith for NarrationCard
   const formattedHadith = {
@@ -114,7 +144,7 @@ export default async function HadithPage({ params }: PageProps) {
         { label: collectionMeta?.name || collection }, // No href - collection pages don't exist yet
         { label: `#${hadithNum}` },
       ]}
-      jsonLd={breadcrumbSchema}
+      jsonLd={[breadcrumbSchema, articleSchema]}
       cta={{
         title: 'Have questions about this hadith?',
         description: 'Ask our AI assistant powered by Quran and Hadith',

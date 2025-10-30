@@ -109,3 +109,57 @@ export function createArticleSchema(article: {
     },
   };
 }
+
+/**
+ * Hadith Article Schema (JSON-LD)
+ * For individual hadith pages with religious text specifics
+ */
+export function createHadithArticleSchema(hadith: {
+  reference: string;
+  title: string;
+  description: string;
+  url: string;
+  collection: string;
+  compiler?: string;
+  grade?: string;
+  arabicText?: string;
+  englishText: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: hadith.title,
+    description: hadith.description,
+    url: hadith.url,
+    articleBody: hadith.englishText,
+    inLanguage: ['en', 'ar'],
+    about: {
+      '@type': 'Thing',
+      name: 'Islamic Hadith',
+      description: `Narration from ${hadith.collection}`,
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'Criterion',
+      description: 'Islamic knowledge platform',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Criterion',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/logo.png`,
+      },
+    },
+    isPartOf: {
+      '@type': 'Book',
+      name: hadith.collection,
+      author: hadith.compiler ? {
+        '@type': 'Person',
+        name: hadith.compiler,
+      } : undefined,
+    },
+    datePublished: new Date('2024-01-01').toISOString(), // Collection compilation date proxy
+    dateModified: new Date().toISOString(),
+  };
+}
