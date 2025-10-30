@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { ArrowLeft, BookOpen, Sparkles, Search, MessageCircle } from "lucide-react";
 import { CriterionBranding } from "@/components/criterion-branding";
 import { getAllTopicSlugs, getTopicBySlug, getRelatedTopics } from "@/lib/topics";
+import { generateSocialMetadata } from "@/lib/seo/metadata-helpers";
 import { findRelevantVerses } from "@/lib/ai/embeddings";
 import { findRelevantHadiths } from "@/lib/ai/embeddings";
 import { VerseCard } from "@/components/quran/verse/verse-card";
@@ -43,17 +44,12 @@ export async function generateMetadata({
     title,
     description,
     keywords: topic.keywords,
-    openGraph: {
+    ...generateSocialMetadata({
       title,
       description,
       type: "article",
       url: `/topics/${slug}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
+    }),
     alternates: {
       canonical: `/topics/${slug}`,
     },

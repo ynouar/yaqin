@@ -7,8 +7,9 @@ import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
+import { generateSocialMetadata, getSiteUrl } from "@/lib/seo/metadata-helpers";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://criterion.life";
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,28 +30,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Criterion" }],
   creator: "Criterion",
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteUrl,
+  ...generateSocialMetadata({
     title: "Criterion - Quran Powered AI Assistant",
     description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources.",
-    siteName: "Criterion",
-    images: [
-      {
-        url: "/images/logo.png",
-        width: 1024,
-        height: 1024,
-        alt: "Criterion - Quran Powered AI Assistant",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Criterion - Quran Powered AI Assistant",
-    description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers.",
-    images: ["/images/logo.png"],
-  },
+    type: "website",
+    url: siteUrl,
+  }),
   robots: {
     index: true,
     follow: true,

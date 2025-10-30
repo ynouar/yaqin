@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import { getHadithByCollectionAndNumber, getAdjacentHadiths } from '@/lib/db/queries';
 import { getCollectionMetadata, getAuthenticityDisplay, isValidCollection } from '@/lib/hadith-metadata';
 import { createBreadcrumbSchema, createHadithArticleSchema } from '@/lib/seo/schema';
+import { generateSocialMetadata } from '@/lib/seo/metadata-helpers';
 import { HadithPageLayout } from '@/components/hadith/layout/hadith-page-layout';
 import { NarrationHeader } from '@/components/hadith/narration/narration-header';
 import { NarrationCard } from '@/components/hadith/narration-card';
@@ -63,19 +64,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         follow: true,
       },
     },
-    openGraph: {
+    ...generateSocialMetadata({
       title,
       description,
       type: 'article',
       url: canonicalUrl,
-      siteName: 'Criterion',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      site: '@criterion',
-    },
+    }),
   };
 }
 
