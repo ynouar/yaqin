@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { findRelevantVerses } from "@/lib/ai/embeddings";
-import { SearchPageHeader } from "@/components/search/search-page-header";
+import { SiteHeader } from "@/components/layout/site-header";
 import { SearchUI } from "./search-ui";
 
 interface PageProps {
@@ -69,7 +69,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SearchPageHeader />
+      <SiteHeader />
       <SearchUI 
         initialQuery={trimmedQuery || ''}
         initialResults={results}

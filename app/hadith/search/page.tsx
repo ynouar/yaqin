@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { findRelevantHadiths } from "@/lib/ai/embeddings";
-import { SearchPageHeader } from "@/components/search/search-page-header";
+import { SiteHeader } from "@/components/layout/site-header";
 import { HadithSearchUI } from "./search-ui";
 
 type Collection = "bukhari" | "muslim" | "nawawi40" | "riyadussalihin";
@@ -133,7 +133,7 @@ export default async function HadithSearchPage({ searchParams }: PageProps) {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <SearchPageHeader />
+      <SiteHeader />
       <HadithSearchUI 
         initialQuery={trimmedQuery || ''}
         initialResults={results}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CriterionBranding } from "@/components/criterion-branding";
+import { SiteHeader } from "@/components/layout/site-header";
 
 export default function MarketingLayout({
   children,
@@ -8,26 +8,7 @@ export default function MarketingLayout({
 }) {
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Simple Header */}
-      <header className="border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <CriterionBranding />
-          <nav className="flex gap-6 text-sm">
-            <Link href="/about" className="hover:underline">
-              About
-            </Link>
-            <Link href="/faq" className="hover:underline">
-              FAQ
-            </Link>
-            <Link href="/quran" className="hover:underline">
-              Quran
-            </Link>
-            <Link href="/search" className="hover:underline">
-              Search
-            </Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader />
 
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-4 py-8 max-w-4xl">

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { BookOpen, Sparkles, Search } from 'lucide-react';
 import { getAllTopicsSorted, type Topic } from '@/lib/topics';
-import { SearchPageHeader } from '@/components/search/search-page-header';
+import { SiteHeader } from '@/components/layout/site-header';
 
 export const metadata: Metadata = {
   title: 'Islamic Topics - Quran & Hadith | Criterion',
@@ -45,7 +45,7 @@ export default function TopicsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <SearchPageHeader />
+      <SiteHeader />
 
       {/* Hero Section */}
       <div className="border-b bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-950 dark:to-zinc-900">
