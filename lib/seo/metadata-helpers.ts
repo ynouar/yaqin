@@ -23,6 +23,9 @@ export function generateSocialMetadata({
   type = 'website',
   url,
 }: SocialMetadataOptions): Pick<Metadata, 'openGraph' | 'twitter'> {
+  const imageUrl = `${siteUrl}/opengraph-image.png`;
+  const twitterImageUrl = `${siteUrl}/twitter-image.png`;
+
   return {
     openGraph: {
       title,
@@ -30,12 +33,21 @@ export function generateSocialMetadata({
       type,
       ...(url && { url }),
       siteName: 'Criterion',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
       site: '@criterion',
+      images: [twitterImageUrl],
     },
   };
 }
