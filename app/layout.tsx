@@ -36,12 +36,14 @@ export const metadata: Metadata = {
     title: "Criterion - Quran Powered AI Assistant",
     description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources.",
     siteName: "Criterion",
+    images: '/opengraph-image.png',
   },
   twitter: {
     card: "summary_large_image",
     title: "Criterion - Quran Powered AI Assistant",
     description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers.",
     site: "@criterion",
+    images: '/twitter-image.png',
   },
   robots: {
     index: true,
