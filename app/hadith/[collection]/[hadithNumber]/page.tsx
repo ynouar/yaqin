@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { getHadithByCollectionAndNumber, getAdjacentHadiths } from '@/lib/db/queries';
 import { getCollectionMetadata, getAuthenticityDisplay, isValidCollection } from '@/lib/hadith-metadata';
 import { createBreadcrumbSchema, createHadithArticleSchema } from '@/lib/seo/schema';
@@ -169,28 +168,26 @@ export default async function HadithPage({ params }: PageProps) {
       </div>
 
       {/* Navigation */}
-      <Suspense fallback={<div />}>
-        <PageNavigation
-          previous={
-            adjacent.previous
-              ? {
-                  href: `/hadith/${collection}/${adjacent.previous}`,
-                  label: `Hadith #${adjacent.previous}`,
-                  sublabel: 'Previous',
-                }
-              : undefined
-          }
-          next={
-            adjacent.next
-              ? {
-                  href: `/hadith/${collection}/${adjacent.next}`,
-                  label: `Hadith #${adjacent.next}`,
-                  sublabel: 'Next',
-                }
-              : undefined
-          }
-        />
-      </Suspense>
+      <PageNavigation
+        previous={
+          adjacent.previous
+            ? {
+                href: `/hadith/${collection}/${adjacent.previous}`,
+                label: `Hadith #${adjacent.previous}`,
+                sublabel: 'Previous',
+              }
+            : undefined
+        }
+        next={
+          adjacent.next
+            ? {
+                href: `/hadith/${collection}/${adjacent.next}`,
+                label: `Hadith #${adjacent.next}`,
+                sublabel: 'Next',
+              }
+            : undefined
+        }
+      />
     </HadithPageLayout>
   );
 }
