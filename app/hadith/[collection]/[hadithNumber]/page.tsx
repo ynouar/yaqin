@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { getHadithByCollectionAndNumber, getAdjacentHadiths } from '@/lib/db/queries';
 import { getCollectionMetadata, getAuthenticityDisplay, isValidCollection } from '@/lib/hadith-metadata';
 import { createBreadcrumbSchema, createHadithArticleSchema } from '@/lib/seo/schema';
-import { generateSocialMetadata } from '@/lib/seo/metadata-helpers';
 import { HadithPageLayout } from '@/components/hadith/layout/hadith-page-layout';
 import { NarrationHeader } from '@/components/hadith/narration/narration-header';
 import { NarrationCard } from '@/components/hadith/narration-card';
@@ -63,12 +63,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         follow: true,
       },
     },
-    ...generateSocialMetadata({
+    openGraph: {
       title,
       description,
       type: 'article',
       url: canonicalUrl,
-    }),
+      siteName: 'Criterion',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      site: '@criterion',
+    },
   };
 }
 
@@ -168,26 +175,28 @@ export default async function HadithPage({ params }: PageProps) {
       </div>
 
       {/* Navigation */}
-      <PageNavigation
-        previous={
-          adjacent.previous
-            ? {
-                href: `/hadith/${collection}/${adjacent.previous}`,
-                label: `Hadith #${adjacent.previous}`,
-                sublabel: 'Previous',
-              }
-            : undefined
-        }
-        next={
-          adjacent.next
-            ? {
-                href: `/hadith/${collection}/${adjacent.next}`,
-                label: `Hadith #${adjacent.next}`,
-                sublabel: 'Next',
-              }
-            : undefined
-        }
-      />
+      <Suspense fallback={<div />}>
+        <PageNavigation
+          previous={
+            adjacent.previous
+              ? {
+                  href: `/hadith/${collection}/${adjacent.previous}`,
+                  label: `Hadith #${adjacent.previous}`,
+                  sublabel: 'Previous',
+                }
+              : undefined
+          }
+          next={
+            adjacent.next
+              ? {
+                  href: `/hadith/${collection}/${adjacent.next}`,
+                  label: `Hadith #${adjacent.next}`,
+                  sublabel: 'Next',
+                }
+              : undefined
+          }
+        />
+      </Suspense>
     </HadithPageLayout>
   );
 }

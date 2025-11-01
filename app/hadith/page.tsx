@@ -3,9 +3,6 @@ import Link from 'next/link';
 import { SiteHeader } from '@/components/layout/site-header';
 import { COLLECTION_METADATA } from '@/lib/hadith-metadata';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
-import { generateSocialMetadata, getSiteUrl } from '@/lib/seo/metadata-helpers';
-
-const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   title: 'Hadith - Browse All 4 Major Collections',
@@ -21,11 +18,11 @@ export const metadata: Metadata = {
     'Sunnah',
     'Prophet Muhammad sayings',
   ],
-  ...generateSocialMetadata({
+  openGraph: {
     title: 'Hadith - Browse All 4 Major Collections | Criterion',
     description: 'Browse 12,416 authentic hadiths from major collections with Arabic text and English translations.',
     type: 'website',
-  }),
+  },
 };
 
 export default function HadithPage() {

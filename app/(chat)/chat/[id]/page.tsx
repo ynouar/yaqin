@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import type { Metadata } from "next";
 
 import { auth } from "@/app/(auth)/auth";
 import { Chat } from "@/components/chat";
@@ -7,10 +8,31 @@ import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models";
 import { getChatById, getMessagesByChatId } from "@/lib/db/queries";
 import { convertToUIMessages } from "@/lib/utils";
 
-export const metadata = {
+export const metadata: Metadata = {
+  title: "Chat - Criterion",
+  description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide.",
   robots: {
     index: false,
     follow: true,
+  },
+  openGraph: {
+    title: "Chat - Criterion",
+    description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources.",
+    type: "website",
+    images: [
+      {
+        url: "/opengraph-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Criterion - Quran Powered AI Assistant",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Chat - Criterion",
+    description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers.",
+    images: ["/twitter-image.png"],
   },
 };
 

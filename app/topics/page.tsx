@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { BookOpen, Sparkles, Search } from 'lucide-react';
 import { getAllTopicsSorted, type Topic } from '@/lib/topics';
 import { SiteHeader } from '@/components/layout/site-header';
-import { generateSocialMetadata } from '@/lib/seo/metadata-helpers';
 
 export const metadata: Metadata = {
   title: 'Islamic Topics - Quran & Hadith | Criterion',
@@ -18,11 +17,12 @@ export const metadata: Metadata = {
     'Learn Islam',
     'Islamic education',
   ],
-  ...generateSocialMetadata({
+  openGraph: {
     title: 'Islamic Topics - Quran & Hadith',
-    description: 'Explore essential Islamic topics with verses from the Quran and authentic Hadiths.',
+    description:
+      'Explore essential Islamic topics with verses from the Quran and authentic Hadiths.',
     type: 'website',
-  }),
+  },
 };
 
 export default function TopicsPage() {

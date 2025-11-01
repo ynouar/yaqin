@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 import { getVerseWithContext, getVerseBySurahAndAyah } from '@/lib/db/queries';
 import { getSurahMetadata } from '@/lib/quran-metadata';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
-import { generateSocialMetadata } from '@/lib/seo/metadata-helpers';
 import { getQuranLanguageFromParam } from '@/lib/quran-language';
 import { QuranPageLayout } from '@/components/quran/layout/quran-page-layout';
 import { VerseHeader } from '@/components/quran/verse/verse-header';
@@ -56,11 +55,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'Islamic text',
       surahMetadata?.transliteration || '',
     ],
-    ...generateSocialMetadata({
+    openGraph: {
       title,
       description,
       type: 'article',
-    }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
   };
 }
 
