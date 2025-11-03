@@ -292,11 +292,14 @@ const LoadingMessage = () => {
   const [messageIndex, setMessageIndex] = useState(0);
 
   const loadingMessages = [
-    "Searching the Quran...",
-    "Gathering verses...",
-    "Consulting the sacred text...",
-    "Finding relevant passages...",
-    "Preparing your answer...",
+    "Seeking light from the word of God...",
+    "Searching the sacred texts...",
+    "Consulting authentic sources...",
+    "Gathering divine guidance...",
+    "Exploring the teachings...",
+    "Verifying references...",
+    "Finding wisdom...",
+    "Seeking clarity...",
   ];
 
   useEffect(() => {
