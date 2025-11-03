@@ -58,16 +58,16 @@ const getToolIcon = (type: ToolUIPart["type"]) => {
 const getToolDisplayMessage = (type: ToolUIPart["type"], state: ToolUIPart["state"]) => {
   const messages: Record<string, Record<ToolUIPart["state"], string>> = {
     "tool-queryQuran": {
-      "input-streaming": "Preparing to search Quran...",
-      "input-available": "Searching Quran...",
-      "output-available": "Found verses from the Quran",
-      "output-error": "Failed to search Quran",
+      "input-streaming": "Preparing to search the Divine Scripture...",
+      "input-available": "Searching the Divine Scripture...",
+      "output-available": "Found verses from the Divine Scripture",
+      "output-error": "Encountered an error while searching",
     },
     "tool-queryHadith": {
-      "input-streaming": "Preparing to search Hadith...",
-      "input-available": "Searching Hadith...",
-      "output-available": "Found hadiths",
-      "output-error": "Failed to search Hadith",
+      "input-streaming": "Preparing to search Prophetic Teachings...",
+      "input-available": "Searching Prophetic Teachings...",
+      "output-available": "Found Prophetic Teachings",
+      "output-error": "Encountered an error while searching",
     },
     "tool-getQuranByReference": {
       "input-streaming": "Preparing verse lookup...",
