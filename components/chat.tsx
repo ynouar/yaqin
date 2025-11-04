@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useAutoResume } from "@/hooks/use-auto-resume";
 import { useChatVisibility } from "@/hooks/use-chat-visibility";
+import { useFirstVisitDisclaimer } from "@/hooks/use-first-visit-disclaimer";
 import type { Vote } from "@/lib/db/schema";
 import { ChatSDKError } from "@/lib/errors";
 import type { Attachment, ChatMessage } from "@/lib/types";
@@ -151,6 +152,8 @@ export function Chat({
     resumeStream,
     setMessages,
   });
+
+  useFirstVisitDisclaimer();
 
   return (
     <>
