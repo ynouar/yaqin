@@ -2,6 +2,35 @@ import { type NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { guestRegex, isDevelopmentEnvironment } from "./lib/constants";
 
+// Bot/crawler detection for SEO
+function isBot(userAgent: string): boolean {
+  const botPatterns = [
+    'googlebot',
+    'bingbot',
+    'slurp',
+    'duckduckbot',
+    'baiduspider',
+    'yandexbot',
+    'facebookexternalhit',
+    'twitterbot',
+    'rogerbot',
+    'linkedinbot',
+    'embedly',
+    'quora link preview',
+    'showyoubot',
+    'outbrain',
+    'pinterest',
+    'slackbot',
+    'vkShare',
+    'W3C_Validator',
+    'whatsapp',
+    'lighthouse',
+  ];
+  
+  const ua = userAgent.toLowerCase();
+  return botPatterns.some(pattern => ua.includes(pattern));
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -14,6 +43,12 @@ export async function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith("/api/auth")) {
+    return NextResponse.next();
+  }
+
+  // Allow bots/crawlers to access all pages without authentication for SEO
+  const userAgent = request.headers.get('user-agent') || '';
+  if (isBot(userAgent)) {
     return NextResponse.next();
   }
 
