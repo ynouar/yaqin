@@ -13,6 +13,7 @@ export function SpeakInterface() {
     currentVolume,
     conversation,
     handleStartStopClick,
+    toolExecutionStatus,
   } = useVoiceSession();
 
   return (
@@ -29,12 +30,14 @@ export function SpeakInterface() {
           <VoiceVisualizer
             isActive={isSessionActive}
             volume={currentVolume}
+            toolExecutionStatus={toolExecutionStatus}
           />
 
           <VoiceControls
             isSessionActive={isSessionActive}
             onClick={handleStartStopClick}
             status={status}
+            toolExecutionStatus={toolExecutionStatus}
           />
 
           <VoiceTranscript conversation={conversation} />

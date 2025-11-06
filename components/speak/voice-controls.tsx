@@ -7,13 +7,18 @@ interface VoiceControlsProps {
   isSessionActive: boolean;
   onClick: () => void;
   status?: string;
+  toolExecutionStatus?: string | null;
 }
 
 export function VoiceControls({ 
   isSessionActive, 
   onClick, 
   status,
+  toolExecutionStatus,
 }: VoiceControlsProps) {
+  // Tool execution status takes priority over regular status
+  const displayStatus = toolExecutionStatus || status;
+  
   return (
     <div className="flex flex-col items-center gap-3">
       <Button
@@ -35,13 +40,13 @@ export function VoiceControls({
         )}
       </Button>
       
-      {status && (
-        <p className="text-sm text-muted-foreground">
-          {status}
+      {displayStatus && (
+        <p className={`text-sm ${toolExecutionStatus ? 'text-green-600 dark:text-green-400' : 'text-muted-foreground'}`}>
+          {displayStatus}
         </p>
       )}
       
-      {!isSessionActive && !status && (
+      {!isSessionActive && !displayStatus && (
         <p className="text-sm text-muted-foreground">
           Speak to learn about Islam
         </p>

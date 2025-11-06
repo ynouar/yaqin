@@ -5,9 +5,10 @@ import { useEffect, useRef } from "react";
 interface VoiceVisualizerProps {
   isActive: boolean;
   volume: number;
+  toolExecutionStatus?: string | null;
 }
 
-export function VoiceVisualizer({ isActive, volume }: VoiceVisualizerProps) {
+export function VoiceVisualizer({ isActive, volume, toolExecutionStatus }: VoiceVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number | null>(null);
   const barsRef = useRef<number[]>(Array(12).fill(0));
@@ -46,14 +47,16 @@ export function VoiceVisualizer({ isActive, volume }: VoiceVisualizerProps) {
       // Update bars based on activity and volume
       barsRef.current = barsRef.current.map((currentHeight, i) => {
         if (isActive) {
-          // Create wave effect with volume
-          const targetHeight = Math.sin(Date.now() / 200 + i * 0.5) * 20 * (0.5 + volume * 2);
-          const minHeight = 4;
-          const maxHeight = 60;
-          const clampedTarget = Math.max(minHeight, Math.min(maxHeight, Math.abs(targetHeight)));
+          // Simple, direct volume response with slight wave offset per bar
+          const waveOffset = Math.sin(Date.now() / 400 + i * 0.5);
+          const targetHeight = 15 + volume * 200 + waveOffset * 10;
           
-          // Smooth transition
-          return currentHeight + (clampedTarget - currentHeight) * 0.15;
+          const minHeight = 8;
+          const maxHeight = 80;
+          const clampedTarget = Math.max(minHeight, Math.min(maxHeight, targetHeight));
+          
+          // Quick response to volume changes
+          return currentHeight + (clampedTarget - currentHeight) * 0.5;
         } else {
           // Idle state - gentle breathing
           const idleHeight = 8 + Math.sin(Date.now() / 1000 + i * 0.3) * 4;
@@ -70,7 +73,10 @@ export function VoiceVisualizer({ isActive, volume }: VoiceVisualizerProps) {
         const isDark = document.documentElement.classList.contains("dark");
         let color: string;
         
-        if (isActive) {
+        if (toolExecutionStatus) {
+          // Subtle green tint during tool execution
+          color = isDark ? "rgba(134, 239, 172, 0.7)" : "rgba(34, 197, 94, 0.6)";
+        } else if (isActive) {
           color = isDark ? "rgba(255, 255, 255, 0.9)" : "rgba(0, 0, 0, 0.8)";
         } else {
           color = isDark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.2)";
@@ -92,7 +98,7 @@ export function VoiceVisualizer({ isActive, volume }: VoiceVisualizerProps) {
       }
       window.removeEventListener("resize", updateSize);
     };
-  }, [isActive, volume]);
+  }, [isActive, volume, toolExecutionStatus]);
 
   return (
     <div className="flex items-center justify-center min-h-[120px]">

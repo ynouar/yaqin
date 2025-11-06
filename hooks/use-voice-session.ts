@@ -17,6 +17,7 @@ interface UseVoiceSessionReturn {
   currentVolume: number;
   conversation: VoiceConversationItem[];
   handleStartStopClick: () => void;
+  toolExecutionStatus: string | null;
 }
 
 export default function useVoiceSession(): UseVoiceSessionReturn {
@@ -24,6 +25,7 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
   const [isSessionActive, setIsSessionActive] = useState(false);
   const [currentVolume, setCurrentVolume] = useState(0);
   const [conversation, setConversation] = useState<VoiceConversationItem[]>([]);
+  const [toolExecutionStatus, setToolExecutionStatus] = useState<string | null>(null);
 
   const peerConnectionRef = useRef<RTCPeerConnection | null>(null);
   const dataChannelRef = useRef<RTCDataChannel | null>(null);
@@ -196,6 +198,8 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
 
         case "response.function_call_arguments.done": {
           if (msg.name === "queryQuran") {
+            setToolExecutionStatus("Searching Divine Scripture...");
+            
             const args = JSON.parse(msg.arguments);
             
             const toolResponse = await fetch("/speak/api/tools", {
@@ -222,6 +226,11 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
             dataChannelRef.current?.send(JSON.stringify({
               type: "response.create",
             }));
+            
+            // Clear tool status after sending response - assistant will speak shortly
+            setTimeout(() => {
+              setToolExecutionStatus(null);
+            }, 500);
           }
           break;
         }
@@ -300,15 +309,16 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
       const audioContext = new AudioContext();
       const source = audioContext.createMediaStreamSource(stream);
       const analyzer = audioContext.createAnalyser();
-      analyzer.fftSize = 256;
+      analyzer.fftSize = 512; // Increased for better frequency resolution
+      analyzer.smoothingTimeConstant = 0.3; // Reduced for more responsive changes
       source.connect(analyzer);
       audioContextRef.current = audioContext;
       analyserRef.current = analyzer;
 
-      // Start monitoring user's microphone volume
+      // Start monitoring user's microphone volume at higher frequency
       volumeIntervalRef.current = window.setInterval(() => {
         setCurrentVolume(getVolume());
-      }, 100);
+      }, 50); // Increased from 100ms to 50ms for more responsive visualization
 
       setStatus("Fetching session token...");
       const ephemeralToken = await getEphemeralToken();
@@ -344,7 +354,7 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
 
       // Exchange SDP with OpenAI
       const baseUrl = "https://api.openai.com/v1/realtime";
-      const model = "gpt-4o-realtime-preview-2024-12-17";
+      const model = "gpt-realtime-mini";
       const response = await fetch(`${baseUrl}?model=${model}`, {
         method: "POST",
         body: offer.sdp,
@@ -430,5 +440,6 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
     currentVolume,
     conversation,
     handleStartStopClick,
+    toolExecutionStatus,
   };
 }
