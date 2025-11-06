@@ -32,6 +32,7 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
   const analyserRef = useRef<AnalyserNode | null>(null);
   const volumeIntervalRef = useRef<number | null>(null);
   const ephemeralUserMessageIdRef = useRef<string | null>(null);
+  const dbSessionIdRef = useRef<string | null>(null);
 
   // Generate unique ID
   const generateId = () => Math.random().toString(36).substring(7);
@@ -112,12 +113,26 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
         }
 
         case "conversation.item.input_audio_transcription.completed": {
+          const transcript = msg.transcript || "";
           updateEphemeralUserMessage({
-            text: msg.transcript || "",
+            text: transcript,
             isFinal: true,
             status: "final",
           });
           clearEphemeralUserMessage();
+          
+          // Save user message to database (non-blocking)
+          if (dbSessionIdRef.current && transcript) {
+            fetch("/speak/api/session", {
+              method: "PATCH",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                sessionId: dbSessionIdRef.current,
+                role: "user",
+                transcript,
+              }),
+            }).catch((err) => console.error("Failed to save user message:", err));
+          }
           break;
         }
 
@@ -159,6 +174,21 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
             if (prev.length === 0) return prev;
             const updated = [...prev];
             updated[updated.length - 1].isFinal = true;
+            
+            // Save assistant message to database (non-blocking)
+            const lastMsg = updated[updated.length - 1];
+            if (dbSessionIdRef.current && lastMsg.text) {
+              fetch("/speak/api/session", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  sessionId: dbSessionIdRef.current,
+                  role: "assistant",
+                  transcript: lastMsg.text,
+                }),
+              }).catch((err) => console.error("Failed to save assistant message:", err));
+            }
+            
             return updated;
           });
           break;
@@ -171,7 +201,11 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
             const toolResponse = await fetch("/speak/api/tools", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ tool: "queryQuran", args }),
+              body: JSON.stringify({ 
+                tool: "queryQuran", 
+                args,
+                sessionId: dbSessionIdRef.current,
+              }),
             });
             
             const result = await toolResponse.json();
@@ -242,6 +276,12 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
         throw new Error(`Failed to get ephemeral token: ${response.status}`);
       }
       const data = await response.json();
+      
+      // Store the database session ID for later use
+      if (data.sessionId) {
+        dbSessionIdRef.current = data.sessionId;
+      }
+      
       return data.client_secret.value;
     } catch (err) {
       console.error("getEphemeralToken error:", err);
@@ -328,6 +368,20 @@ export default function useVoiceSession(): UseVoiceSessionReturn {
 
   // Stop session
   const stopSession = useCallback(() => {
+    // Complete the session in the database (non-blocking)
+    if (dbSessionIdRef.current) {
+      fetch("/speak/api/session", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          sessionId: dbSessionIdRef.current, 
+          action: "complete" 
+        }),
+      }).catch((err) => console.error("Failed to complete session:", err));
+      
+      dbSessionIdRef.current = null;
+    }
+
     if (dataChannelRef.current) {
       dataChannelRef.current.close();
       dataChannelRef.current = null;

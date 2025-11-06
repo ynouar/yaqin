@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
+import { after } from "next/server";
 import { findRelevantVerses } from "@/lib/ai/embeddings";
+import { saveVoiceMessage } from "@/lib/db/queries";
 
 export async function POST(request: Request) {
   try {
-    const { tool, args } = await request.json();
+    const { tool, args, sessionId } = await request.json();
 
     if (tool === "queryQuran") {
       const verses = await findRelevantVerses(args.question);
@@ -20,6 +22,22 @@ export async function POST(request: Request) {
           rank: index + 1,
         })),
       };
+
+      // Save tool call (fire-and-forget)
+      if (sessionId) {
+        after(() =>
+          saveVoiceMessage(sessionId, "assistant", undefined, [
+            {
+              tool: "queryQuran",
+              args,
+              result: {
+                totalVerses: result.totalVerses,
+                topReferences: result.verses.slice(0, 3).map((v) => v.reference),
+              },
+            },
+          ])
+        );
+      }
 
       return NextResponse.json(result);
     }

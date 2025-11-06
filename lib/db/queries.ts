@@ -31,6 +31,8 @@ import {
   type User,
   user,
   vote,
+  voiceSession,
+  voiceMessage,
 } from "./schema";
 import { generateHashedPassword } from "./utils";
 
@@ -1159,4 +1161,95 @@ export async function getCollectionStats(collection: string) {
       "Failed to get collection stats"
     );
   }
+}
+
+// =======================
+// Voice Session Queries
+// =======================
+
+export async function createVoiceSession({
+  userId,
+}: {
+  userId: string;
+}): Promise<string> {
+  try {
+    const sessionId = generateUUID();
+    await db.insert(voiceSession).values({
+      id: sessionId,
+      userId,
+      startedAt: new Date(),
+      status: "active",
+    });
+    return sessionId;
+  } catch (_error) {
+    throw new ChatSDKError(
+      "bad_request:database",
+      "Failed to create voice session"
+    );
+  }
+}
+
+export function saveVoiceMessage(
+  sessionId: string,
+  role: "user" | "assistant",
+  transcript?: string,
+  toolCalls?: Array<{
+    tool: string;
+    args: Record<string, any>;
+    result: any;
+  }>
+) {
+  // Fire-and-forget: don't block real-time voice interaction
+  db.insert(voiceMessage)
+    .values({
+      sessionId,
+      role,
+      transcript,
+      toolCalls,
+    })
+    .then(() => {
+      // Update session counters
+      const toolCallIncrement = toolCalls ? toolCalls.length : 0;
+      return db
+        .update(voiceSession)
+        .set({
+          messageCount: sql`${voiceSession.messageCount} + 1`,
+          toolCallCount: sql`${voiceSession.toolCallCount} + ${toolCallIncrement}`,
+        })
+        .where(eq(voiceSession.id, sessionId));
+    })
+    .catch((err: unknown) =>
+      console.error("Failed to save voice message:", err)
+    );
+}
+
+export function endVoiceSession(sessionId: string) {
+  // Fire-and-forget: don't block response
+  db.select()
+    .from(voiceSession)
+    .where(eq(voiceSession.id, sessionId))
+    .limit(1)
+    .then(([session]) => {
+      if (!session) {
+        console.warn("Voice session not found:", sessionId);
+        return;
+      }
+
+      const endedAt = new Date();
+      const duration = Math.floor(
+        (endedAt.getTime() - session.startedAt.getTime()) / 1000
+      );
+
+      return db
+        .update(voiceSession)
+        .set({
+          endedAt,
+          duration,
+          status: "completed",
+        })
+        .where(eq(voiceSession.id, sessionId));
+    })
+    .catch((err: unknown) =>
+      console.error("Failed to end voice session:", err)
+    );
 }
