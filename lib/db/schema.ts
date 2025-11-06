@@ -317,3 +317,42 @@ export const hadithEmbedding = pgTable(
 );
 
 export type HadithEmbedding = InferSelectModel<typeof hadithEmbedding>;
+
+// Voice session tracking
+export const voiceSession = pgTable("VoiceSession", {
+  id: uuid("id").primaryKey().notNull().defaultRandom(),
+  userId: uuid("userId")
+    .notNull()
+    .references(() => user.id),
+  startedAt: timestamp("startedAt").notNull().defaultNow(),
+  endedAt: timestamp("endedAt"),
+  duration: integer("duration"), // seconds
+  messageCount: integer("messageCount").default(0),
+  toolCallCount: integer("toolCallCount").default(0),
+  status: varchar("status", { enum: ["active", "completed", "error"] })
+    .notNull()
+    .default("active"),
+}, (table) => ({
+  userIdx: index("idx_voice_session_user").on(table.userId),
+}));
+
+export type VoiceSession = InferSelectModel<typeof voiceSession>;
+
+export const voiceMessage = pgTable("VoiceMessage", {
+  id: uuid("id").primaryKey().notNull().defaultRandom(),
+  sessionId: uuid("sessionId")
+    .notNull()
+    .references(() => voiceSession.id, { onDelete: "cascade" }),
+  role: varchar("role", { enum: ["user", "assistant"] }).notNull(),
+  transcript: text("transcript"),
+  toolCalls: jsonb("toolCalls").$type<Array<{
+    tool: string;
+    args: Record<string, any>;
+    result: any;
+  }>>(),
+  createdAt: timestamp("createdAt").notNull().defaultNow(),
+}, (table) => ({
+  sessionIdx: index("idx_voice_message_session").on(table.sessionId),
+}));
+
+export type VoiceMessage = InferSelectModel<typeof voiceMessage>;

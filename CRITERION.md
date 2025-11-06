@@ -14,10 +14,13 @@ Help people understand Islam through authentic sources using natural language qu
 - **Contextual**: Top Quran results include ±2 surrounding verses
 - **Authentic**: Defaults to Sahih (most reliable) hadiths
 - **Accurate**: Every response cites real sources with hyperlinks
+- **Voice-enabled**: Natural conversation via OpenAI Realtime API at `/speak`
 
 ---
 
 ## 2. How It Works
+
+### Chat Interface
 
 ```
 User asks question
@@ -26,6 +29,18 @@ User asks question
   → Hybrid RAG search (vector + keyword)
   → LLM generates grounded answer
   → Stream response + citations to UI
+```
+
+### Voice Interface (`/speak`)
+
+```
+User speaks question
+  → WebRTC audio stream to OpenAI Realtime API
+  → Speech-to-text transcription (Whisper)
+  → gpt-4o-realtime calls queryQuran tool
+  → Quran RAG search (same as chat)
+  → Text-to-speech response (alloy voice)
+  → Audio streams back to user
 ```
 
 **Architecture:**
@@ -48,6 +63,7 @@ User asks question
 - **Framework**: Next.js 15, React 19, TypeScript
 - **AI SDK**: Vercel AI SDK (streamText, tool calling, multi-step agents)
 - **LLM**: GPT5 Mini (primary), GPT4 Turbo (reasoning)
+- **Voice**: OpenAI Realtime API (gpt-4o-realtime-preview-2024-12-17, WebRTC)
 - **Embeddings**: Gemini text-embedding-004 (768-dim, RETRIEVAL_QUERY task type)
 - **Database**: PostgreSQL + pgvector (HNSW index), Drizzle ORM
 - **Streaming**: Server-Sent Events (SSE) with `JsonToSseTransformStream`
@@ -57,6 +73,8 @@ User asks question
 ## 4. Core Files & Architecture
 
 ### API & Streaming Pipeline
+
+**Chat:**
 
 ```
 app/(chat)/api/chat/route.ts     # Main chat endpoint (POST/DELETE)
@@ -70,6 +88,30 @@ app/search/api/route.ts          # Quran search API (GET)
 
 app/hadith/search/api/route.ts   # Hadith search API (GET)
   └─ findRelevantHadiths()       # Returns up to 15 results with filters
+```
+
+**Voice:**
+
+```
+app/speak/page.tsx               # Voice interface page
+app/speak/speak-interface.tsx    # Main voice UI component
+app/speak/api/session/route.ts   # Creates voice session + ephemeral token
+app/speak/api/tools/route.ts     # Handles queryQuran tool execution
+
+hooks/use-voice-session.ts       # WebRTC session management
+  ├─ Microphone capture + volume visualization
+  ├─ OpenAI Realtime API connection (WebRTC)
+  ├─ Speech-to-text transcription handling
+  ├─ Tool execution (queryQuran)
+  └─ Text-to-speech audio playback
+
+components/speak/
+  ├─ voice-visualizer.tsx        # Waveform audio visualization (12 bars)
+  ├─ voice-controls.tsx          # Start/stop controls
+  └─ voice-transcript.tsx        # Conversation display (collapsible)
+
+lib/db/schema.ts                 # VoiceSession + VoiceMessage tables
+lib/ai/voice-system-prompt.ts    # Voice-optimized system prompt
 ```
 
 ### RAG Implementation
@@ -170,6 +212,13 @@ lib/topics.ts                    # Topic definitions & queries
 - Single source of truth for styling
 - Shared components between search & topics
 - Page files focus on data fetching + composition
+
+**Voice Components:**
+
+- **VoiceVisualizer**: Canvas-based waveform (Web Audio API, 12 bars, 60fps)
+- **VoiceControls**: Start/Stop button with connection status
+- **VoiceTranscript**: Collapsible conversation history (hidden by default)
+- **useVoiceSession**: WebRTC hook managing full voice session lifecycle
 
 ---
 
@@ -346,40 +395,133 @@ score = sum(1 / (rank + k)) across all result lists
 - `k=60` balances top-ranked vs lower-ranked items
 - **Result**: Best of both semantic + lexical worlds
 
-## 9. Key Decisions
+---
+
+## 9. OpenAI Realtime API & Voice Interface
+
+### Architecture
+
+**WebRTC-Based Voice Pipeline:**
+
+```typescript
+// hooks/use-voice-session.ts
+User microphone → MediaStream → RTCPeerConnection
+  ↓
+OpenAI Realtime API (WebRTC)
+  ├─ Speech-to-text: Whisper transcription
+  ├─ LLM reasoning: gpt-4o-realtime-preview-2024-12-17
+  ├─ Tool calling: queryQuran (reuses chat RAG)
+  └─ Text-to-speech: alloy voice
+  ↓
+Audio stream → Browser audio element (autoplay)
+```
+
+**Session Flow:**
+
+1. **Session Creation** (`/speak/api/session`)
+   - Creates `VoiceSession` in database
+   - Fetches ephemeral token from OpenAI
+   - Returns token to client
+
+2. **WebRTC Connection** (`use-voice-session.ts`)
+   - Captures user microphone (Web Audio API)
+   - Establishes RTCPeerConnection with OpenAI
+   - Configures data channel with session settings
+
+3. **Voice Interaction**
+   - User speech → Whisper transcription
+   - Transcription triggers tool call (queryQuran)
+   - Tool execution via `/speak/api/tools` endpoint
+   - Results sent back to OpenAI via data channel
+   - OpenAI generates voice response
+
+4. **Audio Visualization**
+   - Real-time volume monitoring (Web Audio API)
+   - Canvas-based waveform (12 bars, 60fps)
+   - Amplitude-based animation with smooth transitions
+
+### Key Features
+
+**Minimal UI:**
+- Waveform visualizer (responds to user voice, not assistant)
+- Start/Stop button with connection status
+- Collapsible transcript (hidden by default, mobile-first)
+
+**Tool Integration:**
+- Same `findRelevantVerses()` function as chat
+- Server-side tool execution for security
+- Formatted response optimized for voice output
+
+**Session Management:**
+- Database tracking: `VoiceSession` + `VoiceMessage` tables
+- Proper cleanup on disconnect
+- Auth-protected routes
+
+### Voice-Specific Optimizations
+
+**System Prompt:**
+- Conversational, empathetic tone
+- Concise responses (voice-optimized)
+- Natural speech patterns
+- Citation handling for audio (e.g., "As mentioned in Surah Al-Baqarah, verse 255...")
+
+**Focused Scope:**
+- Quran-only (no Hadith for voice yet)
+- Simpler UX for voice interaction
+- Faster tool execution (<200ms)
+
+**Volume Monitoring:**
+```typescript
+// Real-time audio analysis
+analyser.getByteTimeDomainData(dataArray);
+volume = sqrt(sum((sample - 128)² / 128²) / samples);
+// Updates every 100ms for smooth visualization
+```
+
+---
+
+## 10. Key Decisions
 
 **Why ±2 context verses?** Balance between context quality and token usage (600 tokens vs 1,500)  
 **Why hybrid search for Hadith?** Arabic terms and proper names need exact matching (+49% improvement)  
 **Why default Sahih-only?** Islamic scholarship prioritizes authenticity  
 **Why server-side rendering for search?** Instant results, SEO-friendly, shareable URLs with proper previews  
-**Why topic pages?** Target high-volume keywords (300K+ searches/month) with zero content writing
+**Why topic pages?** Target high-volume keywords (300K+ searches/month) with zero content writing  
+**Why OpenAI Realtime API?** Native WebRTC, built-in speech-to-text/text-to-speech, tool calling support  
+**Why queryQuran-only for voice?** Focused experience, faster responses, less complexity for voice UX  
+**Why hide transcript by default?** Mobile-first, minimal UI, focus on voice interaction
 
 ---
-## 10. SEO & Discoverability
+
+## 11. SEO & Discoverability
 
 **Sitemap**: 6,378 URLs (8 static + 114 Surahs + 6,236 verses + 20 topics)  
 **Server-Side Rendering**: Search pages pre-render results for instant loading + SEO  
 **Dynamic Metadata**: Unique titles/descriptions per search query  
 **Public Access**: All content pages accessible without authentication  
-**Structured Data**: Organization, WebSite, Breadcrumbs, FAQ schemas
+**Structured Data**: Organization, WebSite, Breadcrumbs, FAQ schemas  
+**Voice Interface**: `/speak` route for natural conversation (requires authentication)
 
 **Topic Pages** (20 pre-computed landing pages):
 - Cover 5 pillars, core beliefs, moral topics, common questions
 - Reuse existing RAG infrastructure (zero manual content creation)
 
 ---
-## 11. Performance
 
-| Operation              | Time      | Notes                         |
-| ---------------------- | --------- | ----------------------------- |
-| Quran search + context | 100-150ms | English (no JOIN)             |
-| Quran search (Slovak)  | 150-200ms | Single JOIN to translations   |
-| Topic page load        | ~3-4s     | Pre-computes 15 verses + 8 hadiths |
-| Total query time       | <200ms    | Optimized with HNSW + indexes |
+## 12. Performance
+
+| Operation                | Time      | Notes                              |
+| ------------------------ | --------- | ---------------------------------- |
+| Quran search + context   | 100-150ms | English (no JOIN)                  |
+| Quran search (Slovak)    | 150-200ms | Single JOIN to translations        |
+| Topic page load          | ~3-4s     | Pre-computes 15 verses + 8 hadiths |
+| Voice response latency   | ~1-2s     | WebRTC + Whisper + TTS pipeline    |
+| Voice audio visualization| 60 FPS    | Web Audio API + Canvas             |
+| Total query time         | <200ms    | Optimized with HNSW + indexes      |
 
 ---
 
-## 12. Limitations
+## 13. Limitations
 
 - **Search & RAG**: English-only (vector embeddings not yet multilingual)
 - **Reading**: English + Slovak (expandable via `QuranTranslation` table)
@@ -388,7 +530,7 @@ score = sum(1 / (rank + k)) across all result lists
 
 ---
 
-## 13. Quick Start
+## 14. Quick Start
 
 ```bash
 # 1. Setup
@@ -411,6 +553,7 @@ curl https://criterion.life/sitemap.xml | grep -c "<url>"  # Should show: 6378
 
 **Key URLs**:
 - `/` - Chat interface (requires auth)
+- `/speak` - Voice interface (requires auth, mobile-optimized)
 - `/quran/search?q=patience` - Public search (server-rendered)
 - `/topics/prayer` - Topic landing page (SEO-optimized)
 - `/quran/2/255` - Individual verse page (6,236 total)
