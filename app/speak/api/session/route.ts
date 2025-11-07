@@ -21,7 +21,7 @@ export async function POST() {
         },
         body: JSON.stringify({
           model: "gpt-realtime-mini",
-          voice: "verse",
+          voice: "cedar",
           modalities: ["audio", "text"],
           instructions: VOICE_SYSTEM_PROMPT,
         }),
