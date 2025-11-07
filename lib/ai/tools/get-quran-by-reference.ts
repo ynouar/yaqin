@@ -220,16 +220,6 @@ export const getQuranByReference = tool({
       };
     }
 
-    console.log(
-      `[getQuranByReference] Fetched ${results.length} reference(s), ${errors.length} error(s)`
-    );
-
-    if (results.length > 0) {
-      console.log(
-        `[getQuranByReference] First result: ${results[0].reference} (${results[0].verses.length} verses)`
-      );
-    }
-
     return {
       success: true,
       totalRequested: refArray.length,

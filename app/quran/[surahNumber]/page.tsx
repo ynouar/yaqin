@@ -3,12 +3,10 @@ import type { Metadata } from 'next';
 import { getVersesBySurah } from '@/lib/db/queries';
 import { getSurahMetadata } from '@/lib/quran-metadata';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
-import { getQuranLanguageFromParam } from '@/lib/quran-language';
 import { QuranPageLayout } from '@/components/quran/layout/quran-page-layout';
 import { VerseHeader } from '@/components/quran/verse/verse-header';
-import { VerseCard } from '@/components/quran/verse/verse-card';
+import { SurahPageContent } from '@/components/quran/surah/surah-page-content';
 import { PageNavigation } from '@/components/quran/navigation/page-navigation';
-import { LanguageSelector } from '@/components/quran/language-selector';
 
 // Route segment config for optimal performance
 export const dynamic = 'force-static'; // Pre-render all 114 Surahs
@@ -73,9 +71,7 @@ export async function generateStaticParams() {
 
 export default async function SurahPage({ params, searchParams }: PageProps) {
   const { surahNumber } = await params;
-  const { lang: langParam } = await searchParams;
   const num = Number.parseInt(surahNumber);
-  const language = getQuranLanguageFromParam(langParam);
 
   // Validate surah number
   if (Number.isNaN(num) || num < 1 || num > 114) {
@@ -87,8 +83,8 @@ export default async function SurahPage({ params, searchParams }: PageProps) {
     notFound();
   }
 
-  // Fetch all verses for this Surah with language support
-  const verses = await getVersesBySurah({ surahNumber: num, language });
+  // Always fetch English for SSR/SEO (translations loaded client-side)
+  const verses = await getVersesBySurah({ surahNumber: num, language: "en" });
 
   if (verses.length === 0) {
     notFound();
@@ -131,23 +127,11 @@ export default async function SurahPage({ params, searchParams }: PageProps) {
         }}
       />
 
-      {/* Language Selector */}
-      <div className="mb-8 flex justify-end">
-        <LanguageSelector currentLanguage={language} className="w-[200px]" />
-      </div>
-
-      {/* Verses */}
-      <div className="space-y-6">
-        {verses.map((verse) => (
-          <VerseCard
-            key={verse.id}
-            verse={verse}
-            variant="default"
-            showVerseLink
-            showQuranComLink
-          />
-        ))}
-      </div>
+      {/* Surah Content with Client-Side Language Switching */}
+      <SurahPageContent
+        initialVerses={verses}
+        surahNumber={num}
+      />
 
       {/* Navigation */}
       <div className="mt-12">

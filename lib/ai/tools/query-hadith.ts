@@ -43,12 +43,6 @@ export const queryHadith = tool({
       };
     }
 
-    console.log(
-      `[queryHadith] Found ${hadiths.length} hadiths for question: "${question}"`
-    );
-    console.log(
-      `[queryHadith] Top match: ${hadiths[0].reference} (${(hadiths[0].similarity * 100).toFixed(1)}% similarity)`
-    );
 
     // Format hadiths for LLM
     const formattedHadiths = hadiths.map((h, index) => ({

@@ -4,17 +4,15 @@ import { getVerseWithContext, getVerseBySurahAndAyah } from '@/lib/db/queries';
 import { getSurahMetadata, SURAH_METADATA } from '@/lib/quran-metadata';
 import { FAMOUS_VERSES } from '@/lib/quran-famous-verses';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
-import { getQuranLanguageFromParam } from '@/lib/quran-language';
 import { QuranPageLayout } from '@/components/quran/layout/quran-page-layout';
 import { VerseHeader } from '@/components/quran/verse/verse-header';
-import { VerseCard } from '@/components/quran/verse/verse-card';
+import { VersePageContent } from '@/components/quran/verse/verse-page-content';
 import { PageNavigation } from '@/components/quran/navigation/page-navigation';
 import { ContextToggle } from '@/components/quran/navigation/context-toggle';
-import { LanguageSelector } from '@/components/quran/language-selector';
 import { Book } from 'lucide-react';
 
 // Route segment config for optimal performance
-export const dynamic = 'force-static'; // Static generation for all verses
+export const dynamic = 'force-static'; // Static generation for all verses (SEO-friendly)
 export const dynamicParams = true; // Allow on-demand generation for any valid verse
 export const revalidate = false; // Verses never change, cache forever
 
@@ -94,11 +92,10 @@ export async function generateStaticParams() {
 
 export default async function VersePage({ params, searchParams }: PageProps) {
   const { surahNumber, ayahNumber } = await params;
-  const { context: contextParam, lang: langParam } = await searchParams;
+  const { context: contextParam } = await searchParams;
   
   const surahNum = Number.parseInt(surahNumber);
   const ayahNum = Number.parseInt(ayahNumber);
-  const language = getQuranLanguageFromParam(langParam);
 
   // Validate parameters
   if (Number.isNaN(surahNum) || Number.isNaN(ayahNum) || surahNum < 1 || surahNum > 114 || ayahNum < 1) {
@@ -109,11 +106,12 @@ export default async function VersePage({ params, searchParams }: PageProps) {
   const showContext = contextParam === 'true';
   const contextWindow = showContext ? 5 : 0;
 
+  // Always fetch English for SSR/SEO (translations loaded client-side)
   const verseData = await getVerseWithContext({
     surahNumber: surahNum,
     ayahNumber: ayahNum,
     contextWindow,
-    language,
+    language: "en", // Static page always uses English
   });
 
   if (!verseData || !verseData.target) {
@@ -168,49 +166,13 @@ export default async function VersePage({ params, searchParams }: PageProps) {
         ]}
       />
 
-      {/* Language Selector */}
-      <div className="mb-6 flex justify-end">
-        <LanguageSelector currentLanguage={language} className="w-[200px]" />
-      </div>
-
-      {/* Context Before */}
-      {showContext && contextBefore.length > 0 && (
-        <div className="mb-6 space-y-4">
-          {contextBefore.map((verse) => (
-            <VerseCard
-              key={verse.id}
-              verse={verse}
-              variant="context"
-              showVerseLink
-              showQuranComLink={false}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Main Verse - Highlighted */}
-      <div className="mb-6">
-        <VerseCard
-          verse={target}
-          variant="highlighted"
-          showQuranComLink
-        />
-      </div>
-
-      {/* Context After */}
-      {showContext && contextAfter.length > 0 && (
-        <div className="mb-8 space-y-4">
-          {contextAfter.map((verse) => (
-            <VerseCard
-              key={verse.id}
-              verse={verse}
-              variant="context"
-              showVerseLink
-              showQuranComLink={false}
-            />
-          ))}
-        </div>
-      )}
+      {/* Verse Content with Client-Side Language Switching */}
+      <VersePageContent
+        initialData={verseData}
+        surahNumber={surahNum}
+        ayahNumber={ayahNum}
+        showContext={showContext}
+      />
 
       {/* Context Toggle */}
       <div className="mb-8">

@@ -322,12 +322,7 @@ export async function POST(request: Request) {
           }
         }
 
-        // Log total request time
-        const totalTime = requestTimer.getDuration();
-        const color = totalTime > 5000 ? "🔴" : totalTime > 2000 ? "🟡" : "🟢";
-        console.log(
-          `\n${color} [CHAT COMPLETE] Total time: ${totalTime}ms (chatId: ${id})\n`
-        );
+        
       },
       onError: () => {
         return "Oops, an error occurred!";
