@@ -677,6 +677,8 @@ export async function getVersesBySurah({
   try {
     const { quranVerse, quranTranslation } = await import("./schema");
 
+    console.log(`[getVersesBySurah] Querying surah ${surahNumber} with language: ${language}`);
+
     // Fast path: English (no JOIN)
     if (language === "en") {
       const verses = await db
@@ -723,6 +725,12 @@ export async function getVersesBySurah({
       .orderBy(asc(quranVerse.ayahNumber))
       .execute();
 
+    console.log(`[getVersesBySurah] Found ${verses.length} verses`);
+    if (verses.length > 0) {
+      console.log(`[getVersesBySurah] First verse translation:`, verses[0].translation ? 'EXISTS' : 'NULL');
+      console.log(`[getVersesBySurah] First verse sample:`, verses[0].translation?.substring(0, 50) || 'NO TRANSLATION');
+    }
+
     // Fallback to English if translation not found
     return verses.map((v) => ({
       ...v,
@@ -751,6 +759,8 @@ export async function getVerseWithContext({
 }) {
   try {
     const { quranVerse, quranTranslation } = await import("./schema");
+
+    console.log(`[getVerseWithContext] Querying ${surahNumber}:${ayahNumber} with language: ${language}`);
 
     // Fast path: English (no JOIN)
     if (language === "en") {
@@ -858,6 +868,9 @@ export async function getVerseWithContext({
     if (!targetVerse) {
       return null;
     }
+
+    console.log(`[getVerseWithContext] Target verse translation:`, targetVerse.translation ? 'EXISTS' : 'NULL');
+    console.log(`[getVerseWithContext] Sample:`, targetVerse.translation?.substring(0, 50) || 'NO TRANSLATION');
 
     // Get context before
     const contextBefore = await db
