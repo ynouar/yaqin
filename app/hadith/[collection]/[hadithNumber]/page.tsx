@@ -10,6 +10,12 @@ import { NarrationCard } from '@/components/hadith/narration-card';
 import { PageNavigation } from '@/components/quran/navigation/page-navigation';
 import { BookOpen } from 'lucide-react';
 
+// Route segment config for optimal performance
+export const dynamic = 'force-static'; // Force static generation for maximum performance
+export const revalidate = 86400; // Revalidate once per day (hadiths don't change)
+export const dynamicParams = true; // Allow on-demand generation for new hadith numbers
+export const fetchCache = 'default-cache'; // Cache fetch requests
+
 interface PageProps {
   params: Promise<{
     collection: string;
@@ -79,6 +85,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+// Pre-generate the most popular hadiths at build time
+export async function generateStaticParams() {
+  const collections = ['bukhari', 'muslim', 'nawawi40', 'riyadussalihin'];
+  const paths: { collection: string; hadithNumber: string }[] = [];
+  
+  // Generate first 50 hadiths from each collection (most commonly accessed)
+  for (const collection of collections) {
+    for (let i = 1; i <= 50; i++) {
+      paths.push({ collection, hadithNumber: i.toString() });
+    }
+  }
+  
+  return paths;
+}
+
 export default async function HadithPage({ params }: PageProps) {
   const { collection, hadithNumber } = await params;
   const hadithNum = Number.parseInt(hadithNumber);
@@ -88,17 +109,20 @@ export default async function HadithPage({ params }: PageProps) {
     notFound();
   }
 
-  const hadith = await getHadithByCollectionAndNumber({
-    collection,
-    hadithNumber: hadithNum,
-  });
+  // Parallel data fetching for better performance
+  const [hadith, adjacent] = await Promise.all([
+    getHadithByCollectionAndNumber({
+      collection,
+      hadithNumber: hadithNum,
+    }),
+    getAdjacentHadiths(collection, hadithNum),
+  ]);
 
   if (!hadith) {
     notFound();
   }
 
   const collectionMeta = getCollectionMetadata(collection);
-  const adjacent = await getAdjacentHadiths(collection, hadithNum);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
   const authenticityInfo = getAuthenticityDisplay(hadith.grade || 'Unknown');
   const canonicalUrl = `${siteUrl}/hadith/${collection}/${hadithNum}`;

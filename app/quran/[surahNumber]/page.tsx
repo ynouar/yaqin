@@ -10,6 +10,11 @@ import { VerseCard } from '@/components/quran/verse/verse-card';
 import { PageNavigation } from '@/components/quran/navigation/page-navigation';
 import { LanguageSelector } from '@/components/quran/language-selector';
 
+// Route segment config for optimal performance
+export const dynamic = 'force-static'; // Pre-render all 114 Surahs
+export const dynamicParams = false; // Only allow predefined Surahs (1-114)
+export const revalidate = false; // Quran text never changes
+
 interface PageProps {
   params: Promise<{
     surahNumber: string;
@@ -57,6 +62,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
     },
   };
+}
+
+// Pre-generate all 114 Surahs at build time
+export async function generateStaticParams() {
+  return Array.from({ length: 114 }, (_, i) => ({
+    surahNumber: String(i + 1),
+  }));
 }
 
 export default async function SurahPage({ params, searchParams }: PageProps) {

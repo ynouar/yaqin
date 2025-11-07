@@ -113,7 +113,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           url: `${siteUrl}/hadith/${collection.slug}/${hadithNum}`,
           lastModified: currentDate,
           changeFrequency: 'yearly' as const,
-          priority: 0.5,
+          priority: 0.3,
         });
       }
     }

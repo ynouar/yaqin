@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getVerseWithContext, getVerseBySurahAndAyah } from '@/lib/db/queries';
-import { getSurahMetadata } from '@/lib/quran-metadata';
+import { getSurahMetadata, SURAH_METADATA } from '@/lib/quran-metadata';
+import { FAMOUS_VERSES } from '@/lib/quran-famous-verses';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
 import { getQuranLanguageFromParam } from '@/lib/quran-language';
 import { QuranPageLayout } from '@/components/quran/layout/quran-page-layout';
@@ -11,6 +12,11 @@ import { PageNavigation } from '@/components/quran/navigation/page-navigation';
 import { ContextToggle } from '@/components/quran/navigation/context-toggle';
 import { LanguageSelector } from '@/components/quran/language-selector';
 import { Book } from 'lucide-react';
+
+// Route segment config for optimal performance
+export const dynamic = 'force-static'; // Static generation for all verses
+export const dynamicParams = true; // Allow on-demand generation for any valid verse
+export const revalidate = false; // Verses never change, cache forever
 
 interface PageProps {
   params: Promise<{
@@ -66,6 +72,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
     },
   };
+}
+
+// Pre-generate famous verses and first/last of each Surah
+export async function generateStaticParams() {
+  const paths: { surahNumber: string; ayahNumber: string }[] = [];
+  
+  // Famous verses (Ayat al-Kursi, protection verses, etc.)
+  FAMOUS_VERSES.forEach(({ surah, ayah }) => {
+    paths.push({ surahNumber: String(surah), ayahNumber: String(ayah) });
+  });
+  
+  // First and last verse of every Surah (for navigation)
+  SURAH_METADATA.forEach((metadata) => {
+    paths.push({ surahNumber: String(metadata.number), ayahNumber: '1' });
+    paths.push({ surahNumber: String(metadata.number), ayahNumber: String(metadata.verses) });
+  });
+  
+  return paths;
 }
 
 export default async function VersePage({ params, searchParams }: PageProps) {

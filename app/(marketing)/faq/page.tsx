@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { createFAQSchema } from "@/lib/seo/schema";
 
+// Route segment config for optimal performance
+export const dynamic = 'force-static';
+export const revalidate = 86400; // Revalidate daily
+
 const faqs = [
   {
     question: "What is Criterion?",

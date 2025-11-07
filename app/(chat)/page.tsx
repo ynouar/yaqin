@@ -5,6 +5,10 @@ import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models";
 import { generateUUID } from "@/lib/utils";
 import { auth } from "../(auth)/auth";
 
+// Route segment config for optimal performance
+export const dynamic = 'force-dynamic'; // Must be dynamic due to auth check
+export const revalidate = 0; // Don't cache authenticated pages
+
 export default async function Page() {
   const session = await auth();
 

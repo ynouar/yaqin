@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
+// Route segment config for optimal performance
+export const dynamic = 'force-static'; // Static marketing page
+export const revalidate = 86400; // Revalidate daily
+
 export const metadata: Metadata = {
   title: 'About Criterion - Quran & Hadith Powered AI Assistant',
   description: 'Learn about Criterion, an open-source AI assistant that helps people understand Islam through authentic sources. Built with RAG technology using 6,236 Quran verses and 12,416 Hadiths.',
