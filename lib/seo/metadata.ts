@@ -11,7 +11,6 @@ interface OpenGraphMetadataOptions {
   title: string;
   description: string;
   path?: string;
-  imageUrl?: string;
 }
 
 /**
@@ -21,7 +20,6 @@ export function createOpenGraphMetadata({
   title,
   description,
   path = "",
-  imageUrl = `${siteUrl}/opengraph-image.png`,
 }: OpenGraphMetadataOptions): Metadata["openGraph"] {
   return {
     type: "website",
@@ -29,14 +27,6 @@ export function createOpenGraphMetadata({
     title,
     description,
     siteName: "Criterion",
-    images: [
-      {
-        url: imageUrl,
-        width: 1200,
-        height: 630,
-        alt: title,
-      },
-    ],
   };
 }
 
@@ -46,13 +36,11 @@ export function createOpenGraphMetadata({
 export function createTwitterMetadata({
   title,
   description,
-  imageUrl = `${siteUrl}/twitter-image.png`,
 }: Omit<OpenGraphMetadataOptions, "path">): Metadata["twitter"] {
   return {
     card: "summary_large_image",
     title,
     description,
-    images: [imageUrl],
   };
 }
 
@@ -64,7 +52,6 @@ export function createPageMetadata({
   description,
   path = "",
   keywords,
-  imageUrl,
 }: OpenGraphMetadataOptions & {
   keywords?: string[];
 }): Metadata {
@@ -72,7 +59,7 @@ export function createPageMetadata({
     title,
     description,
     keywords,
-    openGraph: createOpenGraphMetadata({ title, description, path, imageUrl }),
-    twitter: createTwitterMetadata({ title, description, imageUrl }),
+    openGraph: createOpenGraphMetadata({ title, description, path }),
+    twitter: createTwitterMetadata({ title, description }),
   };
 }
