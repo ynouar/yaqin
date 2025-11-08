@@ -38,9 +38,9 @@ export const metadata: Metadata = {
     siteName: "Criterion",
     images: [
       {
-        url: "/images/logo.png",
-        width: 1024,
-        height: 1024,
+        url: "/opengraph-image.png", // File-based metadata at app/opengraph-image.png
+        width: 1200,
+        height: 630,
         alt: "Criterion - Quran Powered AI Assistant",
       },
     ],
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Criterion - Quran Powered AI Assistant",
     description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers.",
-    images: ["/images/logo.png"],
+    images: ["/twitter-image.png"], // File-based metadata at app/twitter-image.png
   },
   robots: {
     index: true,

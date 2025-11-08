@@ -1,35 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { guestRegex, isDevelopmentEnvironment } from "./lib/constants";
-
-// Bot/crawler detection for SEO
-function isBot(userAgent: string): boolean {
-  const botPatterns = [
-    'googlebot',
-    'bingbot',
-    'slurp',
-    'duckduckbot',
-    'baiduspider',
-    'yandexbot',
-    'facebookexternalhit',
-    'twitterbot',
-    'rogerbot',
-    'linkedinbot',
-    'embedly',
-    'quora link preview',
-    'showyoubot',
-    'outbrain',
-    'pinterest',
-    'slackbot',
-    'vkShare',
-    'W3C_Validator',
-    'whatsapp',
-    'lighthouse',
-  ];
-  
-  const ua = userAgent.toLowerCase();
-  return botPatterns.some(pattern => ua.includes(pattern));
-}
+import { isBot, isStaticAsset } from "./lib/bot-detection";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -46,29 +18,24 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // Allow bots/crawlers to access all pages without authentication for SEO
+  // Allow static assets (prevents blocking OG images, favicons, etc.)
+  if (isStaticAsset(pathname)) {
+    return NextResponse.next();
+  }
+
+  // Allow bots/crawlers for SEO
   const userAgent = request.headers.get('user-agent') || '';
   if (isBot(userAgent)) {
     return NextResponse.next();
   }
 
-  // Public routes that don't require authentication
+  // Public routes
   const publicRoutes = [
-    "/about",
-    "/how-it-works",
-    "/faq",
-    "/developers",
-    "/quran",
-    "/hadith",
-    "/search",
-    "/topics",
+    "/about", "/how-it-works", "/faq", "/developers",
+    "/quran", "/hadith", "/search", "/topics", "/speak",
   ];
 
-  // Check if the current path is a public route
-  const isPublicRoute = publicRoutes.some((route) => pathname.startsWith(route));
-
-  // Skip authentication for public routes
-  if (isPublicRoute) {
+  if (publicRoutes.some((route) => pathname.startsWith(route))) {
     return NextResponse.next();
   }
 
