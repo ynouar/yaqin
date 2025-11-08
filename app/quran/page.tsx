@@ -1,12 +1,13 @@
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import { SURAH_METADATA } from '@/lib/quran-metadata';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
 import { SiteHeader } from '@/components/layout/site-header';
+import { createPageMetadata } from '@/lib/seo/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Quran - Browse All 114 Surahs',
   description: 'Browse all 114 Surahs (chapters) of the Holy Quran. Read full Arabic text and English translations. Explore Meccan and Medinan revelations.',
+  path: '/quran',
   keywords: [
     'Quran',
     'Holy Quran',
@@ -16,12 +17,7 @@ export const metadata: Metadata = {
     'Quran online',
     'Read Quran',
   ],
-  openGraph: {
-    title: 'Quran - Browse All 114 Surahs | Criterion',
-    description: 'Browse all 114 Surahs (chapters) of the Holy Quran with Arabic text and English translations.',
-    type: 'website',
-  },
-};
+});
 
 export default function QuranPage() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';

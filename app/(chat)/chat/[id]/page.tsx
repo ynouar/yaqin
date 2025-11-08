@@ -19,11 +19,13 @@ export const metadata: Metadata = {
     title: "Chat - Criterion",
     description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources.",
     type: "website",
+    images: ["/opengraph-image.png"], // Uses root-level OG image
   },
   twitter: {
     card: "summary_large_image",
     title: "Chat - Criterion",
     description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers.",
+    images: ["/twitter-image.png"], // Uses root-level Twitter image
   },
 };
 

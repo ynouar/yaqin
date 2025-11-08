@@ -1,27 +1,28 @@
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
-import type { Metadata } from "next";
 import { Chat } from "@/components/chat";
 import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models";
 import { generateUUID } from "@/lib/utils";
 import { isBot } from "@/lib/bot-detection";
 import { auth } from "../(auth)/auth";
+import { createPageMetadata } from "@/lib/seo/metadata";
 
 // Metadata for home page
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Criterion - Quran Powered AI Assistant",
   description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search 6,236 Quran verses and 12,416 authentic Hadiths.",
-  openGraph: {
-    title: "Criterion - Quran Powered AI Assistant",
-    description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources.",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Criterion - Quran Powered AI Assistant",
-    description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers.",
-  },
-};
+  path: "/",
+  keywords: [
+    "Quran search",
+    "Islamic questions",
+    "learn about Islam",
+    "Quran AI",
+    "Islamic teachings",
+    "understanding Islam",
+    "authentic Hadith",
+    "Islamic guidance",
+  ],
+});
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
