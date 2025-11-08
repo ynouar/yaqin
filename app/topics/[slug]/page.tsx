@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { ArrowLeft, BookOpen, Sparkles, Search, MessageCircle } from "lucide-react";
 import { CriterionBranding } from "@/components/criterion-branding";
 import { getAllTopicSlugs, getTopicBySlug, getRelatedTopics } from "@/lib/topics";
@@ -9,6 +9,7 @@ import { findRelevantVerses } from "@/lib/ai/embeddings";
 import { findRelevantHadiths } from "@/lib/ai/embeddings";
 import { VerseCard } from "@/components/quran/verse/verse-card";
 import { NarrationCard } from "@/components/hadith/narration-card";
+import { createPageMetadata } from '@/lib/seo/metadata';
 
 // Route segment config for optimal performance
 export const dynamic = 'force-static'; // Pre-render all 20 topics
@@ -41,28 +42,12 @@ export async function generateMetadata({
     };
   }
 
-  const title = `${topic.title} in Islam - Quran & Hadith | Criterion`;
-  const description = topic.description;
-
-  return {
-    title,
-    description,
+  return createPageMetadata({
+    title: `${topic.title} in Islam - Quran & Hadith`,
+    description: topic.description,
+    path: `/topics/${slug}`,
     keywords: topic.keywords,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      url: `/topics/${slug}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-    },
-    alternates: {
-      canonical: `/topics/${slug}`,
-    },
-  };
+  });
 }
 
 export default async function TopicPage({ params }: TopicPageProps) {

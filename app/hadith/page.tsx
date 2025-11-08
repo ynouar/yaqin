@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { SiteHeader } from '@/components/layout/site-header';
 import { COLLECTION_METADATA } from '@/lib/hadith-metadata';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
+import { createPageMetadata } from '@/lib/seo/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Hadith - Browse All 4 Major Collections',
   description: 'Browse 12,416 authentic hadiths from Sahih Bukhari, Sahih Muslim, 40 Hadith Nawawi, and Riyad as-Salihin. Read narrations from the Prophet Muhammad ﷺ.',
+  path: '/hadith',
   keywords: [
     'Hadith',
     'Sahih Bukhari',
@@ -18,12 +19,7 @@ export const metadata: Metadata = {
     'Sunnah',
     'Prophet Muhammad sayings',
   ],
-  openGraph: {
-    title: 'Hadith - Browse All 4 Major Collections | Criterion',
-    description: 'Browse 12,416 authentic hadiths from major collections with Arabic text and English translations.',
-    type: 'website',
-  },
-};
+});
 
 export default function HadithPage() {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';

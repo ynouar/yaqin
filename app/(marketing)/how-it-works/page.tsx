@@ -1,13 +1,14 @@
 import Link from 'next/link';
-import type { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/seo/metadata';
 
 // Route segment config for optimal performance
 export const dynamic = 'force-static';
 export const revalidate = 86400; // Revalidate daily
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'How Criterion Works - RAG-Powered Islamic AI',
   description: 'Learn how Criterion uses Retrieval Augmented Generation (RAG) to provide accurate answers from the Quran and Hadith. Understand our semantic search technology.',
+  path: '/how-it-works',
   keywords: [
     'RAG technology',
     'semantic search Islam',
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
     'AI Islamic assistant',
     'how chatbot works',
   ],
-};
+});
 
 export default function HowItWorksPage() {
   return (

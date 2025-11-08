@@ -70,15 +70,38 @@ export function createPageMetadata({
   description,
   path = "",
   keywords,
+  noIndex = false,
 }: OpenGraphMetadataOptions & {
   keywords?: string[];
+  noIndex?: boolean;
 }): Metadata {
-  return {
+  const metadata: Metadata = {
     title,
     description,
     keywords,
     openGraph: createOpenGraphMetadata({ title, description, path }),
     twitter: createTwitterMetadata({ title, description }),
-    metadataBase: new URL("https://criterion.life/"),
+    metadataBase: new URL(siteUrl),
   };
+
+  // Add canonical URL if path is provided
+  if (path) {
+    metadata.alternates = {
+      canonical: path,
+    };
+  }
+
+  // Add robots configuration if noIndex is true
+  if (noIndex) {
+    metadata.robots = {
+      index: false,
+      follow: true,
+      googleBot: {
+        index: false,
+        follow: true,
+      },
+    };
+  }
+
+  return metadata;
 }

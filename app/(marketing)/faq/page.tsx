@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { createFAQSchema } from "@/lib/seo/schema";
+import { createPageMetadata } from "@/lib/seo/metadata";
 
 // Route segment config for optimal performance
 export const dynamic = 'force-static';
@@ -68,15 +68,20 @@ const faqs = [
   },
 ];
 
-export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
+export const metadata = createPageMetadata({
+  title: "Frequently Asked Questions - Criterion",
   description:
     "Common questions about Criterion, Islam, the Quran, and how our AI-powered Islamic knowledge assistant works.",
-  openGraph: {
-    title: "FAQ - Criterion",
-    description: "Common questions about learning Islam with Criterion's AI assistant.",
-  },
-};
+  path: "/faq",
+  keywords: [
+    "Criterion FAQ",
+    "Islamic AI questions",
+    "Quran search help",
+    "Hadith search help",
+    "learn Islam",
+    "Islamic chatbot",
+  ],
+});
 
 export default function FAQPage() {
   return (

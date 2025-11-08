@@ -10,6 +10,7 @@ import { VersePageContent } from '@/components/quran/verse/verse-page-content';
 import { PageNavigation } from '@/components/quran/navigation/page-navigation';
 import { ContextToggle } from '@/components/quran/navigation/context-toggle';
 import { Book } from 'lucide-react';
+import { createPageMetadata } from '@/lib/seo/metadata';
 
 // Route segment config for optimal performance
 export const dynamic = 'force-static'; // Static generation for all verses (SEO-friendly)
@@ -49,9 +50,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `${verse.surahNameEnglish} ${surahNum}:${ayahNum} - Quran Verse`;
   const description = verse.textEnglish.slice(0, 200) + (verse.textEnglish.length > 200 ? '...' : '');
 
-  return {
+  return createPageMetadata({
     title,
     description,
+    path: `/quran/${surahNum}/${ayahNum}`,
     keywords: [
       `Quran ${surahNum}:${ayahNum}`,
       verse.surahNameEnglish,
@@ -59,17 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'Islamic text',
       surahMetadata?.transliteration || '',
     ],
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
-  };
+  });
 }
 
 // Pre-generate famous verses and first/last of each Surah

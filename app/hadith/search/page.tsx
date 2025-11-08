@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { findRelevantHadiths } from "@/lib/ai/embeddings";
 import { SiteHeader } from "@/components/layout/site-header";
 import { HadithSearchUI } from "./search-ui";
+import { createPageMetadata } from '@/lib/seo/metadata';
 
 type Collection = "bukhari" | "muslim" | "nawawi40" | "riyadussalihin";
 type GradePreference = "sahih-only" | "sahih-and-hasan" | "all";
@@ -22,24 +23,25 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   
   if (query && query.trim()) {
     const trimmedQuery = query.trim();
-    return {
+    return createPageMetadata({
       title: `"${trimmedQuery}" - Hadith Search Results`,
       description: `Find authentic hadiths about ${trimmedQuery}. Search 12,416 narrations from Sahih Bukhari, Muslim, and more with AI-powered semantic understanding.`,
-      openGraph: {
-        title: `Hadiths about "${trimmedQuery}"`,
-        description: `Discover authentic Islamic narrations about ${trimmedQuery} from major hadith collections.`,
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: `Hadiths about "${trimmedQuery}"`,
-        description: `Discover authentic Islamic narrations about ${trimmedQuery}`,
-      },
-    };
+      path: `/hadith/search?q=${encodeURIComponent(trimmedQuery)}`,
+      keywords: [
+        'Hadith search',
+        trimmedQuery,
+        'Sahih Bukhari',
+        'Sahih Muslim',
+        'Islamic narrations',
+        'authentic hadith',
+      ],
+    });
   }
   
-  return {
+  return createPageMetadata({
     title: 'Search Authentic Hadith',
     description: 'Search 12,416 authentic hadiths by topic using AI-powered semantic search. Filter by collection (Bukhari, Muslim, Nawawi40, Riyadussalihin) and authenticity grade.',
+    path: '/hadith/search',
     keywords: [
       'Hadith search',
       'search Hadith',
@@ -49,11 +51,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
       'Prophet Muhammad sayings',
       'authentic hadith',
     ],
-    openGraph: {
-      title: 'Search Authentic Hadith - Semantic Search',
-      description: 'Search 12,416 authentic hadiths using AI-powered semantic search.',
-    },
-  };
+  });
 }
 
 export default async function HadithSearchPage({ searchParams }: PageProps) {

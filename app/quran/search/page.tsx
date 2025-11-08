@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { findRelevantVerses } from "@/lib/ai/embeddings";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SearchUI } from "./search-ui";
+import { createPageMetadata } from '@/lib/seo/metadata';
 
 interface PageProps {
   searchParams: Promise<{
@@ -14,24 +15,24 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   
   if (query && query.trim()) {
     const trimmedQuery = query.trim();
-    return {
+    return createPageMetadata({
       title: `"${trimmedQuery}" - Quran Search Results`,
       description: `Find Quran verses about ${trimmedQuery}. Search 6,236 verses with AI-powered semantic understanding.`,
-      openGraph: {
-        title: `Quran verses about "${trimmedQuery}"`,
-        description: `Discover what the Quran says about ${trimmedQuery} with context and authentic translations.`,
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: `Quran verses about "${trimmedQuery}"`,
-        description: `Discover what the Quran says about ${trimmedQuery}`,
-      },
-    };
+      path: `/quran/search?q=${encodeURIComponent(trimmedQuery)}`,
+      keywords: [
+        'Quran search',
+        trimmedQuery,
+        'search Quran verses',
+        'Islamic search',
+        'semantic search',
+      ],
+    });
   }
   
-  return {
+  return createPageMetadata({
     title: 'Search the Quran',
     description: 'Search 6,236 Quran verses by topic, keyword, or theme using AI-powered semantic search. Get instant results with context and authentic translations.',
+    path: '/quran/search',
     keywords: [
       'Quran search',
       'search Quran verses',
@@ -40,11 +41,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
       'semantic Quran search',
       'find Quran verses',
     ],
-    openGraph: {
-      title: 'Search the Quran - Semantic Verse Search',
-      description: 'Search 6,236 Quran verses using AI-powered semantic search.',
-    },
-  };
+  });
 }
 
 export default async function SearchPage({ searchParams }: PageProps) {

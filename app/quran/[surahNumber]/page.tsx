@@ -7,6 +7,7 @@ import { QuranPageLayout } from '@/components/quran/layout/quran-page-layout';
 import { VerseHeader } from '@/components/quran/verse/verse-header';
 import { SurahPageContent } from '@/components/quran/surah/surah-page-content';
 import { PageNavigation } from '@/components/quran/navigation/page-navigation';
+import { createPageMetadata } from '@/lib/seo/metadata';
 
 // Route segment config for optimal performance
 export const dynamic = 'force-static'; // Pre-render all 114 Surahs
@@ -38,9 +39,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = `Surah ${metadata.transliteration} (${metadata.name}) - Chapter ${num}`;
   const description = `Read Surah ${metadata.transliteration} (${metadata.translation}) - ${metadata.type} Surah with ${metadata.verses} verses. Full Arabic text and English translation from the Quran.`;
 
-  return {
+  return createPageMetadata({
     title,
     description,
+    path: `/quran/${num}`,
     keywords: [
       `Surah ${metadata.transliteration}`,
       `Quran Chapter ${num}`,
@@ -49,17 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'Islamic text',
       `${metadata.type} Surah`,
     ],
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-    },
-  };
+  });
 }
 
 // Pre-generate all 114 Surahs at build time

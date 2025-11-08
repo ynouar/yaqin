@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CriterionBranding } from "@/components/criterion-branding";
 import { findRelevantVerses } from "@/lib/ai/embeddings";
 import { SearchUI } from "./search-ui";
+import { createPageMetadata } from '@/lib/seo/metadata';
 
 // Route segment config
 export const dynamic = 'force-dynamic'; // SSR for each search query
@@ -19,25 +20,32 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   
   if (query && query.trim()) {
     const trimmedQuery = query.trim();
-    return {
+    return createPageMetadata({
       title: `"${trimmedQuery}" - Quran Search Results`,
       description: `Find Quran verses about ${trimmedQuery}. Search 6,236 verses with AI-powered semantic understanding.`,
-      openGraph: {
-        title: `Quran verses about "${trimmedQuery}"`,
-        description: `Discover what the Quran says about ${trimmedQuery}`,
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: `Quran verses about "${trimmedQuery}"`,
-        description: `Discover what the Quran says about ${trimmedQuery}`,
-      },
-    };
+      path: `/search?q=${encodeURIComponent(trimmedQuery)}`,
+      keywords: [
+        'Quran search',
+        trimmedQuery,
+        'search Quran verses',
+        'Islamic search',
+        'semantic search',
+      ],
+    });
   }
   
-  return {
+  return createPageMetadata({
     title: 'Search the Quran - Semantic Search',
     description: 'Search 6,236 Quran verses by topic using AI-powered semantic search.',
-  };
+    path: '/search',
+    keywords: [
+      'Quran search',
+      'search Quran verses',
+      'Islamic search',
+      'Quran by topic',
+      'semantic Quran search',
+    ],
+  });
 }
 
 export default async function SearchPage({ searchParams }: PageProps) {

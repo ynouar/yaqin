@@ -1,13 +1,14 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { BookOpen, Sparkles, Search } from 'lucide-react';
 import { getAllTopicsSorted, type Topic } from '@/lib/topics';
 import { SiteHeader } from '@/components/layout/site-header';
+import { createPageMetadata } from '@/lib/seo/metadata';
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Islamic Topics - Quran & Hadith | Criterion',
   description:
     'Explore essential Islamic topics with verses from the Quran and authentic Hadiths. Learn about prayer, patience, charity, justice, and more.',
+  path: '/topics',
   keywords: [
     'Islamic topics',
     'Quran topics',
@@ -17,13 +18,7 @@ export const metadata: Metadata = {
     'Learn Islam',
     'Islamic education',
   ],
-  openGraph: {
-    title: 'Islamic Topics - Quran & Hadith',
-    description:
-      'Explore essential Islamic topics with verses from the Quran and authentic Hadiths.',
-    type: 'website',
-  },
-};
+});
 
 export default function TopicsPage() {
   const allTopics = getAllTopicsSorted();

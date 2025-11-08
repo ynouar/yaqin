@@ -9,6 +9,7 @@ import { NarrationHeader } from '@/components/hadith/narration/narration-header'
 import { NarrationCard } from '@/components/hadith/narration-card';
 import { PageNavigation } from '@/components/quran/navigation/page-navigation';
 import { BookOpen } from 'lucide-react';
+import { createPageMetadata } from '@/lib/seo/metadata';
 
 // Route segment config for optimal performance
 export const dynamic = 'force-static'; // Force static generation for maximum performance
@@ -43,12 +44,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const collectionMeta = getCollectionMetadata(collection);
   const title = `${hadith.reference} - ${hadith.chapterName || 'Hadith'}`;
   const description = hadith.englishText.slice(0, 200) + (hadith.englishText.length > 200 ? '...' : '');
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
-  const canonicalUrl = `${siteUrl}/hadith/${collection}/${hadithNum}`;
 
-  return {
+  return createPageMetadata({
     title,
     description,
+    path: `/hadith/${collection}/${hadithNum}`,
     keywords: [
       hadith.reference,
       collectionMeta?.name || collection,
@@ -58,31 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       'Islamic narration',
       'Sunnah',
     ].filter(Boolean) as string[],
-    alternates: {
-      canonical: canonicalUrl,
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-      },
-    },
-    openGraph: {
-      title,
-      description,
-      type: 'article',
-      url: canonicalUrl,
-      siteName: 'Criterion',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      site: '@criterion',
-    },
-  };
+  });
 }
 
 // Pre-generate the most popular hadiths at build time

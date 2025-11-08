@@ -1,12 +1,13 @@
-import type { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/seo/metadata';
 
 // Route segment config for optimal performance
 export const dynamic = 'force-static';
 export const revalidate = 86400; // Revalidate daily
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: 'Developers - Criterion Open Source',
   description: 'Criterion is open source. Explore our code, contribute, or build your own Islamic AI applications.',
+  path: '/developers',
   keywords: [
     'open source Islamic AI',
     'Criterion GitHub',
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     'RAG implementation',
     'Next.js AI',
   ],
-};
+});
 
 export default function DevelopersPage() {
   return (

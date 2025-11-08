@@ -1,33 +1,26 @@
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
-import type { Metadata } from "next";
 
 import { auth } from "@/app/(auth)/auth";
 import { Chat } from "@/components/chat";
 import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models";
 import { getChatById, getMessagesByChatId } from "@/lib/db/queries";
 import { convertToUIMessages } from "@/lib/utils";
+import { createPageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Chat - Criterion",
   description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide.",
-  robots: {
-    index: false,
-    follow: true,
-  },
-  openGraph: {
-    title: "Chat - Criterion",
-    description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources.",
-    type: "website",
-    images: ["/opengraph-image.png"], // Uses root-level OG image
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Chat - Criterion",
-    description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers.",
-    images: ["/twitter-image.png"], // Uses root-level Twitter image
-  },
-};
+  path: "/chat",
+  keywords: [
+    "Islamic chat",
+    "ask about Islam",
+    "Quran questions",
+    "Hadith questions",
+    "Islamic AI assistant",
+  ],
+  noIndex: true, // Don't index individual chat pages
+});
 
 export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
