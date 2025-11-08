@@ -4,6 +4,8 @@
  */
 
 import type { Metadata } from "next";
+import img from "@/app/opengraph-image.png";
+
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://criterion.life/";
 
@@ -27,6 +29,14 @@ export function createOpenGraphMetadata({
     title,
     description,
     siteName: "Criterion",
+    images: [
+      {
+        url: img.src,
+        width: img.width,
+        height: img.height,
+        alt: "Criterion - Quran Powered AI Assistant",
+      },
+    ],
   };
 }
 
@@ -41,6 +51,14 @@ export function createTwitterMetadata({
     card: "summary_large_image",
     title,
     description,
+    images: [
+      {
+        url: img.src,
+        width: img.width,
+        height: img.height,
+        alt: "Criterion - Quran Powered AI Assistant",
+      },
+    ],
   };
 }
 
@@ -61,6 +79,6 @@ export function createPageMetadata({
     keywords,
     openGraph: createOpenGraphMetadata({ title, description, path }),
     twitter: createTwitterMetadata({ title, description }),
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL("https://criterion.life/"),
   };
 }
