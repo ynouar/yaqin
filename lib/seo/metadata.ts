@@ -5,7 +5,7 @@
 
 import type { Metadata } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://criterion.life";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://criterion.life/";
 
 interface OpenGraphMetadataOptions {
   title: string;
@@ -61,5 +61,6 @@ export function createPageMetadata({
     keywords,
     openGraph: createOpenGraphMetadata({ title, description, path }),
     twitter: createTwitterMetadata({ title, description }),
+    metadataBase: new URL(siteUrl),
   };
 }
