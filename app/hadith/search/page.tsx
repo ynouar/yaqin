@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { findRelevantHadiths } from "@/lib/ai/embeddings";
 import { SiteHeader } from "@/components/layout/site-header";
 import { HadithSearchUI } from "./search-ui";
-import { createPageMetadata } from '@/lib/seo/metadata';
 
 type Collection = "bukhari" | "muslim" | "nawawi40" | "riyadussalihin";
 type GradePreference = "sahih-only" | "sahih-and-hasan" | "all";
@@ -16,42 +15,6 @@ interface PageProps {
     collections?: string;
     grade?: string;
   }>;
-}
-
-export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
-  const { q: query } = await searchParams;
-  
-  if (query && query.trim()) {
-    const trimmedQuery = query.trim();
-    return createPageMetadata({
-      title: `"${trimmedQuery}" - Hadith Search Results`,
-      description: `Find authentic hadiths about ${trimmedQuery}. Search 12,416 narrations from Sahih Bukhari, Muslim, and more with AI-powered semantic understanding.`,
-      path: `/hadith/search?q=${encodeURIComponent(trimmedQuery)}`,
-      keywords: [
-        'Hadith search',
-        trimmedQuery,
-        'Sahih Bukhari',
-        'Sahih Muslim',
-        'Islamic narrations',
-        'authentic hadith',
-      ],
-    });
-  }
-  
-  return createPageMetadata({
-    title: 'Search Authentic Hadith',
-    description: 'Search 12,416 authentic hadiths by topic using AI-powered semantic search. Filter by collection (Bukhari, Muslim, Nawawi40, Riyadussalihin) and authenticity grade.',
-    path: '/hadith/search',
-    keywords: [
-      'Hadith search',
-      'search Hadith',
-      'Sahih Bukhari',
-      'Sahih Muslim',
-      'Islamic narrations',
-      'Prophet Muhammad sayings',
-      'authentic hadith',
-    ],
-  });
 }
 
 export default async function HadithSearchPage({ searchParams }: PageProps) {
