@@ -7,10 +7,6 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        disallow: [
-          '/chat/',
-          '/api/'
-        ],
       },
     ],
     sitemap: `${siteUrl}/sitemap.xml`,
