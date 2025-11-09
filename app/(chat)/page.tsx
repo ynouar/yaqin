@@ -30,9 +30,10 @@ export const revalidate = 0;
 export default async function Page() {
   const id = generateUUID();
   const userAgent = (await headers()).get('user-agent') || '';
+  const isBotRequest = isBot(userAgent);
   
-  // Bots skip auth to see metadata
-  if (!isBot(userAgent)) {
+  // Only check auth for real users, not bots/crawlers
+  if (!isBotRequest) {
     const session = await auth();
     if (!session) redirect("/api/auth/guest");
   }
