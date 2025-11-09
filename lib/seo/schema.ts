@@ -1,7 +1,7 @@
 /**
  * SEO Utilities and Structured Data Schemas
  */
-
+import socialImage from "@/app/opengraph-image.png";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
 
 /**
@@ -17,7 +17,7 @@ export const organizationSchema = {
   url: siteUrl,
   logo: {
     '@type': 'ImageObject',
-    url: `${siteUrl}/logo.png`,
+    url: socialImage.src,
     width: 512,
     height: 512,
   },
@@ -49,7 +49,7 @@ export const websiteSchema = {
     name: 'Criterion',
     logo: {
       '@type': 'ImageObject',
-      url: `${siteUrl}/logo.png`,
+      url: socialImage.src,
     },
   },
   potentialAction: [
@@ -135,7 +135,7 @@ export function createArticleSchema(article: {
       name: 'Criterion',
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/logo.png`,
+        url: socialImage.src,
       },
     },
   };
@@ -179,7 +179,7 @@ export function createHadithArticleSchema(hadith: {
       name: 'Criterion',
       logo: {
         '@type': 'ImageObject',
-        url: `${siteUrl}/logo.png`,
+        url: socialImage.src,
       },
     },
     isPartOf: {
