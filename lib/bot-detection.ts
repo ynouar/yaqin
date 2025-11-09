@@ -6,6 +6,9 @@
 export const BOT_USER_AGENTS = [
   // Search engines
   'googlebot',
+  'google-inspectiontool', // Google Search Console URL Inspection
+  'google-extended',
+  'google-cloudvertexbot',
   'bingbot',
   'slurp', // Yahoo
   'duckduckbot',
@@ -66,9 +69,7 @@ export const BOT_USER_AGENTS = [
   'omgilibot',
   'diffbot',
   'bytespider',
-  'google-extended',
   'gemini-deep-research',
-  'google-cloudvertexbot',
   'applebot-extended',
   'duckassistbot',
   'mistralai-user',
