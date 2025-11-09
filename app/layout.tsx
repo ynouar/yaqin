@@ -7,12 +7,13 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
-import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
+import { organizationSchema, websiteSchema, softwareApplicationSchema } from "@/lib/seo/schema";
 import socialImage from "./opengraph-image.png";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://criterion.life";
-const description = "Intelligent assistant for exploring Islam. Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search and find answers from Quranic verses and authentic Hadiths.";
+const description = "Intelligent AI assistant for exploring Islam. Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search and find answers from Quranic verses and authentic Hadiths.";
 const title = "Criterion - Quran Powered AI Assistant";
+const name = "Criterion";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -31,10 +32,18 @@ export const metadata: Metadata = {
     "Islamic teachings",
     "understanding Islam",
     "authentic Hadith",
-    "Islamic guidance"
+    "Islamic guidance",
+    "Hadith search",
+    "Islamic AI assistant",
+    "learn Quran online",
+    "Quran verses",
+    "Islamic knowledge"
   ],
-  authors: [{ name: "Criterion" }],
-  creator: "Criterion",
+  authors: [{ name }],
+  creator: name,
+  publisher: name,
+  applicationName: name,
+  category: "Religion & Spirituality",
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -61,6 +70,25 @@ export const metadata: Metadata = {
         height: socialImage.height,
         alt: title,
       }],
+    creator: "@criterion_life",
+    site: "@criterion_life",
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 };
 
@@ -134,6 +162,13 @@ export default function RootLayout({
           // biome-ignore lint/security/noDangerouslySetInnerHtml: "Required for SEO structured data"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteSchema),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: "Required for SEO structured data"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(softwareApplicationSchema),
           }}
         />
       </head>

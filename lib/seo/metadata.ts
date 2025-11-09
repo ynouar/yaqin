@@ -71,9 +71,13 @@ export function createPageMetadata({
   path = "",
   keywords,
   noIndex = false,
+  publishedTime,
+  modifiedTime,
 }: OpenGraphMetadataOptions & {
   keywords?: string[];
   noIndex?: boolean;
+  publishedTime?: string;
+  modifiedTime?: string;
 }): Metadata {
   const metadata: Metadata = {
     title,
@@ -82,7 +86,18 @@ export function createPageMetadata({
     openGraph: createOpenGraphMetadata({ title, description, path }),
     twitter: createTwitterMetadata({ title, description }),
     metadataBase: new URL(siteUrl),
+    category: 'Religion & Spirituality',
   };
+
+  // Add article-specific Open Graph metadata if timestamps provided
+  if (publishedTime || modifiedTime) {
+    metadata.openGraph = {
+      ...metadata.openGraph,
+      type: 'article',
+      publishedTime,
+      modifiedTime,
+    };
+  }
 
   // Add canonical URL if path is provided
   if (path) {
@@ -99,6 +114,19 @@ export function createPageMetadata({
       googleBot: {
         index: false,
         follow: true,
+      },
+    };
+  } else {
+    // Add default robots configuration for better indexing
+    metadata.robots = {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
     };
   }

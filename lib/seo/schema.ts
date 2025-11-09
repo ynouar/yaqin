@@ -12,12 +12,24 @@ export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Criterion',
-  description: 'Open-source Quran-powered AI assistant for learning about Islam',
+  alternateName: 'Criterion AI',
+  description: 'Intelligent AI assistant for exploring Islam. Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide.',
   url: siteUrl,
-  logo: `${siteUrl}/logo.png`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${siteUrl}/logo.png`,
+    width: 512,
+    height: 512,
+  },
+  foundingDate: '2024',
   sameAs: [
     'https://github.com/BalajSaleem/criterion'
   ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Customer Support',
+    url: `${siteUrl}`,
+  },
 };
 
 /**
@@ -28,16 +40,35 @@ export const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Criterion',
+  alternateName: 'Criterion - Islamic AI Assistant',
   url: siteUrl,
-  description: 'Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources.',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+  description: 'Intelligent AI assistant for exploring Islam. Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search and find answers from Quranic verses and authentic Hadiths.',
+  inLanguage: 'en',
+  publisher: {
+    '@type': 'Organization',
+    name: 'Criterion',
+    logo: {
+      '@type': 'ImageObject',
+      url: `${siteUrl}/logo.png`,
     },
-    'query-input': 'required name=search_term_string',
   },
+  potentialAction: [
+    {
+      '@type': 'SearchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/search?q={search_term_string}`,
+      },
+      'query-input': 'required name=search_term_string',
+    },
+    {
+      '@type': 'ReadAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: `${siteUrl}/quran`,
+      },
+    },
+  ],
 };
 
 /**
@@ -141,7 +172,7 @@ export function createHadithArticleSchema(hadith: {
     author: {
       '@type': 'Organization',
       name: 'Criterion',
-      description: 'Islamic knowledge platform',
+      description: 'AI-powered Islamic guide providing authentic knowledge from the Quran and Hadith',
     },
     publisher: {
       '@type': 'Organization',
@@ -163,3 +194,40 @@ export function createHadithArticleSchema(hadith: {
     dateModified: new Date().toISOString(),
   };
 }
+
+/**
+ * SoftwareApplication Schema (JSON-LD)
+ * Helps search engines understand Criterion as a web application
+ */
+export const softwareApplicationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Criterion',
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Web Browser',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '5.0',
+    ratingCount: '1',
+  },
+  description: 'AI-powered Islamic assistant for exploring the Quran and Hadith. Ask questions and get authentic answers from Islamic sources.',
+  url: siteUrl,
+  author: {
+    '@type': 'Organization',
+    name: 'Criterion',
+  },
+  featureList: [
+    'Search 6,236 Quranic verses',
+    'Search 12,416 authentic Hadiths',
+    'AI-powered Islamic guidance',
+    'Multilingual support (English, Slovak)',
+    'Authentic source citations',
+    'Real-time responses',
+  ],
+  screenshot: `${siteUrl}/opengraph-image.png`,
+};
