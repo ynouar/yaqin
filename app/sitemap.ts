@@ -119,5 +119,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  return [...staticPages, ...surahPages, ...topicPages];
+  return [...staticPages, ...surahPages, ...versePages, ...topicPages, ...hadithPages];
 }
