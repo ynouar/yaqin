@@ -8,19 +8,24 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import { organizationSchema, websiteSchema } from "@/lib/seo/schema";
+import socialImage from "./opengraph-image.png";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://criterion.life";
+const description = "Intelligent assistant for exploring Islam. Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search and find answers from Quranic verses and authentic Hadiths.";
+const title = "Criterion - Quran Powered AI Assistant";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Criterion - Quran Powered AI Assistant",
+    default: title,
     template: "%s | Criterion",
   },
-  description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search 6,236 Quran verses and 12,416 authentic Hadiths.",
+  description,
   keywords: [
     "Quran search",
-    "Islamic questions", 
+    "Read Quran",
+    "Find Verse",
+    "Islamic questions",
     "learn about Islam",
     "Quran AI",
     "Islamic teachings",
@@ -34,34 +39,28 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    title: "Criterion - Quran Powered AI Assistant",
-    description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources.",
+    title,
+    description,
     siteName: "Criterion",
     images: [
       {
-        url: `${siteUrl}/opengraph-image.png`,
-        width: 1200,
-        height: 630,
-        alt: "Criterion - Quran Powered AI Assistant",
+        url: socialImage.src,
+        width: socialImage.width,
+        height: socialImage.height,
+        alt: title,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Criterion - Quran Powered AI Assistant",
-    description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers.",
-    images: [`${siteUrl}/twitter-image.png`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    title,
+    description,
+    images: [{
+        url: socialImage.src,
+        width: socialImage.width,
+        height: socialImage.height,
+        alt: title,
+      }],
   },
 };
 
