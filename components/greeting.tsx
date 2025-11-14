@@ -24,7 +24,7 @@ export const Greeting = () => {
         initial={{ opacity: 0, y: 10 }}
         transition={{ delay: 0.6 }}
       >
-        Get Answers from the Quran.
+        Get Answers from the Quran and Sunnah
       </motion.div>
 
       {/* Resource Cards - Compact on mobile */}
