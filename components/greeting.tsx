@@ -24,7 +24,7 @@ export const Greeting = () => {
         initial={{ opacity: 0, y: 10 }}
         transition={{ delay: 0.6 }}
       >
-        your AI companion for exploring Islam and the Quran.
+        Get Answers from the Quran.
       </motion.div>
 
       {/* Resource Cards - Compact on mobile */}
