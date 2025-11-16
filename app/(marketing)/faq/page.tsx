@@ -64,7 +64,7 @@ const faqs = [
   {
     question: "Is my conversation private?",
     answer:
-      "Yes. Your chat conversations are private by default and are not indexed by search engines or shared publicly.",
+      "Yes. Your chat conversations are private by default and are not indexed by search engines or shared publicly. To improve criterion, admins may review anonymized conversations. Please avoid sharing sensitive personal information in chats.",
   },
 ];
 
