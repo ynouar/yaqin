@@ -272,14 +272,15 @@ streamText({
   model: myProvider.languageModel(selectedChatModel),
   system: systemPrompt(requestHints),
   messages: convertToModelMessages(uiMessages),
-  stopWhen: stepCountIs(2), // Multi-step: max 2 tool calls
+  stopWhen: stepCountIs(5), // Multi-step: max 5 tool calls
   experimental_activeTools: [
-    // Available tools (disabled for reasoning model)
+    // Available tools for both chat and reasoning models
     "requestSuggestions",
     "queryQuran",
     "queryHadith",
+    "getQuranByReference",
   ],
-  tools: { queryQuran, queryHadith, requestSuggestions },
+  tools: { queryQuran, queryHadith, getQuranByReference, requestSuggestions },
 });
 ```
 

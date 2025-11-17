@@ -227,10 +227,7 @@ export async function POST(request: Request) {
           system: systemPrompt(requestHints),
           messages: convertToModelMessages(uiMessages),
           stopWhen: stepCountIs(5),
-          experimental_activeTools:
-            selectedChatModel === "chat-model-reasoning"
-              ? []
-              : ["requestSuggestions", "queryQuran", "queryHadith", "getQuranByReference"],
+          experimental_activeTools: ["requestSuggestions", "queryQuran", "queryHadith", "getQuranByReference"],
           tools: {
             requestSuggestions: requestSuggestions({
               session,
