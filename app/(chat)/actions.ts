@@ -27,6 +27,7 @@ export async function generateTitleFromUserMessage({
     - ensure it is not more than 80 characters long
     - the title should be a summary of the user's message
     - the title should be a very small phrase or sentence
+    - do not try to answer the user's message in the title - rather capture the essence of what they are asking about
     - when the user looks back at their list of chats, the title should help them remember what the conversation was about
     - Just use plain text for the title, no special formatting, markdown, or punctuation
     - do not use quotes or colons
