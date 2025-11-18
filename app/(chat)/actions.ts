@@ -26,7 +26,11 @@ export async function generateTitleFromUserMessage({
     - you will generate a short title based on the first message a user begins a conversation with
     - ensure it is not more than 80 characters long
     - the title should be a summary of the user's message
-    - do not use quotes or colons`,
+    - the title should be a very small phrase or sentence
+    - when the user looks back at their list of chats, the title should help them remember what the conversation was about
+    - Just use plain text for the title, no special formatting, markdown, or punctuation
+    - do not use quotes or colons
+    - the user's message is provided below in JSON format`,
     prompt: JSON.stringify(message),
   });
 
