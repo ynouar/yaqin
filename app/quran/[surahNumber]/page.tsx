@@ -8,12 +8,6 @@ import { VerseHeader } from '@/components/quran/verse/verse-header';
 import { SurahPageContent } from '@/components/quran/surah/surah-page-content';
 import { PageNavigation } from '@/components/quran/navigation/page-navigation';
 import { createPageMetadata } from '@/lib/seo/metadata';
-
-// Route segment config for optimal performance
-export const dynamic = 'force-static'; // Pre-render all 114 Surahs
-export const dynamicParams = false; // Only allow predefined Surahs (1-114)
-export const revalidate = false; // Quran text never changes
-
 interface PageProps {
   params: Promise<{
     surahNumber: string;

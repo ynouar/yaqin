@@ -11,12 +11,6 @@ import { PageNavigation } from '@/components/quran/navigation/page-navigation';
 import { BookOpen } from 'lucide-react';
 import { createPageMetadata } from '@/lib/seo/metadata';
 
-// Route segment config for optimal performance
-export const dynamic = 'force-static'; // Force static generation for maximum performance
-export const revalidate = 86400; // Revalidate once per day (hadiths don't change)
-export const dynamicParams = true; // Allow on-demand generation for new hadith numbers
-export const fetchCache = 'default-cache'; // Cache fetch requests
-
 interface PageProps {
   params: Promise<{
     collection: string;

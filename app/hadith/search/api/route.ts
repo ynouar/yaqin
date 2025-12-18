@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { findRelevantHadiths } from "@/lib/ai/embeddings";
 
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
 type Collection = "bukhari" | "muslim" | "nawawi40" | "riyadussalihin";
 type GradePreference = "sahih-only" | "sahih-and-hasan" | "all";
 

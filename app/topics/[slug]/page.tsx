@@ -11,11 +11,6 @@ import { VerseCard } from "@/components/quran/verse/verse-card";
 import { NarrationCard } from "@/components/hadith/narration-card";
 import { createPageMetadata } from '@/lib/seo/metadata';
 
-// Route segment config for optimal performance
-export const dynamic = 'force-static'; // Pre-render all 20 topics
-export const dynamicParams = false; // Only allow predefined topics
-export const revalidate = 86400; // Revalidate once per day
-
 interface TopicPageProps {
   params: Promise<{ slug: string }>;
 }

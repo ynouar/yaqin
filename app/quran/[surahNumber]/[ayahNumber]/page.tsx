@@ -12,10 +12,6 @@ import { ContextToggle } from '@/components/quran/navigation/context-toggle';
 import { Book } from 'lucide-react';
 import { createPageMetadata } from '@/lib/seo/metadata';
 
-// Route segment config for optimal performance
-export const dynamic = 'force-static'; // Static generation for all verses (SEO-friendly)
-export const dynamicParams = true; // Allow on-demand generation for any valid verse
-export const revalidate = false; // Verses never change, cache forever
 
 interface PageProps {
   params: Promise<{

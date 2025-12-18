@@ -5,10 +5,6 @@ import { findRelevantVerses } from "@/lib/ai/embeddings";
 import { SearchUI } from "./search-ui";
 import { createPageMetadata } from '@/lib/seo/metadata';
 
-// Route segment config
-export const dynamic = 'force-dynamic'; // SSR for each search query
-export const revalidate = 3600; // Cache search results for 1 hour
-
 interface PageProps {
   searchParams: Promise<{
     q?: string;

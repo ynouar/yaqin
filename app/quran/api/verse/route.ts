@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { getVerseWithContext } from "@/lib/db/queries";
 
-// Cache translation requests for 1 hour (verses never change)
-export const revalidate = 3600;
-
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   

@@ -24,12 +24,11 @@ export const metadata = createPageMetadata({
   ],
 });
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
-
 export default async function Page() {
-  const id = generateUUID();
+  // Access dynamic data sources BEFORE using Math.random() (Next.js 15 requirement)
   const userAgent = (await headers()).get('user-agent') || '';
+  const cookieStore = await cookies();
+  
   const isBotRequest = isBot(userAgent);
   
   // Only check auth for real users, not bots/crawlers
@@ -38,8 +37,8 @@ export default async function Page() {
     if (!session) redirect("/api/auth/guest");
   }
 
-  const cookieStore = await cookies();
   const modelId = cookieStore.get("chat-model")?.value || DEFAULT_CHAT_MODEL;
+  const id = generateUUID();
 
   return (
     <Chat
