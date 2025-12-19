@@ -6,6 +6,7 @@ import {
   smoothStream,
   stepCountIs,
   streamText,
+  wrapLanguageModel,
 } from "ai";
 import { unstable_cache as cache } from "next/cache";
 import { after } from "next/server";
@@ -19,13 +20,13 @@ import { getUsage } from "tokenlens/helpers";
 import { auth, type UserType } from "@/app/(auth)/auth";
 import type { VisibilityType } from "@/components/visibility-selector";
 import { entitlementsByUserType } from "@/lib/ai/entitlements";
+import { stripArabicMiddleware } from "@/lib/ai/middleware/strip-arabic-middleware";
 import type { ChatModel } from "@/lib/ai/models";
 import { type RequestHints, systemPrompt } from "@/lib/ai/prompts";
 import { myProvider } from "@/lib/ai/providers";
 import { getQuranByReference } from "@/lib/ai/tools/get-quran-by-reference";
 import { queryHadith } from "@/lib/ai/tools/query-hadith";
 import { queryQuran } from "@/lib/ai/tools/query-quran";
-import { requestSuggestions } from "@/lib/ai/tools/request-suggestions";
 import { isProductionEnvironment } from "@/lib/constants";
 import {
   createStreamId,
@@ -223,16 +224,16 @@ export async function POST(request: Request) {
     const stream = createUIMessageStream({
       execute: ({ writer: dataStream }) => {
         const result = streamText({
-          model: myProvider.languageModel(selectedChatModel),
+          model: wrapLanguageModel({
+            model: myProvider.languageModel(selectedChatModel),
+            middleware: stripArabicMiddleware,
+          }),
           system: systemPrompt(requestHints),
           messages: convertToModelMessages(uiMessages),
           stopWhen: stepCountIs(5),
-          experimental_activeTools: ["requestSuggestions", "queryQuran", "queryHadith", "getQuranByReference"],
+          experimental_transform: smoothStream(),
+          activeTools: ["queryQuran", "queryHadith", "getQuranByReference"],
           tools: {
-            requestSuggestions: requestSuggestions({
-              session,
-              dataStream,
-            }),
             queryQuran,
             queryHadith,
             getQuranByReference,
@@ -325,16 +326,6 @@ export async function POST(request: Request) {
         return "Oops, an error occurred!";
       },
     });
-
-    // const streamContext = getStreamContext();
-
-    // if (streamContext) {
-    //   return new Response(
-    //     await streamContext.resumableStream(streamId, () =>
-    //       stream.pipeThrough(new JsonToSseTransformStream())
-    //     )
-    //   );
-    // }
 
     return new Response(stream.pipeThrough(new JsonToSseTransformStream()));
   } catch (error) {
