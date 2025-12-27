@@ -26,11 +26,11 @@ export const myProvider = isTestEnvironment
   : customProvider({
       languageModels: {
         "chat-model": wrapLanguageModel({
-          model: gateway.languageModel("xai/grok-4.1-fast-reasoning"),
+          model: gateway.languageModel("google/gemini-3-flash"),
           middleware: extractReasoningMiddleware({ tagName: "think" }),
         }),
         "chat-model-reasoning": wrapLanguageModel({
-          model: gateway.languageModel("xai/grok-4.1-fast-reasoning"),
+          model: gateway.languageModel("google/gemini-3-flash"),
           middleware: extractReasoningMiddleware({ tagName: "think" }),
         }),
         "title-model": gateway.languageModel("xai/grok-4.1-fast-non-reasoning"),

@@ -6,7 +6,6 @@ import {
   smoothStream,
   stepCountIs,
   streamText,
-  wrapLanguageModel,
 } from "ai";
 import { unstable_cache as cache } from "next/cache";
 import { after } from "next/server";
@@ -20,7 +19,6 @@ import { getUsage } from "tokenlens/helpers";
 import { auth, type UserType } from "@/app/(auth)/auth";
 import type { VisibilityType } from "@/components/visibility-selector";
 import { entitlementsByUserType } from "@/lib/ai/entitlements";
-import { stripArabicMiddleware } from "@/lib/ai/middleware/strip-arabic-middleware";
 import type { ChatModel } from "@/lib/ai/models";
 import { type RequestHints, systemPrompt } from "@/lib/ai/prompts";
 import { myProvider } from "@/lib/ai/providers";
@@ -224,10 +222,7 @@ export async function POST(request: Request) {
     const stream = createUIMessageStream({
       execute: ({ writer: dataStream }) => {
         const result = streamText({
-          model: wrapLanguageModel({
-            model: myProvider.languageModel(selectedChatModel),
-            middleware: stripArabicMiddleware,
-          }),
+          model: myProvider.languageModel(selectedChatModel),
           system: systemPrompt(requestHints),
           messages: convertToModelMessages(uiMessages),
           stopWhen: stepCountIs(5),
