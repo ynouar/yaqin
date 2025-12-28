@@ -1,10 +1,17 @@
 import { gateway } from "@ai-sdk/gateway";
 import {
   customProvider,
+  defaultSettingsMiddleware,
   extractReasoningMiddleware,
   wrapLanguageModel,
 } from "ai";
 import { isTestEnvironment } from "../constants";
+
+const middleware = [extractReasoningMiddleware({ tagName: "think" }), defaultSettingsMiddleware({
+            settings: {
+              temperature: 0.0,
+            },
+          })];
 
 export const myProvider = isTestEnvironment
   ? (() => {
@@ -27,11 +34,11 @@ export const myProvider = isTestEnvironment
       languageModels: {
         "chat-model": wrapLanguageModel({
           model: gateway.languageModel("google/gemini-3-flash"),
-          middleware: extractReasoningMiddleware({ tagName: "think" }),
+          middleware,
         }),
         "chat-model-reasoning": wrapLanguageModel({
           model: gateway.languageModel("google/gemini-3-flash"),
-          middleware: extractReasoningMiddleware({ tagName: "think" }),
+          middleware,
         }),
         "title-model": gateway.languageModel("xai/grok-4.1-fast-non-reasoning"),
         "artifact-model": gateway.languageModel("xai/grok-4.1-fast-non-reasoning"),
