@@ -15,13 +15,13 @@ https://criterion.life/api/v1
 ```javascript
 // Search Quran
 const response = await fetch(
-  'https://criterion.life/api/v1/quran/search?q=patience&limit=5'
+  "https://criterion.life/api/v1/quran/search?q=patience&limit=5"
 );
 const data = await response.json();
 
-// Search Hadith  
+// Search Hadith
 const response = await fetch(
-  'https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari,muslim'
+  "https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari,muslim"
 );
 const data = await response.json();
 ```
@@ -70,10 +70,10 @@ Semantic search across 6,236 Quran verses using AI embeddings. Top results inclu
 
 #### Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `q` | string | Yes | Search query (1-500 chars) |
-| `limit` | number | No | Number of results (1-20, default: 7) |
+| Parameter | Type   | Required | Description                          |
+| --------- | ------ | -------- | ------------------------------------ |
+| `q`       | string | Yes      | Search query (1-500 chars)           |
+| `limit`   | number | No       | Number of results (1-20, default: 7) |
 
 #### Example Request
 
@@ -154,12 +154,12 @@ Semantic similarity search across 12,416 authentic hadiths from major collection
 
 #### Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `q` | string | Yes | Search query (1-500 chars) |
-| `collections` | string | No | Comma-separated: bukhari, muslim, nawawi40, riyadussalihin |
-| `grade` | string | No | sahih-only (default), sahih-and-hasan, all |
-| `limit` | number | No | Number of results (1-15, default: 5) |
+| Parameter     | Type   | Required | Description                                                |
+| ------------- | ------ | -------- | ---------------------------------------------------------- |
+| `q`           | string | Yes      | Search query (1-500 chars)                                 |
+| `collections` | string | No       | Comma-separated: bukhari, muslim, nawawi40, riyadussalihin |
+| `grade`       | string | No       | sahih-only (default), sahih-and-hasan, all                 |
+| `limit`       | number | No       | Number of results (1-15, default: 5)                       |
 
 #### Example Request
 
@@ -210,15 +210,19 @@ curl "https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari,
 ## Key Features
 
 ### 🔍 Semantic Search
+
 Powered by Google Gemini text-embedding-004 (768 dimensions) for meaning-based results that understand intent, not just keywords.
 
 ### 📖 Context-Aware
+
 Quran results automatically include ±2 surrounding verses to provide proper context for understanding.
 
 ### ✅ Authenticity First
+
 Filter hadiths by authenticity grade (Sahih, Hasan) to ensure you're accessing authentic Islamic knowledge.
 
 ### ⚡ Fast Responses
+
 ~500ms average latency with PostgreSQL + pgvector HNSW indexes for efficient vector search.
 
 ## Rate Limits
