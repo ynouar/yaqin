@@ -2,11 +2,13 @@ import { createPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = createPageMetadata({
   title: 'Developers - Criterion Open Source',
-  description: 'Criterion is open source. Explore our code, contribute, or build your own Islamic AI applications.',
+  description: 'Criterion is open source. Explore our code, contribute, access our API, or build your own Islamic AI applications.',
   path: '/developers',
   keywords: [
     'open source Islamic AI',
     'Criterion GitHub',
+    'Quran API',
+    'Hadith API',
     'contribute',
     'RAG implementation',
     'Next.js AI',
@@ -61,7 +63,7 @@ export default function DevelopersPage() {
       <h2>Tech Stack</h2>
       <ul>
         <li><strong>Frontend:</strong> Next.js 15, React 19, TypeScript, Tailwind CSS</li>
-        <li><strong>AI:</strong> GPT-4o Mini, Gemini embeddings, Vercel AI SDK</li>
+        <li><strong>AI:</strong> XAI/Anthropic/Gemini, Gemini embeddings, Vercel AI SDK</li>
         <li><strong>Search:</strong> PostgreSQL + pgvector (HNSW index)</li>
         <li><strong>Hosting:</strong> Vercel, Neon Database</li>
       </ul>
@@ -78,14 +80,54 @@ export default function DevelopersPage() {
         All contributions welcome - features, bug fixes, documentation, or ideas!
       </p>
 
-      <h2>Documentation</h2>
+      <h2>Public API</h2>
       <p>
-        Check the repository for detailed documentation:
+        Access Quran and Hadith search through our RESTful API. Perfect for building your own Islamic applications.
       </p>
+      
+      <div className="not-prose my-6 rounded-lg border bg-card p-6">
+        <h3 className="mb-4 text-xl font-semibold">Quick Example</h3>
+        <pre className="overflow-x-auto rounded bg-muted p-4 text-sm">
+          <code>{`// Search Quran verses
+fetch('https://criterion.life/api/v1/quran/search?q=patience&limit=5')
+  .then(r => r.json())
+  .then(data => console.log(data));
+
+// Search Hadiths
+fetch('https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari')
+  .then(r => r.json())
+  .then(data => console.log(data));`}</code>
+        </pre>
+      </div>
+
+      <h3>API Endpoints</h3>
+      <ul>
+        <li><code>GET /api/v1/quran/search</code> - Semantic search across 6,236 verses</li>
+        <li><code>GET /api/v1/hadith/search</code> - Hybrid search across 12,416 hadiths</li>
+      </ul>
+
+      <h3>Features</h3>
+      <ul>
+        <li>Semantic search powered by AI embeddings</li>
+        <li>Authenticity filtering (Sahih-only by default)</li>
+        <li>RESTful JSON responses</li>
+        <li>CORS enabled for web apps</li>
+        <li>Rate limited (10 req/min per IP)</li>
+      </ul>
+
+      <div className="not-prose my-6">
+        <a
+          href="/api"
+          className="inline-flex items-center justify-center gap-2 rounded-lg border-2 border-primary bg-primary/10 px-6 py-3 font-semibold text-primary transition-colors hover:bg-primary/20"
+        >
+          View Full API Documentation →
+        </a>
+      </div>
+
+      <h2>Documentation</h2>
       <ul>
         <li><code>README.md</code> - Quick start guide</li>
         <li><code>CRITERION.md</code> - System overview</li>
-        <li><code>CRITERION_DETAILED.md</code> - Technical deep dive</li>
       </ul>
 
       <div className="not-prose my-8 grid gap-4 sm:grid-cols-2">

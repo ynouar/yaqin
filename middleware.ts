@@ -33,6 +33,7 @@ export async function middleware(request: NextRequest) {
   const publicRoutes = [
     "/about", "/how-it-works", "/faq", "/developers",
     "/quran", "/hadith", "/search", "/topics", "/speak",
+    "/api/v1", // Public API endpoints
   ];
 
   if (publicRoutes.some((route) => pathname.startsWith(route))) {
