@@ -2,6 +2,20 @@
 
 Access authentic Islamic knowledge through Criterion's API. Search 6,236 Quran verses and 12,416 authentic hadiths with AI-powered semantic search.
 
+## Integration Options
+
+### 1. HTTP API (REST)
+
+Direct HTTP requests to our public API endpoints. Great for web apps and traditional integrations.
+
+### 2. Model Context Protocol (MCP)
+
+Connect AI Agents or assistants like Claude Desktop and Cursor directly to Criterion's search. See [MCP.md](../../MCP.md) for details.
+
+**MCP Server URL:** `https://criterion.life/api/mcp`
+
+---
+
 ## Base URL
 
 ```

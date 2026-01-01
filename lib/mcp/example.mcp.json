@@ -1,0 +1,12 @@
+{
+  "mcpServers": { 
+    "criterion": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://criterion.life/api/mcp"]
+    },
+    "criterion-local": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "http://localhost:3000/api/mcp"]
+    }
+  }
+}

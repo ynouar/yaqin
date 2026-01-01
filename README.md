@@ -13,6 +13,7 @@
   <a href="#features"><strong>Features</strong></a> ·
   <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
   <a href="#getting-started"><strong>Getting Started</strong></a> ·
+  <a href="#mcp-server"><strong>MCP Server</strong></a> ·
   <a href="#documentation"><strong>Documentation</strong></a>
 </p>
 <br/>
@@ -225,6 +226,30 @@ pnpm test:quran          # Test Quran search functionality
 pnpm clear:hadith  # Clear all Hadith data
 pnpm ingest:hadith # Ingest Hadith and generate embeddings
 ```
+
+## MCP Server
+
+Criterion exposes its semantic search capabilities through the **Model Context Protocol (MCP)**, allowing AI assistants like Claude Desktop and Cursor to search Quran and Hadith directly.
+
+**Quick Setup:**
+
+```json
+{
+  "mcpServers": {
+    "criterion": {
+      "url": "https://criterion.life/api/mcp"
+    }
+  }
+}
+```
+
+**Available Tools:**
+
+- `search_quran` — Search 6,236 Quran verses
+- `search_hadith` — Search 12,416 authentic Hadiths
+- `get_verse` — Retrieve specific verse by reference (e.g., "2:255")
+
+👉 **[Read full MCP documentation in MCP.md](./MCP.md)**
 
 ## Project Structure
 

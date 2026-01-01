@@ -34,6 +34,8 @@ export async function middleware(request: NextRequest) {
     "/about", "/how-it-works", "/faq", "/developers",
     "/quran", "/hadith", "/search", "/topics", "/speak",
     "/api/v1", // Public API endpoints
+    "/api/mcp", // MCP server endpoint
+    "/.well-known", // OAuth discovery endpoints
   ];
 
   if (publicRoutes.some((route) => pathname.startsWith(route))) {
