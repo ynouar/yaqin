@@ -40,6 +40,7 @@ const searchLinks = [
 const secondaryLinks = [
   { href: '/about', label: 'About' },
   { href: '/faq', label: 'FAQ' },
+  { href: '/privacy', label: 'Privacy' },
 ];
 
 export function SiteHeader({ isSticky = false }: SiteHeaderProps) {

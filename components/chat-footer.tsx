@@ -30,6 +30,10 @@ export function ChatFooter() {
           FAQ
         </a>
         <span aria-hidden="true">·</span>
+        <a href="/privacy" className="hover:text-foreground transition-colors">
+          Privacy
+        </a>
+        <span aria-hidden="true">·</span>
         <a
           href="https://github.com/BalajSaleem/criterion"
           target="_blank"

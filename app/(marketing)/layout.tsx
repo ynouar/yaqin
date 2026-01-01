@@ -21,6 +21,9 @@ export default function MarketingLayout({
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p>© 2025 Criterion. Open source Islamic knowledge assistant.</p>
             <div className="flex gap-4">
+              <Link href="/privacy" className="hover:underline">
+                Privacy
+              </Link>
               <Link href="/developers" className="hover:underline">
                 Developers
               </Link>
