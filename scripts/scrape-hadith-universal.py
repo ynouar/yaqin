@@ -71,42 +71,42 @@ HADITH_COLLECTIONS = {
     #     'books': 56,
     #     'default_grade': 'Sahih'
     # },
-    # 'abudawud': {
-    #     'name': 'Sunan Abi Dawud',
-    #     'total_hadiths': 5274,
-    #     'books': 43,
-    #     'default_grade': 'Various'
-    # },
-    # 'tirmidhi': {
-    #     'name': 'Jami` at-Tirmidhi',
-    #     'total_hadiths': 3956,
-    #     'books': 51,
-    #     'default_grade': 'Various'
-    # },
-    # 'nasai': {
-    #     'name': "Sunan an-Nasa'i",
-    #     'total_hadiths': 5758,
-    #     'books': 51,
-    #     'default_grade': 'Various'
-    # },
-    # 'ibnmajah': {
-    #     'name': 'Sunan Ibn Majah',
-    #     'total_hadiths': 4341,
-    #     'books': 37,
-    #     'default_grade': 'Various'
-    # },
-    # 'malik': {
-    #     'name': 'Muwatta Malik',
-    #     'total_hadiths': 1594,
-    #     'books': 61,
-    #     'default_grade': 'Various'
-    # },
-    'riyadussalihin': {
-        'name': 'Riyad as-Salihin',
-        'total_hadiths': 1896,
-        'books': 19,
-        'default_grade': 'Sahih'
+    'abudawud': {
+        'name': 'Sunan Abi Dawud',
+        'total_hadiths': 5274,
+        'books': 43,
+        'default_grade': 'Various'
     },
+    'tirmidhi': {
+        'name': 'Jami` at-Tirmidhi',
+        'total_hadiths': 3956,
+        'books': 51,
+        'default_grade': 'Various'
+    },
+    'nasai': {
+        'name': "Sunan an-Nasa'i",
+        'total_hadiths': 5758,
+        'books': 51,
+        'default_grade': 'Various'
+    },
+    'ibnmajah': {
+        'name': 'Sunan Ibn Majah',
+        'total_hadiths': 4341,
+        'books': 37,
+        'default_grade': 'Various'
+    },
+    'malik': {
+        'name': 'Muwatta Malik',
+        'total_hadiths': 1594,
+        'books': 61,
+        'default_grade': 'Various'
+    },
+    # 'riyadussalihin': {
+    #     'name': 'Riyad as-Salihin',
+    #     'total_hadiths': 1896,
+    #     'books': 19,
+    #     'default_grade': 'Sahih'
+    # },
     # 'nawawi40': {
     #     'name': '40 Hadith Nawawi',
     #     'total_hadiths': 42,
@@ -342,19 +342,18 @@ class HadithScraper:
             grade = self.collection_info['default_grade']
             graded_by = ""
             
-            grade_table = soup.find('table', class_='hadith_grading')
+            # Look for grade table (class="gradetable")
+            grade_table = soup.find('table', class_='gradetable')
             if grade_table:
-                grade_rows = grade_table.find_all('tr')
-                for row in grade_rows:
-                    cells = row.find_all('td')
-                    if len(cells) >= 2:
-                        scholar = self._clean_text(cells[0].get_text())
-                        grade_text = self._clean_text(cells[1].get_text())
-                        
-                        # Use first grading or prefer Albani
-                        if not grade or 'Albani' in scholar:
-                            grade = grade_text
-                            graded_by = scholar
+                # Find all english_grade cells - second one has the grade
+                grade_cells = grade_table.find_all('td', class_='english_grade')
+                if len(grade_cells) >= 2:
+                    # Format: "Hasan (Al-Albani)" or "Sahih (Darussalam)"
+                    grade_text = self._clean_text(grade_cells[1].get_text())
+                    match = re.match(r'^(.+?)\s*\((.+?)\)\s*$', grade_text)
+                    if match:
+                        grade = match.group(1).strip()
+                        graded_by = match.group(2).strip()
             
             # Extract keywords from chapter and book names
             keywords = self._extract_keywords(book_name, chapter_name, english_text)
