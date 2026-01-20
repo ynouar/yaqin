@@ -274,7 +274,7 @@ export const hadithText = pgTable(
     bookName: varchar("bookName", { length: 200 }),
     chapterNumber: integer("chapterNumber"),
     chapterName: text("chapterName"),
-    grade: varchar("grade", { length: 50 }), // 'Sahih', 'Hasan', 'Da'if'
+    grade: varchar("grade", { length: 100 }), // 'Sahih', 'Hasan', 'Da'if' (some have commentary appended)
     narratorChain: text("narratorChain"),
     sourceUrl: varchar("sourceUrl", { length: 500 }),
     createdAt: timestamp("createdAt").notNull().defaultNow(),

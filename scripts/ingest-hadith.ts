@@ -35,10 +35,8 @@ type HadithCollection = {
 };
 
 const HADITH_FILES = [
-  "bukhari-full.json",
-  "muslim-full.json",
-  "nawawi40-full.json",
-  "riyadussalihin-full.json",
+  "tirmidhi-full.json",
+  "abudawud-full.json"
 ];
 
 function parseHadithFile(filePath: string): HadithCollection {
@@ -66,7 +64,7 @@ async function ingestHadith() {
   const client = postgres(process.env.POSTGRES_URL!);
   const db = drizzle(client);
 
-  const dataDir = path.join(process.cwd(), "scripts", "data");
+  const dataDir = path.join(process.cwd(), "data");
 
   // Check if data directory exists
   if (!fs.existsSync(dataDir)) {

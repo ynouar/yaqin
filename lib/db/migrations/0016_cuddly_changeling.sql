@@ -1,0 +1,1 @@
+ALTER TABLE "HadithText" ALTER COLUMN "grade" SET DATA TYPE varchar(100);
