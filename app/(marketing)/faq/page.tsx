@@ -5,7 +5,7 @@ const faqs = [
   {
     question: "What is Criterion?",
     answer:
-      "Criterion is an open-source AI-powered assistant that helps you understand Islam through authentic sources. We use advanced semantic search across 6,236 Quran verses and 12,416 authentic Hadiths to provide accurate, contextual answers to your questions about Islamic teachings.",
+      "Criterion is an open-source AI-powered assistant that helps you understand Islam through authentic sources. We use advanced semantic search across 6,236 Quran verses and 21,641 authentic Hadiths from 6 major collections to provide accurate, contextual answers to your questions about Islamic teachings.",
   },
   {
     question: "Is the information authentic?",

@@ -3,7 +3,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Search Authentic Hadith",
   description:
-    "Search 12,416 authentic hadiths from Bukhari, Muslim, Nawawi40, and Riyadussalihin. Find hadiths about any topic using semantic search.",
+    "Search 21,641 authentic hadiths from 6 major collections including Bukhari, Muslim, Tirmidhi, Abu Dawud, Nawawi40, and Riyadussalihin. Find hadiths about any topic using semantic search.",
   keywords: [
     "hadith search",
     "search hadith",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Search Authentic Hadith - Criterion",
     description:
-      "Search 12,416 authentic hadiths from major collections. Find hadiths about any topic.",
+      "Search 21,641 authentic hadiths from 6 major collections. Find hadiths about any topic.",
     type: "website",
   },
 };

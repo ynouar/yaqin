@@ -43,7 +43,7 @@ Criterion exists to bring authentic Islamic knowledge to anyone seeking truth, u
 
 **Technical Excellence:**
 
-- 🎯 **Semantic Search** — Natural language queries return relevant verses from 6,236 Quran verses + 12,416 Hadith narrations
+- 🎯 **Semantic Search** — Natural language queries return relevant verses from 6,236 Quran verses + 21,641 Hadith narrations
 - 📖 **Contextual Retrieval** — Top results include ±2 surrounding verses/narrations for proper context
 - 🌐 **Multilingual** — Read in English (fast) + Slovak (expandable to 10+ languages)
 - 🔗 **Accurate Citations** — All responses include source references with hyperlinks (Quran.com, Sunnah.com)
@@ -85,7 +85,7 @@ XAI Grok 4 LLM (decides which tools to use)
     ↓
 Tool Selection:
   - queryQuran → 6,236 verses (top 7 for chat, top 20 for search)
-  - queryHadith → 12,416 hadiths (top 3 for chat, top 15 for search, with grade filtering)
+  - queryHadith → 21,641 hadiths from 6 collections (top 3 for chat, top 15 for search, with grade filtering)
     ↓
 Vector Search (768-dim Gemini embeddings)
     ↓
@@ -105,9 +105,11 @@ Real-time Stream to User (Server-Sent Events)
   - Slovak translation (expandable)
   - 768-dimensional embeddings (Gemini text-embedding-004)
 
-- **12,416 Hadith narrations** from 4 collections
+- **21,641 Hadith narrations** from 6 major collections (Kutub al-Sittah subset)
   - Sahih Bukhari (7,558)
   - Sahih Muslim (2,920)
+  - Jami` at-Tirmidhi (3,951)
+  - Sunan Abi Dawud (5,274)
   - 40 Hadith Nawawi (42)
   - Riyad as-Salihin (1,896)
   - Grade filtering (Sahih, Hasan, Da'if)
@@ -246,7 +248,7 @@ Criterion exposes its semantic search capabilities through the **Model Context P
 **Available Tools:**
 
 - `search_quran` — Search 6,236 Quran verses
-- `search_hadith` — Search 12,416 authentic Hadiths
+- `search_hadith` — Search 21,641 authentic Hadiths from 6 collections
 - `get_verse` — Retrieve specific verse by reference (e.g., "2:255")
 
 👉 **[Read full MCP documentation in MCP.md](./MCP.md)**

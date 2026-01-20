@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Criterion is an AI-powered Islamic Da'i (guide) chatbot built with Next.js 16, featuring dual-source RAG (Retrieval Augmented Generation) over the Quran (6,236 verses) and Hadith (12,416 narrations). The system uses tool-based AI with XAI Grok 4 LLM for autonomous retrieval and real-time streaming responses.
+Criterion is an AI-powered Islamic Da'i (guide) chatbot built with Next.js 16, featuring dual-source RAG (Retrieval Augmented Generation) over the Quran (6,236 verses) and Hadith (21,641 narrations from 6 major collections). The system uses tool-based AI with XAI Grok 4 LLM for autonomous retrieval and real-time streaming responses.
 
 ## Architecture & Data Flow
 

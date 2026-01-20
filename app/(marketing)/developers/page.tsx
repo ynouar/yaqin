@@ -46,7 +46,7 @@ export default function DevelopersPage() {
       </p>
       <ul>
         <li><strong>6,236 Quran verses</strong> - Full Arabic text with English translations</li>
-        <li><strong>12,416 Hadiths</strong> - From authentic collections (Sahih Bukhari, Muslim, etc.)</li>
+        <li><strong>21,641 Hadiths</strong> - From 6 major authentic collections (Sahih Bukhari, Muslim, Tirmidhi, Abu Dawud, Nawawi40, Riyad as-Salihin)</li>
         <li><strong>Semantic search</strong> - Find verses and hadiths by meaning, not just keywords</li>
         <li><strong>RAG technology</strong> - Grounded responses with citations</li>
       </ul>
@@ -103,7 +103,7 @@ fetch('https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari
       <h3>API Endpoints</h3>
       <ul>
         <li><code>GET /api/v1/quran/search</code> - Semantic search across 6,236 verses</li>
-        <li><code>GET /api/v1/hadith/search</code> - Hybrid search across 12,416 hadiths</li>
+        <li><code>GET /api/v1/hadith/search</code> - Hybrid search across 21,641 hadiths (6 collections)</li>
       </ul>
 
       <h3>Features</h3>

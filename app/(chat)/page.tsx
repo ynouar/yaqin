@@ -10,7 +10,7 @@ import { createPageMetadata } from "@/lib/seo/metadata";
 // Metadata for home page
 export const metadata = createPageMetadata({
   title: "Criterion - Quran Powered AI Assistant",
-  description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search 6,236 Quran verses and 12,416 authentic Hadiths.",
+  description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search 6,236 Quran verses and 21,641 authentic Hadiths from 6 major collections.",
   path: "/",
   keywords: [
     "Quran search",

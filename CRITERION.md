@@ -10,7 +10,7 @@ Help people understand Islam through authentic sources using natural language qu
 
 **What makes us different:**
 
-- **Dual-source tool based rag RAG**: 6,236 Quran verses + 12,416 Hadiths with hybrid (keyword + vector) search
+- **Dual-source tool based rag RAG**: 6,236 Quran verses + 21,641 Hadiths with hybrid (keyword + vector) search
 - **Contextual**: Top Quran results include ±2 surrounding verses
 - **Authentic**: Defaults to Sahih (most reliable) hadiths
 - **Accurate**: Every response cites real sources with hyperlinks
@@ -225,7 +225,7 @@ lib/topics.ts                    # Topic definitions & queries
 ## 5. Data
 
 **Quran:** 6,236 verses (Arabic + English master, Slovak translation)  
-**Hadith:** 12,416 narrations from Bukhari (7,558), Muslim (2,920), Nawawi40 (42), Riyadussalihin (1,896)
+**Hadith:** 21,641 narrations from Bukhari (7,558), Muslim (2,920), Tirmidhi (3,951), Abu Dawud (5,274), Nawawi40 (42), Riyadussalihin (1,896)
 
 **Multilingual Support:**
 

@@ -7,7 +7,7 @@ import { Search, ChevronDown, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { NarrationCard, type NarrationData } from "@/components/hadith/narration-card";
 
-type Collection = "bukhari" | "muslim" | "nawawi40" | "riyadussalihin";
+type Collection = "bukhari" | "muslim" | "tirmidhi" | "abudawud" | "nawawi40" | "riyadussalihin";
 type GradePreference = "sahih-only" | "sahih-and-hasan" | "all";
 
 interface SearchResponse {
@@ -35,6 +35,8 @@ const COLLECTIONS: Array<{
 }> = [
   { id: "bukhari", name: "Sahih Bukhari", description: "7,558 hadiths" },
   { id: "muslim", name: "Sahih Muslim", description: "2,920 hadiths" },
+  { id: "tirmidhi", name: "Jami` at-Tirmidhi", description: "3,951 hadiths" },
+  { id: "abudawud", name: "Sunan Abi Dawud", description: "5,274 hadiths" },
   { id: "nawawi40", name: "40 Hadith Nawawi", description: "42 hadiths" },
   { id: "riyadussalihin", name: "Riyad as-Salihin", description: "1,896 hadiths" },
 ];
@@ -128,7 +130,7 @@ export function HadithSearchUI({
               Search Authentic Hadith
             </h1>
             <p className="text-zinc-500 text-lg mb-6">
-              Explore 12,416 hadiths from major collections using semantic search
+              Explore 21,641 hadiths from 6 major collections using semantic search
             </p>
 
             {/* Search Form */}

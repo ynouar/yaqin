@@ -27,8 +27,15 @@ export async function GET() {
       },
       data: {
         quran_verses: 6236,
-        hadiths: 12416,
-        collections: ["Sahih Bukhari", "Sahih Muslim", "40 Hadith Nawawi", "Riyad as-Salihin"],
+        hadiths: 21641,
+        collections: [
+          "Sahih Bukhari",
+          "Sahih Muslim",
+          "Jami` at-Tirmidhi",
+          "Sunan Abi Dawud",
+          "40 Hadith Nawawi",
+          "Riyad as-Salihin"
+        ],
         languages: ["en"],
       },
     },

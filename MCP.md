@@ -20,9 +20,9 @@ Search across **6,236 Quran verses** using AI-powered semantic similarity
 
 ### 2. `search_hadith`
 
-Search across **12,416 authentic Hadith** narrations
+Search across **21,641 authentic Hadith** narrations from 6 major collections
 
-- Collections: Sahih Bukhari, Sahih Muslim, 40 Hadith Nawawi, Riyad as-Salihin
+- Collections: Sahih Bukhari, Sahih Muslim, Jami` at-Tirmidhi, Sunan Abi Dawud, 40 Hadith Nawawi, Riyad as-Salihin
 - Filter by authenticity grade: Sahih only, Sahih + Hasan, or All
 - Filter by specific collections
 - Supports 1-15 results per query
@@ -301,11 +301,13 @@ Once connected, you can ask your AI assistant:
   - Arabic: Uthmanic script
   - English: Sahih International translation
   - Slovak translation also available
-- **Hadith:** 12,416 authentic narrations
-  - Sahih Bukhari: ~7,563 hadiths
-  - Sahih Muslim: ~5,362 hadiths
+- **Hadith:** 21,641 authentic narrations from 6 major collections
+  - Sahih Bukhari: 7,558 hadiths
+  - Sahih Muslim: 2,920 hadiths
+  - Jami` at-Tirmidhi: 3,951 hadiths
+  - Sunan Abi Dawud: 5,274 hadiths
   - 40 Hadith Nawawi: 42 hadiths
-  - Riyad as-Salihin: ~1,896 hadiths
+  - Riyad as-Salihin: 1,896 hadiths
 
 ### Performance
 

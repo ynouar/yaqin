@@ -115,7 +115,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: topic.priority,
   }));
 
-  // All hadith pages (12,416 total across 4 collections)
+  // All hadith pages (21,641 total across 6 collections)
   const hadithPages: MetadataRoute.Sitemap = [];
   for (const collection of COLLECTION_METADATA) {
     const stats = await getCollectionStats(collection.slug);

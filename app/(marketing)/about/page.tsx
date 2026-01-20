@@ -3,7 +3,7 @@ import { createPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = createPageMetadata({
   title: 'About Criterion - Quran & Hadith Powered AI Assistant',
-  description: 'Learn about Criterion, an open-source AI assistant that helps people understand Islam through authentic sources. Built with RAG technology using 6,236 Quran verses and 12,416 Hadiths.',
+  description: 'Learn about Criterion, an open-source AI assistant that helps people understand Islam through authentic sources. Built with RAG technology using 6,236 Quran verses and 21,641 Hadiths from 6 major collections.',
   path: '/about',
   keywords: [
     'Islamic AI assistant',
@@ -41,7 +41,7 @@ export default function AboutPage() {
       </p>
       <ul>
         <li><strong>6,236 Quran verses</strong> - Complete Arabic text with English translations</li>
-        <li><strong>12,416 Hadiths</strong> - From Sahih Bukhari, Sahih Muslim, and other authentic collections</li>
+        <li><strong>21,641 Hadiths</strong> - From 6 major authentic collections (Sahih Bukhari, Sahih Muslim, Jami` at-Tirmidhi, Sunan Abi Dawud, 40 Hadith Nawawi, Riyad as-Salihin)</li>
         <li>All references include citations with direct links to Quran.com and Sunnah.com</li>
       </ul>
 
@@ -89,7 +89,7 @@ export default function AboutPage() {
       </p>
       <ol>
         <li>Our AI analyzes your question to understand its meaning</li>
-        <li>We search through 6,236 Quran verses and 12,416 Hadiths using semantic similarity</li>
+        <li>We search through 6,236 Quran verses and 21,641 Hadiths from 6 major collections using semantic similarity</li>
         <li>The most relevant passages are retrieved with proper context</li>
         <li>Our AI generates a response grounded in these authentic sources</li>
         <li>Every claim is cited with references you can verify</li>

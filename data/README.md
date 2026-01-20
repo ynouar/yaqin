@@ -7,8 +7,8 @@ This directory contains the source data for Criterion's Islamic knowledge base, 
 **Total Dataset Size:**
 
 - **Quran**: 6,236 verses (English + Slovak translations)
-- **Hadith Collections**: 12,416 narrations across 4 major collections
-- **Combined**: 18,652 Islamic text entries with embeddings
+- **Hadith Collections**: 21,641 narrations across 6 major collections
+- **Combined**: 27,877 Islamic text entries with embeddings
 
 ## 📖 Quran Data Files
 
@@ -44,6 +44,8 @@ Simple line-by-line hadith text for quick reference:
 
 - **`bukhari.txt`** - Sahih Bukhari narrations
 - **`muslim.txt`** - Sahih Muslim narrations
+- **`tirmidhi.txt`** - Jami` at-Tirmidhi narrations
+- **`abudawud.txt`** - Sunan Abi Dawud narrations
 - **`nawawi40.txt`** - 40 Hadith Nawawi collection
 - **`riyadussalihin.txt`** - Riyad as-Salihin collection
 - **`en.sahih.txt`** - Combined Sahih collection

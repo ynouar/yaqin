@@ -1,6 +1,6 @@
 # Criterion API Documentation
 
-Access authentic Islamic knowledge through Criterion's API. Search 6,236 Quran verses and 12,416 authentic hadiths with AI-powered semantic search.
+Access authentic Islamic knowledge through Criterion's API. Search 6,236 Quran verses and 21,641 authentic hadiths from 6 major collections with AI-powered semantic search.
 
 ## Integration Options
 
@@ -164,15 +164,15 @@ curl "https://criterion.life/api/v1/quran/search?q=patience&limit=5"
 
 **`GET /api/v1/hadith/search`**
 
-Semantic similarity search across 12,416 authentic hadiths from major collections.
+Semantic similarity search across 21,641 authentic hadiths from 6 major collections.
 
 #### Parameters
 
-| Parameter     | Type   | Required | Description                                                |
-| ------------- | ------ | -------- | ---------------------------------------------------------- |
-| `q`           | string | Yes      | Search query (1-500 chars)                                 |
-| `collections` | string | No       | Comma-separated: bukhari, muslim, nawawi40, riyadussalihin |
-| `grade`       | string | No       | sahih-only (default), sahih-and-hasan, all                 |
+| Parameter     | Type   | Required | Description                                                           |
+| ------------- | ------ | -------- | --------------------------------------------------------------------- |
+| `q`           | string | Yes      | Search query (1-500 chars)                                            |
+| `collections` | string | No       | Comma-separated: bukhari, muslim, tirmidhi, abudawud, nawawi40, riyadussalihin |
+| `grade`       | string | No       | sahih-only (default), sahih-and-hasan, all                            |
 | `limit`       | number | No       | Number of results (1-15, default: 5)                       |
 
 #### Example Request

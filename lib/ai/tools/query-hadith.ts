@@ -5,7 +5,7 @@ import { findRelevantHadiths } from "../embeddings";
 export const queryHadith = tool({
   description: `Search authentic Hadith (sayings and actions of Prophet Muhammad ﷺ) for Islamic guidance.
   Uses semantic vector search to find the most relevant hadiths.
-  Returns top most relevant hadiths from major collections (Bukhari, Muslim, Nawawi40, Riyadussalihin).
+  Returns top most relevant hadiths from major collections (Bukhari, Muslim, Tirmidhi, Abu Dawud, Nawawi40, Riyadussalihin).
   Defaults to Sahih (authentic) hadiths only - the most reliable narrations.
   Use this tool when users ask about the Prophet's teachings, specific Islamic practices, or hadith references.`,
 
@@ -15,11 +15,11 @@ export const queryHadith = tool({
       .describe("The user's question to search hadiths for"),
     collections: z
       .array(
-        z.enum(["bukhari", "muslim", "nawawi40", "riyadussalihin"])
+        z.enum(["bukhari", "muslim", "tirmidhi", "abudawud", "nawawi40", "riyadussalihin"])
       )
       .optional()
       .describe(
-        "Specific hadith collections to search. Leave empty to search all collections."
+        "Specific hadith collections to search. Available options: 'bukhari', 'muslim', 'tirmidhi', 'abudawud', 'nawawi40', 'riyadussalihin'. Leave empty to search all collections."
       ),
     gradePreference: z
       .enum(["sahih-only", "sahih-and-hasan", "all"])
@@ -67,6 +67,8 @@ export const queryHadith = tool({
           const names: Record<string, string> = {
             bukhari: "Sahih Bukhari",
             muslim: "Sahih Muslim",
+            tirmidhi: "Jami` at-Tirmidhi",
+            abudawud: "Sunan Abi Dawud",
             nawawi40: "40 Hadith Nawawi",
             riyadussalihin: "Riyad as-Salihin",
           };

@@ -1,6 +1,6 @@
 /**
  * Hadith Collection Metadata
- * Contains information about the 4 major hadith collections
+ * Contains information about the 6 major hadith collections
  */
 
 export interface CollectionMetadata {
@@ -42,6 +42,36 @@ export const COLLECTION_METADATA: CollectionMetadata[] = [
     repetitions. Imam Muslim was a student of Imam Bukhari and applied similarly strict criteria 
     for authentication. Together, Sahih Bukhari and Sahih Muslim are known as "Sahihayn" 
     (the two authentic collections) and are considered the gold standard of hadith literature.`,
+  },
+  {
+    slug: 'tirmidhi',
+    name: 'Jami` at-Tirmidhi',
+    arabicName: 'جامع الترمذي',
+    compiler: 'Imam Abu Isa at-Tirmidhi',
+    description: 'One of the six major hadith collections, known for including various grades of authenticity',
+    totalHadiths: 3951,
+    authenticityLevel: 'high',
+    about: `Jami' at-Tirmidhi is one of the six major hadith collections (Kutub al-Sittah). 
+    Compiled by Imam Muhammad ibn Isa at-Tirmidhi (824-892 CE), it contains 3,951 narrations. 
+    What distinguishes this collection is Imam Tirmidhi's practice of grading each hadith and 
+    mentioning different opinions of scholars regarding its authenticity. He also includes 
+    discussions of Islamic jurisprudence and the positions of various scholars, making it 
+    valuable for both hadith studies and fiqh (Islamic jurisprudence).`,
+  },
+  {
+    slug: 'abudawud',
+    name: 'Sunan Abi Dawud',
+    arabicName: 'سنن أبي داود',
+    compiler: 'Imam Abu Dawud as-Sijistani',
+    description: 'One of the six major hadith collections, focusing on Islamic jurisprudence and legal rulings',
+    totalHadiths: 5274,
+    authenticityLevel: 'high',
+    about: `Sunan Abi Dawud is one of the six major hadith collections (Kutub al-Sittah). 
+    Compiled by Imam Abu Dawud Sulayman ibn al-Ash'ath as-Sijistani (817-889 CE), it contains 
+    5,274 narrations. This collection focuses primarily on hadiths related to Islamic law and 
+    jurisprudence (fiqh). Imam Abu Dawud carefully selected hadiths that support legal rulings, 
+    making it an essential reference for scholars of Islamic law. While it includes some weaker 
+    narrations, Imam Abu Dawud explicitly noted which hadiths had weakness in their chains.`,
   },
   {
     slug: 'nawawi40',

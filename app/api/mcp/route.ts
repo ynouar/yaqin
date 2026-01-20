@@ -6,7 +6,7 @@
  *
  * Tools provided:
  * - search_quran: Semantic search across 6,236 Quran verses
- * - search_hadith: Semantic search across 12,416 authentic Hadiths  
+ * - search_hadith: Semantic search across 21,641 authentic Hadiths from 6 collections
  * - get_verse: Retrieve specific verse by reference
  *
  * Usage:
@@ -51,7 +51,7 @@ const handler = createMcpHandler(
     // Tool 2: Search Hadith collections
     server.tool(
       'search_hadith',
-      'Search 12,416 authentic Hadith narrations from Sahih Bukhari, Sahih Muslim, 40 Hadith Nawawi, and Riyad as-Salihin. Filter by collection and authenticity grade. Use this for questions about Prophet Muhammad\'s teachings and practices.',
+      'Search 21,641 authentic Hadith narrations from 6 major collections: Sahih Bukhari, Sahih Muslim, Jami` at-Tirmidhi, Sunan Abi Dawud, 40 Hadith Nawawi, and Riyad as-Salihin. Filter by collection and authenticity grade. Use this for questions about Prophet Muhammad\'s teachings and practices.',
       {
         query: z
           .string()
@@ -62,7 +62,7 @@ const handler = createMcpHandler(
           .string()
           .optional()
           .describe(
-            'Comma-separated collection names: bukhari, muslim, nawawi40, riyadussalihin (leave empty for all)',
+            'Comma-separated collection names: bukhari, muslim, tirmidhi, abudawud, nawawi40, riyadussalihin (leave empty for all)',
           ),
         grade: z
           .enum(['sahih-only', 'sahih-and-hasan', 'all'])

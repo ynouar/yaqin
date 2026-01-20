@@ -5,8 +5,8 @@ import { createBreadcrumbSchema } from '@/lib/seo/schema';
 import { createPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = createPageMetadata({
-  title: 'Hadith - Browse All 4 Major Collections',
-  description: 'Browse 12,416 authentic hadiths from Sahih Bukhari, Sahih Muslim, 40 Hadith Nawawi, and Riyad as-Salihin. Read narrations from the Prophet Muhammad ﷺ.',
+  title: 'Hadith - Browse All 6 Major Collections',
+  description: 'Browse 21,641 authentic hadiths from 6 major collections: Sahih Bukhari, Sahih Muslim, Jami` at-Tirmidhi, Sunan Abi Dawud, 40 Hadith Nawawi, and Riyad as-Salihin. Read narrations from the Prophet Muhammad ﷺ.',
   path: '/hadith',
   keywords: [
     'Hadith',
@@ -51,7 +51,7 @@ export default function HadithPage() {
           <div className="mb-12 text-center">
             <h1 className="mb-4 text-4xl font-bold">Authentic Hadith Collections</h1>
             <p className="mx-auto max-w-2xl text-muted-foreground">
-              Browse 12,416 authentic hadiths from 4 major collections. Each hadith includes the full 
+              Browse 21,641 authentic hadiths from 6 major collections. Each hadith includes the full 
               Arabic text, English translation, and authenticity grading. Click any collection to explore.
             </p>
           </div>

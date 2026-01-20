@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Developer API - Criterion",
   description:
-    "Access Quran and Hadith search through the API. Semantic search powered by AI, supporting 6,236 verses and 12,416 authentic hadiths.",
+    "Access Quran and Hadith search through the API. Semantic search powered by AI, supporting 6,236 verses and 21,641 authentic hadiths from 6 major collections.",
   openGraph: {
     title: "Developer API - Criterion",
     description:
@@ -20,7 +20,7 @@ export default function APIPage() {
         <div className="mb-12">
           <h1 className="text-4xl font-bold mb-4">Developer API</h1>
           <p className="text-xl text-muted-foreground mb-6">
-            Access authentic Islamic knowledge through our Criterion's API. Use the APIs to find relevant verses and hadiths for any topic. Our semantic similarity search understands the meaning and intent of your queries, matching conceptually similar content even when exact words differ—search 6,236 Quran verses and 12,416 authentic hadiths with AI-powered precision.
+            Access authentic Islamic knowledge through our Criterion's API. Use the APIs to find relevant verses and hadiths for any topic. Our semantic similarity search understands the meaning and intent of your queries, matching conceptually similar content even when exact words differ—search 6,236 Quran verses and 21,641 authentic hadiths from 6 major collections with AI-powered precision.
           </p>
           
           {/* Try Live Links */}
@@ -176,7 +176,8 @@ data = response.json()`}
               <code className="text-lg font-mono">/api/v1/hadith/search</code>
             </div>
             <p className="text-muted-foreground mb-4">
-              Semantic Similarity search across 12,416 authentic hadiths            </p>
+              Semantic Similarity search across 21,641 authentic hadiths from 6 major collections
+            </p>
 
             <h4 className="font-semibold mb-2">Parameters</h4>
             <ul className="space-y-2 mb-4 text-sm">
@@ -185,7 +186,7 @@ data = response.json()`}
               </li>
               <li>
                 <code className="bg-muted px-2 py-1 rounded">collections</code>{" "}
-                <span className="text-muted-foreground">optional</span> - bukhari, muslim, nawawi40, riyadussalihin (comma-separated)
+                <span className="text-muted-foreground">optional</span> - bukhari, muslim, tirmidhi, abudawud, nawawi40, riyadussalihin (comma-separated)
               </li>
               <li>
                 <code className="bg-muted px-2 py-1 rounded">grade</code>{" "}

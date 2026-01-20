@@ -30,7 +30,7 @@ export default function HowItWorksPage() {
       </p>
       <ol>
         <li><strong>Understands</strong> the meaning of your question</li>
-        <li><strong>Searches</strong> through 6,236 Quran verses and 12,416 Hadiths</li>
+        <li><strong>Searches</strong> through 6,236 Quran verses and 21,641 Hadiths from 6 major collections</li>
         <li><strong>Retrieves</strong> the most relevant passages with context</li>
         <li><strong>Generates</strong> a response grounded in these authentic sources</li>
         <li><strong>Cites</strong> every reference so you can verify</li>
@@ -98,7 +98,7 @@ export default function HowItWorksPage() {
       <h4>2. Similarity Search</h4>
       <p>
         We compare your question's embedding with embeddings of all 6,236 Quran verses 
-        and 12,416 Hadiths using vector similarity (cosine distance).
+        and 21,641 Hadiths from 6 major collections using vector similarity (cosine distance).
       </p>
       <p>
         The most similar passages are retrieved. For Quran, we use <strong>hybrid search</strong>:
@@ -149,12 +149,14 @@ export default function HowItWorksPage() {
         <li><strong>Structure:</strong> 114 Surahs, organized by Surah:Ayah</li>
       </ul>
 
-      <h3>Hadith (12,416 narrations)</h3>
+      <h3>Hadith (21,641 narrations)</h3>
       <ul>
         <li><strong>Sahih Bukhari:</strong> 7,558 hadiths</li>
         <li><strong>Sahih Muslim:</strong> 2,920 hadiths</li>
+        <li><strong>Jami` at-Tirmidhi:</strong> 3,951 hadiths</li>
+        <li><strong>Sunan Abi Dawud:</strong> 5,274 hadiths</li>
         <li><strong>40 Hadith Nawawi:</strong> 42 hadiths</li>
-        <li><strong>Riyadh as-Salihin:</strong> 1,896 hadiths</li>
+        <li><strong>Riyad as-Salihin:</strong> 1,896 hadiths</li>
       </ul>
       <p>
         All hadiths include narrator chains, grading (authenticity), and references.

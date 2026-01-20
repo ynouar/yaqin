@@ -223,7 +223,7 @@ export const softwareApplicationSchema = {
   },
   featureList: [
     'Search 6,236 Quranic verses',
-    'Search 12,416 authentic Hadiths',
+    'Search 21,641 authentic Hadiths from 6 collections',
     'AI-powered Islamic guidance',
     'Multilingual support (English, Slovak)',
     'Authentic source citations',

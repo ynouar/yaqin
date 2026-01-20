@@ -1,9 +1,9 @@
 /**
- * MCP Tools for Criterion Islamic Search
+ * Tools for Criterion Islamic Search
  *
  * Three focused tools that expose our semantic search capabilities:
  * 1. search_quran - Search 6,236 Quran verses
- * 2. search_hadith - Search 12,416 authentic Hadiths
+ * 2. search_hadith - Search 21,641 authentic Hadiths from 6 collections
  * 3. get_verse - Get specific verse by reference
  */
 

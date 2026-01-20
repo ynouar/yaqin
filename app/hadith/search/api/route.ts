@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import { findRelevantHadiths } from "@/lib/ai/embeddings";
 
-type Collection = "bukhari" | "muslim" | "nawawi40" | "riyadussalihin";
+type Collection = "bukhari" | "muslim" | "tirmidhi" | "abudawud" | "nawawi40" | "riyadussalihin";
 type GradePreference = "sahih-only" | "sahih-and-hasan" | "all";
 
 const VALID_COLLECTIONS: Collection[] = [
   "bukhari",
   "muslim",
+  "tirmidhi",
+  "abudawud",
   "nawawi40",
   "riyadussalihin",
 ];
@@ -57,6 +59,8 @@ export async function GET(request: NextRequest) {
     const collectionNames: Record<Collection, string> = {
       bukhari: "Sahih Bukhari",
       muslim: "Sahih Muslim",
+      tirmidhi: "Jami` at-Tirmidhi",
+      abudawud: "Sunan Abi Dawud",
       nawawi40: "40 Hadith Nawawi",
       riyadussalihin: "Riyad as-Salihin",
     };

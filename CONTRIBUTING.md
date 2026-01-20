@@ -23,7 +23,7 @@ pnpm db:enable-pgvector
 # 5. Ingest data (optional but recommended)
 pnpm ingest:quran         # ~10 min - 6,236 verses
 pnpm ingest:quran:slovak  # ~5 min - Slovak translation
-pnpm ingest:hadith        # ~20 min - 12,416 hadiths
+pnpm ingest:hadith        # ~30 min - 21,641 hadiths (6 collections)
 
 # 6. Start development server
 pnpm dev
