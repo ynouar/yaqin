@@ -46,7 +46,6 @@ export const queryHadith = tool({
 
     // Format hadiths for LLM
     const formattedHadiths = hadiths.map((h, index) => ({
-      rank: index + 1,
       reference: h.reference,
       collection: h.collectionName,
 
@@ -58,8 +57,6 @@ export const queryHadith = tool({
 
       book: h.bookName || "Not specified",
       chapter: h.chapterName || "Not specified",
-
-      relevance: `${(h.similarity * 100).toFixed(1)}%`,
 
       sourceUrl: h.sourceUrl || "",
     }));
