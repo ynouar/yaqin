@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Search, Loader2 } from "lucide-react";
+import { Search, Loader2, BookOpen } from "lucide-react";
 import Link from "next/link";
 
 interface SearchResult {
@@ -81,6 +81,15 @@ export function SearchUI({ initialQuery = "", initialResults = null }: SearchUIP
             <p className="text-zinc-500 text-lg mb-6">
               Explore 6,236 verses using semantic search
             </p>
+
+            {/* Browse Link */}
+            <Link 
+              href="/quran" 
+              className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-lg transition-colors mb-6 group"
+            >
+              <BookOpen className="size-4 group-hover:scale-110 transition-transform" />
+              Read the Quran
+            </Link>
 
             {/* Search Form */}
             <form onSubmit={handleSearch} className="relative">

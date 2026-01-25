@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { Search, ChevronDown, Loader2 } from "lucide-react";
+import { Search, ChevronDown, Loader2, BookOpen } from "lucide-react";
 import Link from "next/link";
 import { NarrationCard, type NarrationData } from "@/components/hadith/narration-card";
 
@@ -132,6 +132,15 @@ export function HadithSearchUI({
             <p className="text-zinc-500 text-lg mb-6">
               Explore 21,641 hadiths from 6 major collections using semantic search
             </p>
+
+            {/* Browse Link */}
+            <Link 
+              href="/hadith" 
+              className="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 rounded-lg transition-colors mb-6 group"
+            >
+              <BookOpen className="size-4 group-hover:scale-110 transition-transform" />
+              Read 6 ahadith collections
+            </Link>
 
             {/* Search Form */}
             <form onSubmit={handleSearch} className="relative mb-4">
