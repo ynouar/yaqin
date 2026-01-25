@@ -306,15 +306,29 @@ function PureMultimodalInput({
             maxHeight={200}
             minHeight={44}
             onChange={handleInput}
-            placeholder="Ask a question about Islam..."
+            placeholder="Ask a question..."
             ref={textareaRef}
             rows={1}
             value={input}
-          />{" "}
-          <Context {...contextProps} />
+          />
+          {/* <Context {...contextProps} /> */}
+          <div className="flex shrink-0 items-center pb-2">
+            {status === "submitted" ? (
+              <StopButton setMessages={setMessages} stop={stop} />
+            ) : (
+              <PromptInputSubmit
+                className="size-8 rounded-full bg-primary text-primary-foreground transition-colors duration-200 hover:bg-primary/90 disabled:bg-muted disabled:text-muted-foreground"
+                disabled={!input.trim() || uploadQueue.length > 0}
+                status={status}
+              >
+                <ArrowUpIcon size={14} />
+              </PromptInputSubmit>
+            )}
+          </div>
         </div>
-        <PromptInputToolbar className="!border-top-0 border-t-0! p-0 shadow-none dark:border-0 dark:border-transparent!">
-          <PromptInputTools className="gap-0 sm:gap-0.5">
+        {/* <PromptInputToolbar className="!border-top-0 border-t-0! p-0 shadow-none dark:border-0 dark:border-transparent!"> */}
+          {/* Disabled model selection and attachment uploading - enable when multimodality is required */}
+          {/* <PromptInputTools className="gap-0 sm:gap-0.5">
             <AttachmentsButton
               fileInputRef={fileInputRef}
               selectedModelId={selectedModelId}
@@ -324,20 +338,8 @@ function PureMultimodalInput({
               onModelChange={onModelChange}
               selectedModelId={selectedModelId}
             />
-          </PromptInputTools>
-
-          {status === "submitted" ? (
-            <StopButton setMessages={setMessages} stop={stop} />
-          ) : (
-            <PromptInputSubmit
-              className="size-8 rounded-full bg-primary text-primary-foreground transition-colors duration-200 hover:bg-primary/90 disabled:bg-muted disabled:text-muted-foreground"
-              disabled={!input.trim() || uploadQueue.length > 0}
-              status={status}
-            >
-              <ArrowUpIcon size={14} />
-            </PromptInputSubmit>
-          )}
-        </PromptInputToolbar>
+          </PromptInputTools> */}
+        {/* </PromptInputToolbar> */}
       </PromptInput>
     </div>
   );
