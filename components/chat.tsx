@@ -164,36 +164,73 @@ export function Chat({
           selectedVisibilityType={initialVisibilityType}
         />
 
-        <Messages
-          chatId={id}
-          isReadonly={isReadonly}
-          messages={messages}
-          regenerate={regenerate}
-          setMessages={setMessages}
-          status={status}
-          votes={votes}
-        />
-
-        <div className="sticky bottom-0 z-1 mx-auto flex w-full max-w-4xl gap-2 border-t-0 bg-background px-2 pb-3 md:px-4 md:pb-4">
-          {!isReadonly && (
-            <MultimodalInput
-              attachments={attachments}
+        {messages.length === 0 ? (
+          // Greeting view: centered on mobile
+          <div className="flex flex-1 flex-col items-center justify-center gap-6 px-4">
+            <Messages
               chatId={id}
-              input={input}
+              isReadonly={isReadonly}
               messages={messages}
-              onModelChange={setCurrentModelId}
-              selectedModelId={currentModelId}
-              selectedVisibilityType={visibilityType}
-              sendMessage={sendMessage}
-              setAttachments={setAttachments}
-              setInput={setInput}
+              regenerate={regenerate}
               setMessages={setMessages}
               status={status}
-              stop={stop}
-              usage={usage}
+              votes={votes}
             />
-          )}
-        </div>
+            {!isReadonly && (
+              <div className="w-full max-w-4xl">
+                <MultimodalInput
+                  attachments={attachments}
+                  chatId={id}
+                  input={input}
+                  messages={messages}
+                  onModelChange={setCurrentModelId}
+                  selectedModelId={currentModelId}
+                  selectedVisibilityType={visibilityType}
+                  sendMessage={sendMessage}
+                  setAttachments={setAttachments}
+                  setInput={setInput}
+                  setMessages={setMessages}
+                  status={status}
+                  stop={stop}
+                  usage={usage}
+                />
+              </div>
+            )}
+          </div>
+        ) : (
+          // Chat view: normal layout
+          <>
+            <Messages
+              chatId={id}
+              isReadonly={isReadonly}
+              messages={messages}
+              regenerate={regenerate}
+              setMessages={setMessages}
+              status={status}
+              votes={votes}
+            />
+            <div className="sticky bottom-0 z-1 mx-auto flex w-full max-w-4xl gap-2 border-t-0 bg-background px-2 pb-3 md:px-4 md:pb-4">
+              {!isReadonly && (
+                <MultimodalInput
+                  attachments={attachments}
+                  chatId={id}
+                  input={input}
+                  messages={messages}
+                  onModelChange={setCurrentModelId}
+                  selectedModelId={currentModelId}
+                  selectedVisibilityType={visibilityType}
+                  sendMessage={sendMessage}
+                  setAttachments={setAttachments}
+                  setInput={setInput}
+                  setMessages={setMessages}
+                  status={status}
+                  stop={stop}
+                  usage={usage}
+                />
+              )}
+            </div>
+          </>
+        )}
 
         <ChatFooter />
       </div>
