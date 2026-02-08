@@ -102,7 +102,7 @@ async function generateEmbedding(
 
   if (modelConfig.provider === "google") {
     const { embedding } = await embed({
-      model: google.textEmbedding(modelConfig.model),
+      model: google.embedding(modelConfig.model),
       value: input,
       providerOptions: {
         google: {
@@ -114,7 +114,7 @@ async function generateEmbedding(
     return embedding;
   } else {
     const { embedding } = await embed({
-      model: openai.textEmbeddingModel(modelConfig.model),
+      model: openai.embeddingModel(modelConfig.model),
       value: input,
       providerOptions: {
         openai: {
@@ -301,7 +301,7 @@ async function runEmbeddingComparison() {
       for (let i = 0; i < verseTexts.length; i += BATCH_SIZE) {
         const batch = verseTexts.slice(i, i + BATCH_SIZE);
         const { embeddings } = await embedMany({
-          model: google.textEmbedding(modelConfig.model),
+          model: google.embedding(modelConfig.model),
           values: batch,
           providerOptions: {
             google: {
@@ -315,7 +315,7 @@ async function runEmbeddingComparison() {
     } else {
       // OpenAI can handle larger batches
       const { embeddings } = await embedMany({
-        model: openai.textEmbeddingModel(modelConfig.model),
+        model: openai.embeddingModel(modelConfig.model),
         values: verseTexts,
         providerOptions: {
           openai: {

@@ -3,7 +3,6 @@ import {
   convertToModelMessages,
   createUIMessageStream,
   JsonToSseTransformStream,
-  smoothStream,
   stepCountIs,
   streamText,
 } from "ai";
@@ -220,13 +219,12 @@ export async function POST(request: Request) {
     const streamStartTimer = new PerformanceTimer("chat:stream-generation");
 
     const stream = createUIMessageStream({
-      execute: ({ writer: dataStream }) => {
+      execute: async ({ writer: dataStream }) => {
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
           system: systemPrompt(requestHints),
-          messages: convertToModelMessages(uiMessages),
+          messages: await convertToModelMessages(uiMessages),
           stopWhen: stepCountIs(5),
-          experimental_transform: smoothStream(),
           activeTools: ["queryQuran", "queryHadith", "getQuranByReference"],
           tools: {
             queryQuran,

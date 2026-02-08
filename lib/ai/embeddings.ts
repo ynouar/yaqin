@@ -22,7 +22,7 @@ import { PerformanceTimer, timeAsync } from "@/lib/monitoring/performance";
 
 // Using Gemini text-embedding-004 (768 dimensions)
 // Using RETRIEVAL_QUERY task type for all embeddings
-const embeddingModel = google.textEmbedding("text-embedding-004");
+const embeddingModel = google.embedding("text-embedding-004");
 const context_window = 2; // ±2 verses for context
 
 /**
