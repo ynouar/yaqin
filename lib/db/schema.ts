@@ -208,7 +208,7 @@ export const quranEmbedding = pgTable(
     verseId: uuid("verseId")
       .notNull()
       .references(() => quranVerse.id, { onDelete: "cascade" }),
-    embedding: vector("embedding", { dimensions: 768 }).notNull(), // Gemini text-embedding-004
+    embedding: vector("embedding", { dimensions: 768 }).notNull(), // Gemini gemini-embedding-001
     content: text("content").notNull(), // English text for search
     createdAt: timestamp("createdAt").notNull().defaultNow(),
   },
@@ -303,7 +303,7 @@ export const hadithEmbedding = pgTable(
     hadithId: uuid("hadithId")
       .notNull()
       .references(() => hadithText.id, { onDelete: "cascade" }),
-    embedding: vector("embedding", { dimensions: 768 }).notNull(), // Gemini text-embedding-004
+    embedding: vector("embedding", { dimensions: 768 }).notNull(), // Gemini gemini-embedding-001
     content: text("content").notNull(), // English text for search
     createdAt: timestamp("createdAt").notNull().defaultNow(),
   },

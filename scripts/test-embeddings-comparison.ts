@@ -71,16 +71,9 @@ const TEST_QUERIES = [
 
 const EMBEDDING_MODELS = [
   {
-    name: "Gemini embedding-001 (RETRIEVAL_QUERY, 1536 dims)",
+    name: "Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)",
     provider: "google" as const,
     model: "gemini-embedding-001",
-    dimensions: 1536,
-    taskType: "RETRIEVAL_QUERY" as const,
-  },
-  {
-    name: "Gemini text-embedding-004 (RETRIEVAL_QUERY, 768 dims)",
-    provider: "google" as const,
-    model: "text-embedding-004",
     dimensions: 768,
     taskType: "RETRIEVAL_QUERY" as const,
   },

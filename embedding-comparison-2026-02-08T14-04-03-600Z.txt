@@ -1,0 +1,305 @@
+
+================================================================================
+EMBEDDING MODELS COMPARISON - QURAN VERSE RETRIEVAL
+================================================================================
+
+Test Date: 2026-02-08T14:04:03.599Z
+Sample Size: 1000 verses
+Results per Query: 7
+Minimum Similarity: 30%
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUERY: "Who was Jesus in Islam?"
+CATEGORY: Theological
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1. Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)
+   Average Similarity: 67.4%
+   Timings: 558ms embed, 6ms search
+   Top 7 Results:
+
+   1. [Az-Zukhruf 43:59] (69.6%)
+      Jesus was not but a servant upon whom We bestowed favor, and We made him an example for the Children of Israel.
+
+   2. [Al-Ma'idah 5:111] (69.1%)
+      And [remember] when I inspired to the disciples, "Believe in Me and in My messenger Jesus." They said, "We have believed, so bear witness that indeed we are Muslims [in submission to Allah]."
+
+   3. [Ali 'Imran 3:59] (67.8%)
+      Indeed, the example of Jesus to Allah is like that of Adam. He created Him from dust; then He said to him, "Be," and he was.
+
+   4. [Ali 'Imran 3:52] (67.3%)
+      But when Jesus felt [persistence in] disbelief from them, he said, "Who are my supporters for [the cause of] Allah?" The disciples said, "We are supporters for Allah. We have believed in Allah and tes...
+
+   5. [Al-Ma'idah 5:110] (66.9%)
+      [The Day] when Allah will say, "O Jesus, Son of Mary, remember My favor upon you and upon your mother when I supported you with the Pure Spirit and you spoke to the people in the cradle and in maturit...
+
+   6. [Az-Zukhruf 43:61] (65.7%)
+      And indeed, Jesus will be [a sign for] knowledge of the Hour, so be not in doubt of it, and follow Me. This is a straight path.
+
+   7. [As-Saf 61:6] (65.1%)
+      And [mention] when Jesus, the son of Mary, said, "O children of Israel, indeed I am the messenger of Allah to you confirming what came before me of the Torah and bringing good tidings of a messenger t...
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUERY: "How should I treat my parents?"
+CATEGORY: Moral Guidance
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1. Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)
+   Average Similarity: 63.6%
+   Timings: 394ms embed, 5ms search
+   Top 7 Results:
+
+   1. [Al-'Ankabut 29:8] (69.6%)
+      And We have enjoined upon man goodness to parents. But if they endeavor to make you associate with Me that of which you have no knowledge, do not obey them. To Me is your return, and I will inform you...
+
+   2. [Al-Ahqaf 46:15] (67.0%)
+      And We have enjoined upon man, to his parents, good treatment. His mother carried him with hardship and gave birth to him with hardship, and his gestation and weaning [period] is thirty months. [He gr...
+
+   3. [Abasa 80:35] (64.1%)
+      And his mother and his father
+
+   4. [Ar-Rahman 55:31] (61.6%)
+      We will attend to you, O prominent beings.
+
+   5. [Ash-Shu'ara 26:150] (61.1%)
+      So fear Allah and obey me.
+
+   6. [An-Nisa 4:5] (61.1%)
+      And do not give the weak-minded your property, which Allah has made a means of sustenance for you, but provide for them with it and clothe them and speak to them words of appropriate kindness.
+
+   7. [Al-Baqarah 2:215] (60.5%)
+      They ask you, [O Muhammad], what they should spend. Say, "Whatever you spend of good is [to be] for parents and relatives and orphans and the needy and the traveler. And whatever you do of good - inde...
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUERY: "What do muslims believe?"
+CATEGORY: Narrative
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1. Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)
+   Average Similarity: 62.9%
+   Timings: 595ms embed, 4ms search
+   Top 7 Results:
+
+   1. [Ali 'Imran 3:84] (66.9%)
+      Say, "We have believed in Allah and in what was revealed to us and what was revealed to Abraham, Ishmael, Isaac, Jacob, and the Descendants, and in what was given to Moses and Jesus and to the prophet...
+
+   2. [Al-'Ankabut 29:46] (63.9%)
+      And do not argue with the People of the Scripture except in a way that is best, except for those who commit injustice among them, and say, "We believe in that which has been revealed to us and reveale...
+
+   3. [Ali 'Imran 3:52] (62.5%)
+      But when Jesus felt [persistence in] disbelief from them, he said, "Who are my supporters for [the cause of] Allah?" The disciples said, "We are supporters for Allah. We have believed in Allah and tes...
+
+   4. [As-Saf 61:2] (62.1%)
+      O you who have believed, why do you say what you do not do?
+
+   5. [Al-Ma'idah 5:111] (62.1%)
+      And [remember] when I inspired to the disciples, "Believe in Me and in My messenger Jesus." They said, "We have believed, so bear witness that indeed we are Muslims [in submission to Allah]."
+
+   6. [At-Tawbah 9:18] (62.1%)
+      The mosques of Allah are only to be maintained by those who believe in Allah and the Last Day and establish prayer and give zakah and do not fear except Allah, for it is expected that those will be of...
+
+   7. [Saba 34:52] (60.6%)
+      And they will [then] say, "We believe in it!" But how for them will be the taking [of faith] from a place far away?
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUERY: "How does Islam tell us to deal with anxiety?"
+CATEGORY: Worship
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1. Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)
+   Average Similarity: 62.9%
+   Timings: 398ms embed, 4ms search
+   Top 7 Results:
+
+   1. [Al-Ahqaf 46:13] (63.9%)
+      Indeed, those who have said, "Our Lord is Allah," and then remained on a right course - there will be no fear concerning them, nor will they grieve.
+
+   2. [An-Naml 27:89] (63.7%)
+      Whoever comes [at Judgement] with a good deed will have better than it, and they, from the terror of that Day, will be safe.
+
+   3. [Al-Qasas 28:31] (63.3%)
+      And [he was told], "Throw down your staff." But when he saw it writhing as if it was a snake, he turned in flight and did not return. [Allah said], "O Moses, approach and fear not. Indeed, you are of ...
+
+   4. [Az-Zukhruf 43:68] (62.7%)
+      [To whom Allah will say], "O My servants, no fear will there be concerning you this Day, nor will you grieve,
+
+   5. [Al-Baqarah 2:153] (62.6%)
+      O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient.
+
+   6. [Al-Baqarah 2:45] (62.6%)
+      And seek help through patience and prayer, and indeed, it is difficult except for the humbly submissive [to Allah]
+
+   7. [An-Nahl 16:51] (61.4%)
+      And Allah has said, "Do not take for yourselves two deities. He is but one God, so fear only Me."
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUERY: "Why should I believe in Islam?"
+CATEGORY: Practical Guidance
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1. Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)
+   Average Similarity: 61.1%
+   Timings: 575ms embed, 3ms search
+   Top 7 Results:
+
+   1. [Ali 'Imran 3:84] (61.8%)
+      Say, "We have believed in Allah and in what was revealed to us and what was revealed to Abraham, Ishmael, Isaac, Jacob, and the Descendants, and in what was given to Moses and Jesus and to the prophet...
+
+   2. [Ghafir 40:81] (61.5%)
+      And He shows you His signs. So which of the signs of Allah do you deny?
+
+   3. [Ash-Shuraa 42:15] (61.2%)
+      So to that [religion of Allah] invite, [O Muhammad], and remain on a right course as you are commanded and do not follow their inclinations but say, "I have believed in what Allah has revealed of the ...
+
+   4. [Ar-Rahman 55:32] (60.8%)
+      So which of the favors of your Lord would you deny?
+
+   5. [Ar-Rahman 55:30] (60.8%)
+      So which of the favors of your Lord would you deny?
+
+   6. [Ar-Rahman 55:77] (60.8%)
+      So which of the favors of your Lord would you deny?
+
+   7. [Ar-Rahman 55:28] (60.8%)
+      So which of the favors of your Lord would you deny?
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUERY: "Why is one God better than many?"
+CATEGORY: Social Responsibility
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1. Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)
+   Average Similarity: 62.8%
+   Timings: 421ms embed, 4ms search
+   Top 7 Results:
+
+   1. [As-Saffat 37:4] (67.7%)
+      Indeed, your God is One,
+
+   2. [An-Nahl 16:51] (66.5%)
+      And Allah has said, "Do not take for yourselves two deities. He is but one God, so fear only Me."
+
+   3. [Al-Isra 17:42] (63.8%)
+      Say, [O Muhammad], "If there had been with Him [other] gods, as they say, then they [each] would have sought to the Owner of the Throne a way."
+
+   4. [At-Tur 52:43] (62.1%)
+      Or have they a deity other than Allah? Exalted is Allah above whatever they associate with Him.
+
+   5. [Al-Anbya 21:43] (59.9%)
+      Or do they have gods to defend them other than Us? They are unable [even] to help themselves, nor can they be protected from Us.
+
+   6. [Az-Zukhruf 43:84] (59.8%)
+      And it is Allah who is [the only] deity in the heaven, and on the earth [the only] deity. And He is the Wise, the Knowing.
+
+   7. [Al-'Ankabut 29:46] (59.7%)
+      And do not argue with the People of the Scripture except in a way that is best, except for those who commit injustice among them, and say, "We believe in that which has been revealed to us and reveale...
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUERY: "How should I treat my wife?"
+CATEGORY: Theology
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1. Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)
+   Average Similarity: 61.5%
+   Timings: 599ms embed, 4ms search
+   Top 7 Results:
+
+   1. [An-Nisa 4:34] (65.9%)
+      Men are in charge of women by [right of] what Allah has given one over the other and what they spend [for maintenance] from their wealth. So righteous women are devoutly obedient, guarding in [the hus...
+
+   2. [Abasa 80:36] (62.8%)
+      And his wife and his children,
+
+   3. [An-Nisa 4:5] (61.9%)
+      And do not give the weak-minded your property, which Allah has made a means of sustenance for you, but provide for them with it and clothe them and speak to them words of appropriate kindness.
+
+   4. [Al-Masad 111:4] (60.9%)
+      And his wife [as well] - the carrier of firewood.
+
+   5. [Al-Ahqaf 46:15] (59.9%)
+      And We have enjoined upon man, to his parents, good treatment. His mother carried him with hardship and gave birth to him with hardship, and his gestation and weaning [period] is thirty months. [He gr...
+
+   6. [Ash-Shu'ara 26:166] (59.7%)
+      And leave what your Lord has created for you as mates? But you are a people transgressing."
+
+   7. [Ash-Shu'ara 26:150] (59.5%)
+      So fear Allah and obey me.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+QUERY: "Why should I pray?"
+CATEGORY: Emotional Guidance
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+1. Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)
+   Average Similarity: 59.6%
+   Timings: 396ms embed, 4ms search
+   Top 7 Results:
+
+   1. [Al-A'la 87:15] (62.5%)
+      And mentions the name of his Lord and prays.
+
+   2. [Ash-Shu'ara 26:72] (61.4%)
+      He said, "Do they hear you when you supplicate?
+
+   3. [Maryam 19:3] (59.8%)
+      When he called to his Lord a private supplication.
+
+   4. [Al-Mursalat 77:48] (59.2%)
+      And when it is said to them, "Bow [in prayer]," they do not bow.
+
+   5. [Al-Mu'minun 23:2] (58.7%)
+      They who are during their prayer humbly submissive
+
+   6. [Taha 20:132] (58.4%)
+      And enjoin prayer upon your family [and people] and be steadfast therein. We ask you not for provision; We provide for you, and the [best] outcome is for [those of] righteousness.
+
+   7. [Al-Mu'minun 23:93] (57.5%)
+      Say, [O Muhammad], "My Lord, if You should show me that which they are promised,
+
+
+================================================================================
+SUMMARY STATISTICS
+================================================================================
+
+1. Gemini embedding-001 (RETRIEVAL_QUERY, 768 dims)
+   Provider: google
+   Dimensions: 768
+   Avg Similarity: 62.7%
+   Avg Time: 496ms
+
+
+================================================================================
+MANUAL EVALUATION GUIDE
+================================================================================
+
+Review each model's results and score relevance (1-5):
+
+5 = Highly Relevant: Verses directly answer the query
+4 = Relevant: Verses strongly related to the topic
+3 = Moderately Relevant: Verses somewhat related
+2 = Weakly Relevant: Tangential connection
+1 = Not Relevant: No clear connection
+
+Consider:
+✓ Semantic accuracy (does it answer the question?)
+✓ Contextual appropriateness (right context?)
+✓ Comprehensiveness (covers key aspects?)
+✓ Ranking quality (best results at top?)
+
+RECOMMENDATION: Choose the model with highest avg similarity + best manual scores

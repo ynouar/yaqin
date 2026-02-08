@@ -20,9 +20,9 @@ import {
 } from "@/lib/db/schema";
 import { PerformanceTimer, timeAsync } from "@/lib/monitoring/performance";
 
-// Using Gemini text-embedding-004 (768 dimensions)
+// Using Gemini gemini-embedding-001 (768 dimensions)
 // Using RETRIEVAL_QUERY task type for all embeddings
-const embeddingModel = google.embedding("text-embedding-004");
+const embeddingModel = google.textEmbedding("gemini-embedding-001");
 const context_window = 2; // ±2 verses for context
 
 /**
@@ -37,6 +37,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
     providerOptions: {
       google: {
         taskType: "RETRIEVAL_QUERY",
+        outputDimensionality: 768,
       },
     },
   });
@@ -56,6 +57,7 @@ export async function generateEmbeddings(
     providerOptions: {
       google: {
         taskType: "RETRIEVAL_QUERY",
+        outputDimensionality: 768,
       },
     },
   });
