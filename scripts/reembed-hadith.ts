@@ -1,5 +1,5 @@
 import { config } from "dotenv";
-import { asc } from "drizzle-orm";
+import { asc, eq, isNull } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { generateEmbeddings } from "../lib/ai/embeddings";
@@ -33,13 +33,17 @@ async function reembedHadith() {
       englishText: hadithText.englishText,
     })
     .from(hadithText)
+    .leftJoin(hadithEmbedding, eq(hadithEmbedding.hadithId, hadithText.id))
+    .where(isNull(hadithEmbedding.hadithId))
     .orderBy(asc(hadithText.collection), asc(hadithText.hadithNumber));
 
-  console.log(`✅ Loaded ${hadiths.length} hadiths`);
+  console.log(`✅ Loaded ${hadiths.length} missing embeddings`);
 
-  console.log("\n🗑️  Clearing existing Hadith embeddings...");
-  await db.delete(hadithEmbedding);
-  console.log("✅ Hadith embeddings cleared\n");
+  if (hadiths.length === 0) {
+    console.log("🎉 Nothing to do. All Hadith embeddings exist.");
+    await client.end();
+    return;
+  }
 
   const totalBatches = Math.ceil(hadiths.length / BATCH_SIZE);
   console.log(`🤖 Generating embeddings (${totalBatches} batches)...`);
@@ -47,16 +51,21 @@ async function reembedHadith() {
   for (let i = 0; i < hadiths.length; i += BATCH_SIZE) {
     const batch = hadiths.slice(i, i + BATCH_SIZE);
     const batchNumber = Math.floor(i / BATCH_SIZE) + 1;
-    const texts = batch.map((h) => h.englishText);
+    const nonEmpty = batch.filter((h) => h.englishText.trim().length > 0);
+    const texts = nonEmpty.map((h) => h.englishText);
 
     process.stdout.write(
       `   Batch ${batchNumber}/${totalBatches} (hadiths ${i + 1}-${Math.min(i + BATCH_SIZE, hadiths.length)})...`
     );
 
     try {
+      if (texts.length === 0) {
+        console.log(" ⏭️  skipped (empty text)");
+        continue;
+      }
       const batchEmbeddings = await generateEmbeddings(texts);
       const rows = batchEmbeddings.map((emb, idx) => ({
-        hadithId: batch[idx].id,
+        hadithId: nonEmpty[idx].id,
         embedding: emb.embedding,
         content: emb.content,
       }));
