@@ -33,14 +33,14 @@ export const myProvider = isTestEnvironment
   : customProvider({
       languageModels: {
         "chat-model": wrapLanguageModel({
-          model: gateway.languageModel("xai/grok-4.1-fast-non-reasoning"),
+          model: gateway.languageModel("google/gemini-3-flash"),
           middleware,
         }),
         "chat-model-reasoning": wrapLanguageModel({
-          model: gateway.languageModel("xai/grok-4.1-fast-non-reasoning"),
+          model: gateway.languageModel("google/gemini-3-flash"),
           middleware,
         }),
-        "title-model": gateway.languageModel("xai/grok-4.1-fast-non-reasoning"),
-        "artifact-model": gateway.languageModel("xai/grok-4.1-fast-non-reasoning"),
+        "title-model": gateway.languageModel("google/gemini-3-flash"),
+        "artifact-model": gateway.languageModel("google/gemini-3-flash"),
       },
     });
