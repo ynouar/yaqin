@@ -60,20 +60,29 @@ const getToolDisplayMessage = (type: ToolUIPart["type"], state: ToolUIPart["stat
     "tool-queryQuran": {
       "input-streaming": "Preparing to search the Divine Scripture...",
       "input-available": "Searching the Divine Scripture...",
+      "approval-requested": "Approval requested for Quran search",
+      "approval-responded": "Approval received for Quran search",
       "output-available": "Found verses from the Divine Scripture",
       "output-error": "Encountered an error while searching",
+      "output-denied": "Quran search was denied",
     },
     "tool-queryHadith": {
       "input-streaming": "Preparing to search Prophetic Teachings...",
       "input-available": "Searching Prophetic Teachings...",
+      "approval-requested": "Approval requested for Hadith search",
+      "approval-responded": "Approval received for Hadith search",
       "output-available": "Found Prophetic Teachings",
       "output-error": "Encountered an error while searching",
+      "output-denied": "Hadith search was denied",
     },
     "tool-getQuranByReference": {
       "input-streaming": "Preparing verse lookup...",
       "input-available": "Looking up verse reference...",
+      "approval-requested": "Approval requested for verse lookup",
+      "approval-responded": "Approval received for verse lookup",
       "output-available": "Found verse reference",
       "output-error": "Failed to get verse reference",
+      "output-denied": "Verse lookup was denied",
     },
   };
 
@@ -84,8 +93,11 @@ const getStatusIcon = (state: ToolUIPart["state"]) => {
   const icons: Record<ToolUIPart["state"], React.ReactNode> = {
     "input-streaming": <Loader2 className="size-3 animate-spin text-muted-foreground" />,
     "input-available": <Loader2 className="size-3 animate-spin text-muted-foreground" />,
+    "approval-requested": <AlertCircle className="size-3 text-amber-600 dark:text-amber-500" />,
+    "approval-responded": <Check className="size-3 text-blue-600 dark:text-blue-500" />,
     "output-available": <Check className="size-3 text-green-600 dark:text-green-500" />,
     "output-error": <AlertCircle className="size-3 text-red-600 dark:text-red-500" />,
+    "output-denied": <AlertCircle className="size-3 text-red-600 dark:text-red-500" />,
   };
 
   return icons[state];
