@@ -3,6 +3,7 @@ import {
   convertToModelMessages,
   createUIMessageStream,
   JsonToSseTransformStream,
+  smoothStream,
   stepCountIs,
   streamText,
 } from "ai";
@@ -225,6 +226,7 @@ export async function POST(request: Request) {
           system: systemPrompt(requestHints),
           messages: await convertToModelMessages(uiMessages),
           stopWhen: stepCountIs(5),
+          experimental_transform: smoothStream(),
           activeTools: ["queryQuran", "queryHadith", "getQuranByReference"],
           tools: {
             queryQuran,
