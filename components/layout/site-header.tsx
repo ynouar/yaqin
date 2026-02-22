@@ -3,7 +3,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, ChevronDown } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { CriterionBranding } from '@/components/criterion-branding';
+import { LanguageSwitcher } from '@/components/language-switcher';
 import { Button } from '@/components/ui/button';
 import {
   Sheet,
@@ -25,27 +27,28 @@ interface SiteHeaderProps {
   isSticky?: boolean;
 }
 
-const primaryLinks = [
-  { href: '/', label: 'Chat' },
-  { href: '/quran', label: 'Quran' },
-  { href: '/hadith', label: 'Hadith' },
-  { href: '/topics', label: 'Topics' },
-];
-
-const searchLinks = [
-  { href: '/quran/search', label: 'Quran Search' },
-  { href: '/hadith/search', label: 'Hadith Search' },
-];
-
-const secondaryLinks = [
-  { href: '/about', label: 'About' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/privacy', label: 'Privacy' },
-];
-
 export function SiteHeader({ isSticky = false }: SiteHeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const t = useTranslations('nav');
+
+  const primaryLinks = [
+    { href: '/', label: t('chat') },
+    { href: '/quran', label: t('quran') },
+    { href: '/hadith', label: t('hadith') },
+    { href: '/topics', label: t('topics') },
+  ];
+
+  const searchLinks = [
+    { href: '/quran/search', label: t('quranSearch') },
+    { href: '/hadith/search', label: t('hadithSearch') },
+  ];
+
+  const secondaryLinks = [
+    { href: '/about', label: t('about') },
+    { href: '/faq', label: t('faq') },
+    { href: '/privacy', label: t('privacy') },
+  ];
 
   const isActive = (href: string) => {
     if (href === '/') {
@@ -72,12 +75,12 @@ export function SiteHeader({ isSticky = false }: SiteHeaderProps) {
 
           {/* SEO: Hidden crawlable links for search pages */}
           <div className="sr-only">
-            <Link href="/quran/search">Search Quran verses by topic</Link>
-            <Link href="/hadith/search">Search Hadith by topic</Link>
+            <Link href="/quran/search">{t('quranSearch')}</Link>
+            <Link href="/hadith/search">{t('hadithSearch')}</Link>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Main navigation">
+          <nav className="hidden md:flex items-center gap-1" aria-label={t('navigation')}>
             {primaryLinks.map((link) => (
               <Link
                 key={link.href}
@@ -105,9 +108,9 @@ export function SiteHeader({ isSticky = false }: SiteHeaderProps) {
                       ? 'text-foreground bg-muted'
                       : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                   )}
-                  aria-label="Open search menu"
+                  aria-label={t('openSearchMenu')}
                 >
-                  Search
+                  {t('search')}
                   <ChevronDown className="h-3 w-3" aria-hidden="true" />
                 </Button>
               </DropdownMenuTrigger>
@@ -137,21 +140,24 @@ export function SiteHeader({ isSticky = false }: SiteHeaderProps) {
                 {link.label}
               </Link>
             ))}
+            <div className="mx-1 h-4 w-px bg-border" />
+            <LanguageSwitcher />
           </nav>
 
           {/* Mobile Menu */}
-          <div className="md:hidden">
+          <div className="md:hidden flex items-center gap-1">
+            <LanguageSwitcher />
             <Sheet open={open} onOpenChange={setOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="Open navigation menu">
+                <Button variant="ghost" size="icon" aria-label={t('openNavMenu')}>
                   <Menu className="h-5 w-5" aria-hidden="true" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-64">
                 <SheetHeader>
-                  <SheetTitle>Navigation</SheetTitle>
+                  <SheetTitle>{t('navigation')}</SheetTitle>
                 </SheetHeader>
-                <nav className="flex flex-col gap-4 mt-8" aria-label="Mobile navigation">
+                <nav className="flex flex-col gap-4 mt-8" aria-label={t('mobileNavigation')}>
                   <div className="flex flex-col gap-2">
                     {primaryLinks.map((link) => (
                       <Link

@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "chat": "Chat",
+    "quran": "Quran",
+    "hadith": "Hadith",
+    "topics": "Topics",
+    "search": "Search",
+    "quranSearch": "Quran Search",
+    "hadithSearch": "Hadith Search",
+    "about": "About",
+    "faq": "FAQ",
+    "privacy": "Privacy",
+    "navigation": "Navigation",
+    "mobileNavigation": "Mobile navigation",
+    "openSearchMenu": "Open search menu",
+    "openNavMenu": "Open navigation menu"
+  },
+  "chat": {
+    "placeholder": "Ask a question...",
+    "newChat": "New Chat",
+    "waitForResponse": "Please wait for the model to finish its response!",
+    "uploadError": "Failed to upload file, please try again!",
+    "welcome": "Welcome to Criterion",
+    "getAnswersBefore": "Get Answers from the",
+    "and": "and",
+    "quranLink": "Quran",
+    "sunnahLink": "Sunnah",
+    "suggestions": [
+      "What is Islam and what do Muslims believe?",
+      "Who is Allah?",
+      "What does Islam think about Jesus?",
+      "Tell me about the Prophet Muhammad (pbuh)."
+    ]
+  },
+  "sidebar": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "lastWeek": "Last 7 days",
+    "lastMonth": "Last 30 days",
+    "older": "Older than last month",
+    "loginPrompt": "Login to save and revisit previous chats!",
+    "emptyHistory": "Your conversations will appear here once you start chatting!",
+    "endOfHistory": "You have reached the end of your chat history.",
+    "loadingChats": "Loading Chats...",
+    "deletingChat": "Deleting chat...",
+    "chatDeleted": "Chat deleted successfully",
+    "deleteFailed": "Failed to delete chat",
+    "deleteConfirmTitle": "Are you absolutely sure?",
+    "deleteConfirmDesc": "This action cannot be undone. This will permanently delete your chat and remove it from our servers.",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "loadingAuth": "Loading auth status",
+    "authCheckFailed": "Checking authentication status, please try again!",
+    "toggleDark": "Toggle dark mode",
+    "toggleLight": "Toggle light mode",
+    "loginToAccount": "Login to your account",
+    "signOut": "Sign out",
+    "guest": "Guest",
+    "userAvatar": "User Avatar"
+  },
+  "quran": {
+    "title": "The Holy Quran",
+    "description": "Browse all 114 Surahs (chapters) of the Quran. Each Surah includes the full Arabic text and English translation. Click any Surah to read it in full.",
+    "verses": "verses",
+    "searchTitle": "Search the Quran by Theme",
+    "searchDesc": "Use our semantic search to find verses about any topic",
+    "searchCta": "Search Quran & Hadith",
+    "breadcrumb": "Quran",
+    "home": "Home"
+  },
+  "hadith": {
+    "title": "Authentic Hadith Collections",
+    "description": "Browse 21,641 authentic hadiths from 6 major collections. Each hadith includes the full Arabic text, English translation, and authenticity grading. Click any collection to explore.",
+    "hadiths": "hadiths",
+    "highestAuth": "Highest Authenticity",
+    "highAuth": "High Authenticity",
+    "searchTitle": "Search Hadith by Topic",
+    "searchDesc": "Use our semantic search to find hadiths about any topic",
+    "searchCta": "Search Hadith",
+    "breadcrumb": "Hadith",
+    "home": "Home"
+  }
+}

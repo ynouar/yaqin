@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import { SiteHeader } from '@/components/layout/site-header';
 import { COLLECTION_METADATA } from '@/lib/hadith-metadata';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
@@ -21,7 +22,8 @@ export const metadata = createPageMetadata({
   ],
 });
 
-export default function HadithPage() {
+export default async function HadithPage() {
+  const t = await getTranslations('hadith');
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
   
   const breadcrumbSchema = createBreadcrumbSchema([
@@ -42,17 +44,16 @@ export default function HadithPage() {
         <div className="mx-auto max-w-6xl px-4 py-8">
           {/* Breadcrumbs */}
           <nav className="mb-6 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-foreground">Home</Link>
+            <Link href="/" className="hover:text-foreground">{t('home')}</Link>
             <span className="mx-2">/</span>
-            <span className="text-foreground">Hadith</span>
+            <span className="text-foreground">{t('breadcrumb')}</span>
           </nav>
 
           {/* Header */}
           <div className="mb-12 text-center">
-            <h1 className="mb-4 text-4xl font-bold">Authentic Hadith Collections</h1>
+            <h1 className="mb-4 text-4xl font-bold">{t('title')}</h1>
             <p className="mx-auto max-w-2xl text-muted-foreground">
-              Browse 21,641 authentic hadiths from 6 major collections. Each hadith includes the full 
-              Arabic text, English translation, and authenticity grading. Click any collection to explore.
+              {t('description')}
             </p>
           </div>
 
@@ -79,10 +80,10 @@ export default function HadithPage() {
                 </div>
                 <div className="flex gap-2 text-xs text-muted-foreground">
                   <span className="rounded bg-muted px-2 py-1">
-                    {collection.authenticityLevel === 'highest' ? 'Highest Authenticity' : 'High Authenticity'}
+                    {collection.authenticityLevel === 'highest' ? t('highestAuth') : t('highAuth')}
                   </span>
                   <span className="rounded bg-muted px-2 py-1">
-                    {collection.totalHadiths.toLocaleString()} hadiths
+                    {collection.totalHadiths.toLocaleString()} {t('hadiths')}
                   </span>
                 </div>
               </Link>
@@ -91,15 +92,15 @@ export default function HadithPage() {
 
           {/* CTA */}
           <div className="mt-12 rounded-lg border bg-muted/50 p-8 text-center">
-            <h2 className="mb-2 text-2xl font-semibold">Search Hadith by Topic</h2>
+            <h2 className="mb-2 text-2xl font-semibold">{t('searchTitle')}</h2>
             <p className="mb-4 text-muted-foreground">
-              Use our semantic search to find hadiths about any topic
+              {t('searchDesc')}
             </p>
             <Link
               href="/hadith/search"
               className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Search Hadith
+              {t('searchCta')}
             </Link>
           </div>
         </div>

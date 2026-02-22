@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { User } from "next-auth";
+import { useTranslations } from "next-intl";
 import { PlusIcon } from "@/components/icons";
 import { SidebarHistory } from "@/components/sidebar-history";
 import { SidebarUserNav } from "@/components/sidebar-user-nav";
@@ -20,6 +21,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 export function AppSidebar({ user }: { user: User | undefined }) {
   const router = useRouter();
   const { setOpenMobile } = useSidebar();
+  const t = useTranslations("chat");
 
   return (
     <Sidebar className="group-data-[side=left]:border-r-0">
@@ -53,7 +55,7 @@ export function AppSidebar({ user }: { user: User | undefined }) {
                 </Button>
               </TooltipTrigger>
               <TooltipContent align="end" className="hidden md:block">
-                New Chat
+                {t("newChat")}
               </TooltipContent>
             </Tooltip>
           </div>

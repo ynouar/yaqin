@@ -18,6 +18,7 @@ import {
 } from "react";
 import { toast } from "sonner";
 import { useLocalStorage, useWindowSize } from "usehooks-ts";
+import { useTranslations } from "next-intl";
 import { saveChatModelAsCookie } from "@/app/(chat)/actions";
 import { SelectItem } from "@/components/ui/select";
 import { chatModels } from "@/lib/ai/models";
@@ -82,6 +83,7 @@ function PureMultimodalInput({
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { width } = useWindowSize();
+  const t = useTranslations("chat");
 
   const adjustHeight = useCallback(() => {
     if (textareaRef.current) {
@@ -191,7 +193,7 @@ function PureMultimodalInput({
       const { error } = await response.json();
       toast.error(error);
     } catch (_error) {
-      toast.error("Failed to upload file, please try again!");
+      toast.error(t("uploadError"));
     }
   }, []);
 
@@ -258,7 +260,7 @@ function PureMultimodalInput({
         onSubmit={(event) => {
           event.preventDefault();
           if (status !== "ready") {
-            toast.error("Please wait for the model to finish its response!");
+            toast.error(t("waitForResponse"));
           } else {
             submitForm();
           }
@@ -306,7 +308,7 @@ function PureMultimodalInput({
             maxHeight={200}
             minHeight={44}
             onChange={handleInput}
-            placeholder="Ask a question..."
+            placeholder={t("placeholder")}
             ref={textareaRef}
             rows={1}
             value={input}

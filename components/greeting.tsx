@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export const Greeting = () => {
+  const t = useTranslations("chat");
+
   return (
     <div
       className="mx-auto mt-4 flex size-full max-w-3xl flex-col justify-center px-4 md:mt-16 md:px-8"
@@ -15,7 +18,7 @@ export const Greeting = () => {
         initial={{ opacity: 0, y: 10 }}
         transition={{ delay: 0.5 }}
       >
-        Welcome to Criterion
+        {t("welcome")}
       </motion.div>
       <motion.div
         animate={{ opacity: 1, y: 0 }}
@@ -24,19 +27,19 @@ export const Greeting = () => {
         initial={{ opacity: 0, y: 10 }}
         transition={{ delay: 0.6 }}
       >
-        Get Answers from the{" "}
+        {t("getAnswersBefore")}{" "}
         <Link
           href="/quran/search"
           className="text-zinc-700 dark:text-zinc-300 hover:underline"
         >
-          Quran
+          {t("quranLink")}
         </Link>{" "}
-        and{" "}
+        {t("and")}{" "}
         <Link
           href="/hadith/search"
           className="text-zinc-700 dark:text-zinc-300 hover:underline"
         >
-          Sunnah
+          {t("sunnahLink")}
         </Link>
       </motion.div>
     </div>

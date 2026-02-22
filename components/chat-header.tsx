@@ -7,6 +7,7 @@ import { SidebarToggle } from "@/components/sidebar-toggle";
 import { Button } from "@/components/ui/button";
 import { CriterionBranding } from "./criterion-branding";
 import { PlusIcon } from "./icons";
+import { LanguageSwitcher } from "./language-switcher";
 import { useSidebar } from "./ui/sidebar";
 import { VisibilitySelector, type VisibilityType } from "./visibility-selector";
 
@@ -52,6 +53,10 @@ function PureChatHeader({
           selectedVisibilityType={selectedVisibilityType}
         />
       )}
+
+      <div className="order-4 ml-auto md:ml-0">
+        <LanguageSwitcher />
+      </div>
 
     </header>
   );

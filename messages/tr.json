@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "chat": "Sohbet",
+    "quran": "Kuran",
+    "hadith": "Hadis",
+    "topics": "Konular",
+    "search": "Ara",
+    "quranSearch": "Kuran Ara",
+    "hadithSearch": "Hadis Ara",
+    "about": "Hakkında",
+    "faq": "SSS",
+    "privacy": "Gizlilik",
+    "navigation": "Navigasyon",
+    "mobileNavigation": "Mobil navigasyon",
+    "openSearchMenu": "Arama menüsünü aç",
+    "openNavMenu": "Navigasyon menüsünü aç"
+  },
+  "chat": {
+    "placeholder": "Bir soru sorun...",
+    "newChat": "Yeni Sohbet",
+    "waitForResponse": "Lütfen modelin yanıtını tamamlamasını bekleyin!",
+    "uploadError": "Dosya yüklenemedi, lütfen tekrar deneyin!",
+    "welcome": "Criterion'a Hoş Geldiniz",
+    "getAnswersBefore": "Cevapları alın",
+    "and": "ve",
+    "quranLink": "Kuran",
+    "sunnahLink": "Sünnet",
+    "suggestions": [
+      "İslam nedir ve Müslümanlar neye inanır?",
+      "Allah kimdir?",
+      "İslam, Hz. İsa hakkında ne düşünür?",
+      "Hz. Muhammed (sav) hakkında bilgi verin."
+    ]
+  },
+  "sidebar": {
+    "today": "Bugün",
+    "yesterday": "Dün",
+    "lastWeek": "Son 7 gün",
+    "lastMonth": "Son 30 gün",
+    "older": "Geçen aydan daha eski",
+    "loginPrompt": "Önceki sohbetleri kaydetmek için giriş yapın!",
+    "emptyHistory": "Sohbet etmeye başladığınızda konuşmalarınız burada görünecek!",
+    "endOfHistory": "Sohbet geçmişinizin sonuna ulaştınız.",
+    "loadingChats": "Sohbetler Yükleniyor...",
+    "deletingChat": "Sohbet siliniyor...",
+    "chatDeleted": "Sohbet başarıyla silindi",
+    "deleteFailed": "Sohbet silinemedi",
+    "deleteConfirmTitle": "Kesinlikle emin misiniz?",
+    "deleteConfirmDesc": "Bu işlem geri alınamaz. Sohbetiniz kalıcı olarak silinecek ve sunucularımızdan kaldırılacaktır.",
+    "cancel": "İptal",
+    "continue": "Devam",
+    "loadingAuth": "Kimlik doğrulama durumu yükleniyor",
+    "authCheckFailed": "Kimlik doğrulama kontrolü başarısız, lütfen tekrar deneyin!",
+    "toggleDark": "Karanlık modu aç",
+    "toggleLight": "Aydınlık modu aç",
+    "loginToAccount": "Hesabınıza giriş yapın",
+    "signOut": "Çıkış yap",
+    "guest": "Misafir",
+    "userAvatar": "Kullanıcı Avatarı"
+  },
+  "quran": {
+    "title": "Yüce Kuran",
+    "description": "Kuran'ın tüm 114 Süresine göz atın. Her Sure tam Arapça metni ve İngilizce çeviriyi içerir. Herhangi bir Sureye tıklayarak okuyun.",
+    "verses": "ayet",
+    "searchTitle": "Konuya Göre Kuran'da Ara",
+    "searchDesc": "Herhangi bir konu hakkında ayet bulmak için semantik arama kullanın",
+    "searchCta": "Kuran & Hadis Ara",
+    "breadcrumb": "Kuran",
+    "home": "Ana Sayfa"
+  },
+  "hadith": {
+    "title": "Sahih Hadis Koleksiyonları",
+    "description": "6 büyük koleksiyondan 21.641 sahih hadise göz atın. Her hadis tam Arapça metni, İngilizce çeviriyi ve özgünlük derecesini içerir.",
+    "hadiths": "hadis",
+    "highestAuth": "En Yüksek Özgünlük",
+    "highAuth": "Yüksek Özgünlük",
+    "searchTitle": "Konuya Göre Hadis Ara",
+    "searchDesc": "Herhangi bir konu hakkında hadis bulmak için semantik arama kullanın",
+    "searchCta": "Hadis Ara",
+    "breadcrumb": "Hadis",
+    "home": "Ana Sayfa"
+  }
+}

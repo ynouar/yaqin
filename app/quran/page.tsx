@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import { SURAH_METADATA } from '@/lib/quran-metadata';
 import { createBreadcrumbSchema } from '@/lib/seo/schema';
 import { SiteHeader } from '@/components/layout/site-header';
@@ -19,7 +20,8 @@ export const metadata = createPageMetadata({
   ],
 });
 
-export default function QuranPage() {
+export default async function QuranPage() {
+  const t = await getTranslations('quran');
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
   
   const breadcrumbSchema = createBreadcrumbSchema([
@@ -40,17 +42,16 @@ export default function QuranPage() {
         <div className="mx-auto max-w-6xl px-4 py-8">
           {/* Breadcrumbs */}
           <nav className="mb-6 text-sm text-muted-foreground">
-            <Link href="/" className="hover:text-foreground">Home</Link>
+            <Link href="/" className="hover:text-foreground">{t('home')}</Link>
             <span className="mx-2">/</span>
-            <span className="text-foreground">Quran</span>
+            <span className="text-foreground">{t('breadcrumb')}</span>
           </nav>
 
           {/* Header */}
           <div className="mb-12 text-center">
-            <h1 className="mb-4 text-4xl font-bold">The Holy Quran</h1>
+            <h1 className="mb-4 text-4xl font-bold">{t('title')}</h1>
             <p className="mx-auto max-w-2xl text-muted-foreground">
-              Browse all 114 Surahs (chapters) of the Quran. Each Surah includes the full Arabic text 
-              and English translation. Click any Surah to read it in full.
+              {t('description')}
             </p>
           </div>
 
@@ -80,7 +81,7 @@ export default function QuranPage() {
                 </div>
                 <div className="flex gap-2 text-xs text-muted-foreground">
                   <span className="rounded bg-muted px-2 py-1">{surah.type}</span>
-                  <span className="rounded bg-muted px-2 py-1">{surah.verses} verses</span>
+                  <span className="rounded bg-muted px-2 py-1">{surah.verses} {t('verses')}</span>
                 </div>
               </Link>
             ))}
@@ -88,15 +89,15 @@ export default function QuranPage() {
 
           {/* CTA */}
           <div className="mt-12 rounded-lg border bg-muted/50 p-8 text-center">
-            <h2 className="mb-2 text-2xl font-semibold">Search the Quran by Theme</h2>
+            <h2 className="mb-2 text-2xl font-semibold">{t('searchTitle')}</h2>
             <p className="mb-4 text-muted-foreground">
-              Use our semantic search to find verses about any topic
+              {t('searchDesc')}
             </p>
             <Link
               href="/search"
               className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             >
-              Search Quran & Hadith
+              {t('searchCta')}
             </Link>
           </div>
         </div>

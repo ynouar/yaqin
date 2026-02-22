@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* RTL font support for Arabic and Urdu */
+[dir="rtl"] {
+  font-family: var(--font-arabic), var(--font-geist), system-ui, sans-serif;
+}
+
 /* include utility classes in streamdown */
 @source '../node_modules/streamdown/dist/index.js';
 

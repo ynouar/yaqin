@@ -2,6 +2,12 @@ import { type NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { guestRegex, isDevelopmentEnvironment } from "./lib/constants";
 import { isBot, isStaticAsset } from "./lib/bot-detection";
+import { locales, defaultLocale } from "./i18n/request";
+
+function getLocaleFromCookie(request: NextRequest) {
+  const cookie = request.cookies.get("NEXT_LOCALE")?.value;
+  return locales.includes(cookie as typeof locales[number]) ? cookie! : defaultLocale;
+}
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -29,6 +35,12 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Forward locale as a request header so layouts can read it without
+  // accessing cookies() directly (which conflicts with cacheComponents).
+  const locale = getLocaleFromCookie(request);
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-locale", locale);
+
   // Public routes
   const publicRoutes = [
     "/about", "/how-it-works", "/faq", "/developers",
@@ -39,7 +51,7 @@ export async function middleware(request: NextRequest) {
   ];
 
   if (publicRoutes.some((route) => pathname.startsWith(route))) {
-    return NextResponse.next();
+    return NextResponse.next({ request: { headers: requestHeaders } });
   }
 
   const token = await getToken({
@@ -62,7 +74,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
   }
 
-  return NextResponse.next();
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 export const config = {
