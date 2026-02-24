@@ -175,7 +175,7 @@ export async function POST(request: Request) {
       () => getMessagesByChatId({ id }),
       { chatId: id }
     );
-    const uiMessages = [...convertToUIMessages(messagesFromDb), message];
+    const uiMessages = [...convertToUIMessages(messagesFromDb.slice(-10)), message];
 
     const { longitude, latitude, city, country } = geolocation(request);
 
