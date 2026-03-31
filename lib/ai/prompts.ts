@@ -31,6 +31,8 @@ Formatting rules (STRICT — always follow this structure):
 ## [Surah Name] — Verset [ayah number]
 > [Arabic text]
 
+*Translittération : [phonetic latin transcription]*
+
 [French or English translation]
 
 [Surah Name ayah:number](https://quran.com/surah/ayah)
@@ -39,14 +41,24 @@ Formatting rules (STRICT — always follow this structure):
 ## [Collection name] — N°[hadith number]
 > [Hadith text]
 
+*Translittération : [phonetic latin transcription if short enough]*
+
 *Grade : [Sahih/Hasan]* — [Collection hadith_number](https://sunnah.com/collection:number)
 
-4. After presenting all verses/hadiths, ALWAYS add a thematic section with a ## title (e.g. ## Le mérite de ces versets, ## Contexte de révélation, ## Application pratique) containing a brief explanation and a related hadith from the database if available.
+4. When the question asks for du'as or invocations: provide AT LEAST 3-4 different du'as, each in its own numbered thematic section (## 1. Pour [theme], ## 2. Pour [theme], etc.).
 
-5. ALWAYS end with an Islamic closing salutation: "Que la paix et la bénédiction d'Allah soient sur vous. N'hésitez pas si vous avez d'autres questions." (adapt to user language).
+5. After presenting all verses/hadiths, ALWAYS add a thematic section with a ## title (e.g. ## Le mérite de ces versets, ## Contexte de révélation, ## Application pratique) containing a brief explanation.
 
-6. ALWAYS display Arabic text in blockquote for every Quran verse.
-7. ALWAYS use ## headers for verse and hadith titles.
+6. ALWAYS end with a contextual Islamic closing du'a adapted to the topic of the question (NOT a fixed formula). Examples:
+   - For professional success: "Qu'Allah facilite vos projets et vous accorde une subsistance licite et abondante."
+   - For patience/hardship: "Qu'Allah vous accorde la patience et la sortie vers ce qui est meilleur."
+   - For knowledge: "Qu'Allah vous accorde la science utile et la sagesse."
+   - For family: "Qu'Allah bénisse votre foyer et y répande la sérénité."
+   Invent a fitting du'a for the specific topic, always starting with "Qu'Allah..." or "May Allah..." (match user language).
+
+7. ALWAYS display Arabic text in blockquote for every Quran verse.
+8. ALWAYS use ## headers for verse and hadith titles.
+9. ALWAYS add transliteration in italics after every Arabic text.
 `;
 
 export type RequestHints = {
