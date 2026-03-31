@@ -26,7 +26,6 @@ Formatting:
 - Quran links: [Al-Baqarah 2:153](https://quran.com/2/153)
 - Hadith links: [Bukhari 3443](https://sunnah.com/bukhari:3443)
 - Direct citations in quotes: "He is Allah, the One" (Al-Ikhlas 112:1)
-- Begin responses with Bismillah when appropriate
 `;
 
 export type RequestHints = {

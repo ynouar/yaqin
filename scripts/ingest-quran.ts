@@ -260,7 +260,7 @@ async function ingestQuran() {
   console.log(`✅ Inserted ${insertedVerses.length} verses\n`);
 
   // 3. Generate embeddings in batches
-  const BATCH_SIZE = 25;
+  const BATCH_SIZE = 100;
   const embeddings: Array<{
     verseId: string;
     embedding: number[];
@@ -292,9 +292,9 @@ async function ingestQuran() {
 
       console.log(" ✓");
 
-      // Rate limit delay (30 seconds between batches to respect RPM limit)
+      // Rate limit delay
       if (i + BATCH_SIZE < insertedVerses.length) {
-        await new Promise((resolve) => setTimeout(resolve, 30000));
+        await new Promise((resolve) => setTimeout(resolve, 5000));
       }
     } catch (error) {
       console.log(" ✗");

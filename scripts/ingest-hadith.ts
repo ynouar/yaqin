@@ -35,8 +35,12 @@ type HadithCollection = {
 };
 
 const HADITH_FILES = [
+  "bukhari-full.json",
+  "muslim-full.json",
   "tirmidhi-full.json",
-  "abudawud-full.json"
+  "abudawud-full.json",
+  "nawawi40-full.json",
+  "riyadussalihin-full.json"
 ];
 
 function parseHadithFile(filePath: string): HadithCollection {
@@ -168,7 +172,7 @@ async function ingestHadith() {
   console.log(`🤖 Generating embeddings (${totalBatches} batches)...`);
 
   for (let i = 0; i < insertedHadiths.length; i += BATCH_SIZE) {
-    const batch = insertedHadiths.slice(i, i + BATCH_SIZE);
+    const batch = insertedHadiths.slice(i, i + BATCH_SIZE).filter((h) => h.englishText && h.englishText.trim().length > 0);
     const texts = batch.map((h) => h.englishText);
     const batchNumber = Math.floor(i / BATCH_SIZE) + 1;
 
