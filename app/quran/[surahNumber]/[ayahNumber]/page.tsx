@@ -108,7 +108,7 @@ export default async function VersePage({ params, searchParams }: PageProps) {
 
   const { target, contextBefore, contextAfter } = verseData;
   const surahMetadata = getSurahMetadata(surahNum);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yaqin.app';
 
   // Breadcrumb schema
   const breadcrumbSchema = createBreadcrumbSchema([

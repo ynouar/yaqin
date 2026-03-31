@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from "next/link";
-import { CriterionBranding } from "@/components/criterion-branding";
+import { YaqinBranding } from "@/components/criterion-branding";
 import { findRelevantVerses } from "@/lib/ai/embeddings";
 import { SearchUI } from "./search-ui";
 import { createPageMetadata } from '@/lib/seo/metadata';
@@ -80,7 +80,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
       {/* Navigation Header */}
       <header className="border-b">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <CriterionBranding />
+          <YaqinBranding />
           <nav className="flex gap-4 md:gap-6 text-sm">
             <Link href="/" className="hover:underline">
               Chat

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, ChevronDown } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { CriterionBranding } from '@/components/criterion-branding';
+import { YaqinBranding } from '@/components/criterion-branding';
 import { LanguageSwitcher } from '@/components/language-switcher';
 import { Button } from '@/components/ui/button';
 import {
@@ -70,7 +70,7 @@ export function SiteHeader({ isSticky = false }: SiteHeaderProps) {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <CriterionBranding />
+            <YaqinBranding />
           </div>
 
           {/* SEO: Hidden crawlable links for search pages */}

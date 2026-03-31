@@ -24,7 +24,7 @@ export const metadata = createPageMetadata({
 
 export default async function HadithPage() {
   const t = await getTranslations('hadith');
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yaqin.app';
   
   const breadcrumbSchema = createBreadcrumbSchema([
     { name: 'Home', url: siteUrl },

@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { createPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = createPageMetadata({
-  title: 'How Criterion Works - RAG-Powered Islamic AI',
-  description: 'Learn how Criterion uses Retrieval Augmented Generation (RAG) to provide accurate answers from the Quran and Hadith. Understand our semantic search technology.',
+  title: 'How Yaqin Works - RAG-Powered Islamic AI',
+  description: 'Learn how Yaqin uses Retrieval Augmented Generation (RAG) to provide accurate answers from the Quran and Hadith. Understand our semantic search technology.',
   path: '/how-it-works',
   keywords: [
     'RAG technology',
@@ -17,16 +17,16 @@ export const metadata = createPageMetadata({
 export default function HowItWorksPage() {
   return (
     <div className="prose prose-gray dark:prose-invert max-w-none">
-      <h1>How Criterion Works</h1>
+      <h1>How Yaqin Works</h1>
       
       <p className="lead">
-        Criterion combines modern AI with authentic Islamic texts to help you explore 
+        Yaqin combines modern AI with authentic Islamic texts to help you explore 
         Islam. Here's how our technology works in simple terms.
       </p>
 
       <h2>The Big Picture</h2>
       <p>
-        When you ask a question, Criterion doesn't just look for keywords. Instead, it:
+        When you ask a question, Yaqin doesn't just look for keywords. Instead, it:
       </p>
       <ol>
         <li><strong>Understands</strong> the meaning of your question</li>
@@ -46,7 +46,7 @@ export default function HowItWorksPage() {
       
       <h3>Semantic Search (Meaning)</h3>
       <p>
-        Criterion understands <em>concepts</em>. Search for "afterlife" and we'll also find:
+        Yaqin understands <em>concepts</em>. Search for "afterlife" and we'll also find:
       </p>
       <ul>
         <li>"Day of Judgment"</li>
@@ -62,7 +62,7 @@ export default function HowItWorksPage() {
       <h2>RAG Technology (Retrieval Augmented Generation)</h2>
       
       <p>
-        RAG is the secret sauce that makes Criterion reliable. Here's the difference:
+        RAG is the secret sauce that makes Yaqin reliable. Here's the difference:
       </p>
 
       <div className="not-prose my-6">
@@ -77,7 +77,7 @@ export default function HowItWorksPage() {
         
         <div className="rounded-lg border p-4 bg-green-50 dark:bg-green-950">
           <h4 className="font-semibold mb-2 text-green-600 dark:text-green-400">
-            ✅ Criterion (RAG-Powered)
+            ✅ Yaqin (RAG-Powered)
           </h4>
           <p className="text-sm text-muted-foreground">
             Retrieve authentic texts first → generate answer from retrieved texts → cite sources → reliable
@@ -196,7 +196,7 @@ export default function HowItWorksPage() {
 
       <h2>Limitations & Honesty</h2>
       <p>
-        We're transparent about what Criterion <em>can't</em> do:
+        We're transparent about what Yaqin <em>can't</em> do:
       </p>
       <ul>
         <li><strong>Not a scholar:</strong> Complex legal (fiqh) questions need human scholars</li>
@@ -207,7 +207,7 @@ export default function HowItWorksPage() {
 
       <h2>Future Improvements</h2>
       <p>
-        We're constantly improving Criterion:
+        We're constantly improving Yaqin:
       </p>
       <ul>
         <li>Multilingual support (Arabic, Urdu, French, etc.)</li>
@@ -247,7 +247,7 @@ export default function HowItWorksPage() {
         <li><Link href="/developers">Developer Documentation</Link></li>
         <li>
           <a 
-            href="https://github.com/BalajSaleem/criterion"
+            href="https://github.com/ynouar/yaqin"
             target="_blank"
             rel="noopener noreferrer"
           >

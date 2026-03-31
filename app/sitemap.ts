@@ -4,7 +4,7 @@ import { getAllTopicsSorted } from '@/lib/topics';
 import { getCollectionStats } from '@/lib/db/queries';
 import { COLLECTION_METADATA } from '@/lib/hadith-metadata';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yaqin.app';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = new Date();

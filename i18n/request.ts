@@ -1,9 +1,9 @@
 import { getRequestConfig } from 'next-intl/server';
 import { headers } from 'next/headers';
 
-export const locales = ['en', 'ar', 'ur', 'tr'] as const;
+export const locales = ['fr', 'en', 'ar', 'ur', 'tr'] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = 'en';
+export const defaultLocale: Locale = 'fr';
 
 function isValidLocale(locale: string | undefined): locale is Locale {
   return locales.includes(locale as Locale);

@@ -16,11 +16,11 @@
     "openNavMenu": "Open navigation menu"
   },
   "chat": {
-    "placeholder": "Ask a question...",
+    "placeholder": "Ask a question about Islam...",
     "newChat": "New Chat",
     "waitForResponse": "Please wait for the model to finish its response!",
     "uploadError": "Failed to upload file, please try again!",
-    "welcome": "Welcome to Criterion",
+    "welcome": "Welcome to Yaqin",
     "getAnswersBefore": "Get Answers from the",
     "and": "and",
     "quranLink": "Quran",

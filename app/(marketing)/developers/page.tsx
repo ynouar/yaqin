@@ -1,12 +1,12 @@
 import { createPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = createPageMetadata({
-  title: 'Developers - Criterion Open Source',
-  description: 'Criterion is open source. Explore our code, contribute, access our API, or build your own Islamic AI applications.',
+  title: 'Developers - Yaqin Open Source',
+  description: 'Yaqin is open source. Explore our code, contribute, access our API, or build your own Islamic AI applications.',
   path: '/developers',
   keywords: [
     'open source Islamic AI',
-    'Criterion GitHub',
+    'Yaqin GitHub',
     'Quran API',
     'Hadith API',
     'contribute',
@@ -21,7 +21,7 @@ export default function DevelopersPage() {
       <h1>Developers</h1>
       
       <p className="lead">
-        Criterion is fully open source. Built to help people understand Islam through 
+        Yaqin is fully open source. Built to help people understand Islam through 
         authentic sources using modern AI technology.
       </p>
 
@@ -31,7 +31,7 @@ export default function DevelopersPage() {
           Explore our code, contribute, or learn how we built it
         </p>
         <a
-          href="https://github.com/BalajSaleem/criterion"
+          href="https://github.com/ynouar/yaqin"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-3 text-lg font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
@@ -40,7 +40,7 @@ export default function DevelopersPage() {
         </a>
       </div>
 
-      <h2>What is Criterion?</h2>
+      <h2>What is Yaqin?</h2>
       <p>
         An AI assistant that helps people learn about Islam through:
       </p>
@@ -89,12 +89,12 @@ export default function DevelopersPage() {
         <h3 className="mb-4 text-xl font-semibold">Quick Example</h3>
         <pre className="overflow-x-auto rounded bg-muted p-4 text-sm">
           <code>{`// Search Quran verses
-fetch('https://criterion.life/api/v1/quran/search?q=patience&limit=5')
+fetch('https://yaqin.app/api/v1/quran/search?q=patience&limit=5')
   .then(r => r.json())
   .then(data => console.log(data));
 
 // Search Hadiths
-fetch('https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari')
+fetch('https://yaqin.app/api/v1/hadith/search?q=charity&collections=bukhari')
   .then(r => r.json())
   .then(data => console.log(data));`}</code>
         </pre>
@@ -132,7 +132,7 @@ fetch('https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari
 
       <div className="not-prose my-8 grid gap-4 sm:grid-cols-2">
         <a
-          href="https://github.com/BalajSaleem/criterion/issues"
+          href="https://github.com/ynouar/yaqin/issues"
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-lg border p-4 transition-colors hover:bg-muted"
@@ -143,7 +143,7 @@ fetch('https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari
           </p>
         </a>
         <a
-          href="https://github.com/BalajSaleem/criterion/discussions"
+          href="https://github.com/ynouar/yaqin/discussions"
           target="_blank"
           rel="noopener noreferrer"
           className="rounded-lg border p-4 transition-colors hover:bg-muted"
@@ -157,9 +157,9 @@ fetch('https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari
 
       <h2>License</h2>
       <p>
-        Criterion is open source. Check the{' '}
+        Yaqin is open source. Check the{' '}
         <a 
-          href="https://github.com/BalajSaleem/criterion/blob/main/LICENSE"
+          href="https://github.com/ynouar/yaqin/blob/main/LICENSE"
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -4,7 +4,7 @@ import { VoiceVisualizer } from "@/components/speak/voice-visualizer";
 import { VoiceControls } from "@/components/speak/voice-controls";
 import { VoiceTranscript } from "@/components/speak/voice-transcript";
 import useVoiceSession from "@/hooks/use-voice-session";
-import { CriterionBranding } from "@/components/criterion-branding";
+import { YaqinBranding } from "@/components/criterion-branding";
 
 export function SpeakInterface() {
   const {
@@ -20,7 +20,7 @@ export function SpeakInterface() {
     <div className="min-h-screen flex flex-col bg-background">
       <header className="border-b">
         <div className="container flex h-16 items-center justify-between px-4">
-          <CriterionBranding />
+          <YaqinBranding />
         </div>
       </header>
 

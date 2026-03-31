@@ -4,8 +4,8 @@ import { SpeakInterface } from "./speak-interface";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Speak - Voice Conversation with Criterion",
-  description: "Have a voice conversation with Criterion to learn about Islam. Ask questions using your voice and get authentic answers from the Quran and Hadith.",
+  title: "Speak - Voice Conversation with Yaqin",
+  description: "Have a voice conversation with Yaqin to learn about Islam. Ask questions using your voice and get authentic answers from the Quran and Hadith.",
   path: "/speak",
   keywords: [
     "voice AI Islam",

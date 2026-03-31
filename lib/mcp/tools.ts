@@ -1,5 +1,5 @@
 /**
- * Tools for Criterion Islamic Search
+ * Tools for Yaqin Islamic Search
  *
  * Three focused tools that expose our semantic search capabilities:
  * 1. search_quran - Search 6,236 Quran verses

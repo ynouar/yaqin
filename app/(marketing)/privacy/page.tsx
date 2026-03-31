@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Criterion",
+  title: "Privacy Policy - Yaqin",
   description:
-    "Learn how Criterion collects, uses, and protects your data while providing authentic Islamic knowledge.",
+    "Learn how Yaqin collects, uses, and protects your data while providing authentic Islamic knowledge.",
 };
 
 export default function PrivacyPage() {
@@ -12,7 +12,7 @@ export default function PrivacyPage() {
       <article className="prose prose-slate dark:prose-invert max-w-none">
         <h1>Privacy Policy</h1>
         <p className="lead">
-          Criterion is committed to protecting your privacy while providing
+          Yaqin is committed to protecting your privacy while providing
           authentic Islamic knowledge. This policy explains how we collect,
           use, and safeguard your information.
         </p>
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
 
         <h2>Our Commitment</h2>
         <p>
-          Criterion exists to serve humanity by making Islamic knowledge
+          Yaqin exists to serve humanity by making Islamic knowledge
           accessible to all. We collect only the minimal data necessary to
           provide and improve our service. We do not sell your data, show
           advertisements, or track you across the web.
@@ -167,13 +167,13 @@ export default function PrivacyPage() {
 
         <h3>3.1 We Do NOT Sell Your Data</h3>
         <p>
-          Criterion will never sell, rent, or trade your personal information.
+          Yaqin will never sell, rent, or trade your personal information.
           Period.
         </p>
 
         <h3>3.2 Third-Party Service Providers</h3>
         <p>
-          We use trusted third-party services to operate Criterion. These
+          We use trusted third-party services to operate Yaqin. These
           providers have access to your data only to perform specific tasks on
           our behalf:
         </p>
@@ -207,7 +207,7 @@ export default function PrivacyPage() {
             addresses, request logs)
           </li>
           <li>
-            <strong>Purpose:</strong> Host and deliver the Criterion website
+            <strong>Purpose:</strong> Host and deliver the Yaqin website
           </li>
           <li>
             <strong>Privacy policy:</strong>{" "}
@@ -371,7 +371,7 @@ export default function PrivacyPage() {
         <h3>6.3 Opt-Out</h3>
         <ul>
           <li>
-            <strong>Anonymous usage:</strong> You can use Criterion without an
+            <strong>Anonymous usage:</strong> You can use Yaqin without an
             account (search only)
           </li>
           <li>
@@ -388,7 +388,7 @@ export default function PrivacyPage() {
 
         <h2>7. Children's Privacy</h2>
         <p>
-          Criterion is not directed at children under 13. We do not knowingly
+          Yaqin is not directed at children under 13. We do not knowingly
           collect personal information from children under 13. If you are a
           parent or guardian and believe your child has provided us with
           personal information, please contact us and we will delete it
@@ -397,13 +397,13 @@ export default function PrivacyPage() {
 
         <h2>8. International Users</h2>
         <p>
-          Criterion is operated from the United States. If you are accessing
-          Criterion from outside the United States, please be aware that your
+          Yaqin is operated from the United States. If you are accessing
+          Yaqin from outside the United States, please be aware that your
           information may be transferred to, stored, and processed in the
           United States.
         </p>
         <p>
-          By using Criterion, you consent to the transfer of your information
+          By using Yaqin, you consent to the transfer of your information
           to the United States and the processing of your information in
           accordance with this Privacy Policy.
         </p>
@@ -424,23 +424,23 @@ export default function PrivacyPage() {
           </li>
         </ul>
         <p>
-          <strong>Your continued use of Criterion after changes constitutes
+          <strong>Your continued use of Yaqin after changes constitutes
           acceptance of the updated policy.</strong>
         </p>
 
         <h2>10. Open Source Transparency</h2>
         <p>
-          Criterion is open source. You can review our code, data handling
+          Yaqin is open source. You can review our code, data handling
           practices, and security measures on GitHub:
         </p>
         <p>
           <a
-            href="https://github.com/BalajSaleem/criterion"
+            href="https://github.com/ynouar/yaqin"
             target="_blank"
             rel="noopener noreferrer"
             className="font-mono text-sm"
           >
-            https://github.com/BalajSaleem/criterion
+            https://github.com/ynouar/yaqin
           </a>
         </p>
         <p>
@@ -456,26 +456,26 @@ export default function PrivacyPage() {
         </p>
         <ul>
           <li>
-            <strong>Email:</strong> criterion.life.team@gmail.com
+            <strong>Email:</strong> yaqin.app.team@gmail.com
           </li>
           <li>
             <strong>GitHub Issues:</strong>{" "}
             <a
-              href="https://github.com/BalajSaleem/criterion/issues"
+              href="https://github.com/ynouar/yaqin/issues"
               target="_blank"
               rel="noopener noreferrer"
             >
-              https://github.com/BalajSaleem/criterion/issues
+              https://github.com/ynouar/yaqin/issues
             </a>
           </li>
           <li>
             <strong>GitHub Discussions:</strong>{" "}
             <a
-              href="https://github.com/BalajSaleem/criterion/discussions"
+              href="https://github.com/ynouar/yaqin/discussions"
               target="_blank"
               rel="noopener noreferrer"
             >
-              https://github.com/BalajSaleem/criterion/discussions
+              https://github.com/ynouar/yaqin/discussions
             </a>
           </li>
         </ul>
@@ -485,7 +485,7 @@ export default function PrivacyPage() {
 
         <h2>Our Promise</h2>
         <p className="text-lg font-medium">
-          Criterion exists to serve humanity by making authentic Islamic
+          Yaqin exists to serve humanity by making authentic Islamic
           knowledge accessible to all. We build for the sake of Allah, not for
           profit. We will never compromise your privacy or trust to serve
           commercial interests.

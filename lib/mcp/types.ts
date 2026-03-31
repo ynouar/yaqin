@@ -1,5 +1,5 @@
 /**
- * Type definitions for Criterion MCP Server
+ * Type definitions for Yaqin MCP Server
  *
  * Simple, focused types for our 3 core tools:
  * - search_quran: Semantic search across Quran verses

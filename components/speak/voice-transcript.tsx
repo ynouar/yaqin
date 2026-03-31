@@ -60,7 +60,7 @@ export function VoiceTranscript({ conversation }: VoiceTranscriptProps) {
               )}
             >
               <span className="font-medium">
-                {item.role === "user" ? "You: " : "Criterion: "}
+                {item.role === "user" ? "You: " : "Yaqin: "}
               </span>
               <span className={cn(!item.isFinal && "italic opacity-70")}>
                 {item.text || "..."}

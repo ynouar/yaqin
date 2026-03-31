@@ -13,7 +13,7 @@ export async function GET() {
         quran: "/api/v1/quran/search",
         hadith: "/api/v1/hadith/search",
       },
-      documentation: "https://criterion.life/developers",
+      documentation: "https://yaqin.app/developers",
       rateLimit: {
         window: "1 minute",
         maxRequests: 60,

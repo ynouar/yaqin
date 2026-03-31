@@ -7,7 +7,7 @@ import type { Metadata } from "next";
 import img from "@/app/opengraph-image.png";
 
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://criterion.life/";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yaqin.app/";
 
 interface OpenGraphMetadataOptions {
   title: string;
@@ -28,13 +28,13 @@ export function createOpenGraphMetadata({
     url: `${siteUrl}${path}`,
     title,
     description,
-    siteName: "Criterion",
+    siteName: "Yaqin",
     images: [
       {
         url: img.src,
         width: img.width,
         height: img.height,
-        alt: "Criterion - Quran Powered AI Assistant",
+        alt: "Yaqin — Assistant Islamique IA",
       },
     ],
   };
@@ -56,7 +56,7 @@ export function createTwitterMetadata({
         url: img.src,
         width: img.width,
         height: img.height,
-        alt: "Criterion - Quran Powered AI Assistant",
+        alt: "Yaqin — Assistant Islamique IA",
       },
     ],
   };

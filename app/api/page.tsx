@@ -2,11 +2,11 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Developer API - Criterion",
+  title: "Developer API - Yaqin",
   description:
     "Access Quran and Hadith search through the API. Semantic search powered by AI, supporting 6,236 verses and 21,641 authentic hadiths from 6 major collections.",
   openGraph: {
-    title: "Developer API - Criterion",
+    title: "Developer API - Yaqin",
     description:
       "Access Quran and Hadith search through the API. Semantic search powered by AI.",
   },
@@ -20,7 +20,7 @@ export default function APIPage() {
         <div className="mb-12">
           <h1 className="text-4xl font-bold mb-4">Developer API</h1>
           <p className="text-xl text-muted-foreground mb-6">
-            Access authentic Islamic knowledge through our Criterion's API. Use the APIs to find relevant verses and hadiths for any topic. Our semantic similarity search understands the meaning and intent of your queries, matching conceptually similar content even when exact words differ—search 6,236 Quran verses and 21,641 authentic hadiths from 6 major collections with AI-powered precision.
+            Access authentic Islamic knowledge through our Yaqin's API. Use the APIs to find relevant verses and hadiths for any topic. Our semantic similarity search understands the meaning and intent of your queries, matching conceptually similar content even when exact words differ—search 6,236 Quran verses and 21,641 authentic hadiths from 6 major collections with AI-powered precision.
           </p>
           
           {/* Try Live Links */}
@@ -50,13 +50,13 @@ export default function APIPage() {
                 <code>
                   {`// Search Quran
 const response = await fetch(
-  'https://criterion.life/api/v1/quran/search?q=patience&limit=5'
+  'https://yaqin.app/api/v1/quran/search?q=patience&limit=5'
 );
 const data = await response.json();
 
 // Search Hadith  
 const response = await fetch(
-  'https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari,muslim'
+  'https://yaqin.app/api/v1/hadith/search?q=charity&collections=bukhari,muslim'
 );
 const data = await response.json();`}
                 </code>
@@ -68,10 +68,10 @@ const data = await response.json();`}
               <pre className="bg-background p-4 rounded overflow-x-auto text-sm">
                 <code>
                   {`# Search Quran
-curl "https://criterion.life/api/v1/quran/search?q=patience&limit=5"
+curl "https://yaqin.app/api/v1/quran/search?q=patience&limit=5"
 
 # Search Hadith
-curl "https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari,muslim"`}
+curl "https://yaqin.app/api/v1/hadith/search?q=charity&collections=bukhari,muslim"`}
                 </code>
               </pre>
             </div>
@@ -84,7 +84,7 @@ curl "https://criterion.life/api/v1/hadith/search?q=charity&collections=bukhari,
 
 # Search Quran
 response = requests.get(
-    'https://criterion.life/api/v1/quran/search',
+    'https://yaqin.app/api/v1/quran/search',
     params={'q': 'patience', 'limit': 5}
 )
 data = response.json()`}
@@ -324,7 +324,7 @@ data = response.json()`}
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <a
-                href="https://github.com/BalajSaleem/criterion/issues"
+                href="https://github.com/ynouar/yaqin/issues"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 border rounded-lg p-4 hover:bg-muted transition-colors"
@@ -336,7 +336,7 @@ data = response.json()`}
                 </div>
               </a>
               <a
-                href="https://github.com/BalajSaleem/criterion"
+                href="https://github.com/ynouar/yaqin"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 border rounded-lg p-4 hover:bg-muted transition-colors"

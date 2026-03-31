@@ -3,9 +3,9 @@ import { createPageMetadata } from "@/lib/seo/metadata";
 
 const faqs = [
   {
-    question: "What is Criterion?",
+    question: "What is Yaqin?",
     answer:
-      "Criterion is an open-source AI-powered assistant that helps you understand Islam through authentic sources. We use advanced semantic search across 6,236 Quran verses and 21,641 authentic Hadiths from 6 major collections to provide accurate, contextual answers to your questions about Islamic teachings.",
+      "Yaqin is an open-source AI-powered assistant that helps you understand Islam through authentic sources. We use advanced semantic search across 6,236 Quran verses and 21,641 authentic Hadiths from 6 major collections to provide accurate, contextual answers to your questions about Islamic teachings.",
   },
   {
     question: "Is the information authentic?",
@@ -20,12 +20,12 @@ const faqs = [
   {
     question: "Can I learn about Islam here if I'm not Muslim?",
     answer:
-      "Absolutely! Criterion is designed for everyone curious about Islam—whether you're exploring for the first time, considering converting, or seeking to deepen your understanding. We provide clear explanations with proper context and authentic sources.",
+      "Absolutely! Yaqin is designed for everyone curious about Islam—whether you're exploring for the first time, considering converting, or seeking to deepen your understanding. We provide clear explanations with proper context and authentic sources.",
   },
   {
     question: "Is this free to use?",
     answer:
-      "Yes, Criterion is completely free and open source. We believe Islamic knowledge should be accessible to everyone without barriers.",
+      "Yes, Yaqin is completely free and open source. We believe Islamic knowledge should be accessible to everyone without barriers.",
   },
   {
     question: "How do I ask a question?",
@@ -33,9 +33,9 @@ const faqs = [
       "Simply type your question in natural language on the chat interface. Ask anything like 'What does Islam say about patience?' or 'Tell me about prayer in Islam.' The AI will search relevant sources and provide a comprehensive answer with citations.",
   },
   {
-    question: "What makes Criterion different from other Islamic websites?",
+    question: "What makes Yaqin different from other Islamic websites?",
     answer:
-      "Unlike traditional Islamic websites where you browse through content, Criterion lets you ask questions naturally and get AI-powered answers grounded in authentic sources. We also provide surrounding context for verses (not just isolated quotes) and use semantic search to understand the meaning of your question.",
+      "Unlike traditional Islamic websites where you browse through content, Yaqin lets you ask questions naturally and get AI-powered answers grounded in authentic sources. We also provide surrounding context for verses (not just isolated quotes) and use semantic search to understand the meaning of your question.",
   },
   {
     question: "Can I search for specific verses or topics?",
@@ -43,9 +43,9 @@ const faqs = [
       "Yes! Use our search page to find Quran verses and Hadiths by theme or topic. You can also browse all 114 Surahs in the Quran section. The AI automatically searches these sources when you ask questions in the chat.",
   },
   {
-    question: "Who created Criterion?",
+    question: "Who created Yaqin?",
     answer:
-      "Criterion is an open-source project built by developers passionate about making Islamic knowledge accessible through modern technology. The code is available on GitHub for anyone to review, contribute to, or learn from.",
+      "Yaqin is an open-source project built by developers passionate about making Islamic knowledge accessible through modern technology. The code is available on GitHub for anyone to review, contribute to, or learn from.",
   },
   {
     question: "How accurate are the translations?",
@@ -55,7 +55,7 @@ const faqs = [
   {
     question: "Can I use this for religious rulings (fatwa)?",
     answer:
-      "While Criterion provides authentic Islamic sources, it should not be used as the sole basis for religious rulings. For specific Islamic legal questions, please consult qualified scholars. Criterion is best used for learning, exploring, and understanding Islamic teachings.",
+      "While Yaqin provides authentic Islamic sources, it should not be used as the sole basis for religious rulings. For specific Islamic legal questions, please consult qualified scholars. Yaqin is best used for learning, exploring, and understanding Islamic teachings.",
   },
   {
     question: "Is my conversation private?",
@@ -65,12 +65,12 @@ const faqs = [
 ];
 
 export const metadata = createPageMetadata({
-  title: "Frequently Asked Questions - Criterion",
+  title: "Frequently Asked Questions - Yaqin",
   description:
-    "Common questions about Criterion, Islam, the Quran, and how our AI-powered Islamic knowledge assistant works.",
+    "Common questions about Yaqin, Islam, the Quran, and how our AI-powered Islamic knowledge assistant works.",
   path: "/faq",
   keywords: [
-    "Criterion FAQ",
+    "Yaqin FAQ",
     "Islamic AI questions",
     "Quran search help",
     "Hadith search help",
@@ -92,7 +92,7 @@ export default function FAQPage() {
       <div className="prose prose-neutral dark:prose-invert max-w-none">
         <h1>Frequently Asked Questions</h1>
         <p className="lead">
-          Everything you need to know about Criterion and learning Islam through
+          Everything you need to know about Yaqin and learning Islam through
           our AI-powered assistant.
         </p>
 

@@ -1,4 +1,4 @@
-import { gateway } from "@ai-sdk/gateway";
+import { google } from "@ai-sdk/google";
 import {
   customProvider,
   defaultSettingsMiddleware,
@@ -7,11 +7,14 @@ import {
 } from "ai";
 import { isTestEnvironment } from "../constants";
 
-const middleware = [extractReasoningMiddleware({ tagName: "think" }), defaultSettingsMiddleware({
-            settings: {
-              temperature: 0.0,
-            },
-          })];
+const middleware = [
+  extractReasoningMiddleware({ tagName: "think" }),
+  defaultSettingsMiddleware({
+    settings: {
+      temperature: 0.0,
+    },
+  }),
+];
 
 export const myProvider = isTestEnvironment
   ? (() => {
@@ -33,14 +36,14 @@ export const myProvider = isTestEnvironment
   : customProvider({
       languageModels: {
         "chat-model": wrapLanguageModel({
-          model: gateway.languageModel("google/gemini-3-flash"),
+          model: google("gemini-2.5-flash"),
           middleware,
         }),
         "chat-model-reasoning": wrapLanguageModel({
-          model: gateway.languageModel("google/gemini-3-flash"),
+          model: google("gemini-2.5-flash"),
           middleware,
         }),
-        "title-model": gateway.languageModel("google/gemini-3-flash"),
-        "artifact-model": gateway.languageModel("google/gemini-3-flash"),
+        "title-model": google("gemini-2.5-flash"),
+        "artifact-model": google("gemini-2.5-flash"),
       },
     });

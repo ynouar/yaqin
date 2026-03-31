@@ -12,33 +12,33 @@ import { SessionProvider } from "next-auth/react";
 import { organizationSchema, websiteSchema, softwareApplicationSchema } from "@/lib/seo/schema";
 import socialImage from "./opengraph-image.png";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://criterion.life";
-const description = "Intelligent AI assistant for exploring Islam. Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search and find answers from Quranic verses and authentic Hadiths.";
-const title = "Criterion - Quran Powered AI Assistant";
-const name = "Criterion";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://yaqin.app";
+const description = "Le premier assistant islamique francophone augmenté par IA. Posez vos questions sur l'Islam, le Coran et les Hadiths. Obtenez des réponses authentiques depuis les sources islamiques. Recherchez parmi 6 236 versets coraniques et 21 641 hadiths authentiques.";
+const title = "Yaqin — Assistant Islamique IA";
+const name = "Yaqin";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: title,
-    template: "%s | Criterion",
+    template: "%s | Yaqin",
   },
   description,
   keywords: [
-    "Quran search",
-    "Read Quran",
-    "Find Verse",
-    "Islamic questions",
-    "learn about Islam",
+    "Coran",
+    "Hadith",
+    "Islam",
+    "assistant islamique",
+    "IA islamique",
+    "Coran IA",
+    "recherche Coran",
+    "hadiths authentiques",
+    "questions islamiques",
+    "apprendre l'Islam",
+    "guide islamique",
     "Quran AI",
-    "Islamic teachings",
-    "understanding Islam",
-    "authentic Hadith",
-    "Islamic guidance",
-    "Hadith search",
     "Islamic AI assistant",
-    "learn Quran online",
-    "Quran verses",
+    "Hadith search",
     "Islamic knowledge"
   ],
   authors: [{ name }],
@@ -48,11 +48,11 @@ export const metadata: Metadata = {
   category: "Religion & Spirituality",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "fr_FR",
     url: siteUrl,
     title,
     description,
-    siteName: "Criterion",
+    siteName: "Yaqin",
     images: [
       {
         url: socialImage.src,
@@ -72,16 +72,15 @@ export const metadata: Metadata = {
         height: socialImage.height,
         alt: title,
       }],
-    creator: "@criterion_life",
-    site: "@criterion_life",
+    creator: "@yaqin_app",
+    site: "@yaqin_app",
   },
   alternates: {
     canonical: siteUrl,
     languages: {
+      'fr': siteUrl,
       'en': siteUrl,
       'ar': siteUrl,
-      'ur': siteUrl,
-      'tr': siteUrl,
     },
   },
   robots: {
@@ -101,7 +100,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  maximumScale: 1, // Disable auto-zoom on mobile Safari
+  maximumScale: 1,
 };
 
 const geist = Geist({
@@ -143,9 +142,7 @@ const THEME_COLOR_SCRIPT = `\
   updateThemeColor();
 })();`;
 
-// Sets lang and dir on <html> from the NEXT_LOCALE cookie before React hydrates,
-// preventing RTL layout shift. Same pattern next-themes uses for dark mode.
-const LOCALE_SCRIPT = `(function(){var m=document.cookie.match(/(?:^|; )NEXT_LOCALE=([^;]+)/);var l=m?decodeURIComponent(m[1]):'en';document.documentElement.lang=l;document.documentElement.dir=['ar','ur'].indexOf(l)!==-1?'rtl':'ltr';})();`;
+const LOCALE_SCRIPT = `(function(){var m=document.cookie.match(/(?:^|; )NEXT_LOCALE=([^;]+)/);var l=m?decodeURIComponent(m[1]):'fr';document.documentElement.lang=l;document.documentElement.dir=['ar','ur'].indexOf(l)!==-1?'rtl':'ltr';})();`;
 
 export default function RootLayout({
   children,
@@ -155,7 +152,7 @@ export default function RootLayout({
   return (
     <html
       className={`${geist.variable} ${geistMono.variable} ${notoNaskhArabic.variable}`}
-      lang="en"
+      lang="fr"
       suppressHydrationWarning
     >
       <head>
@@ -198,11 +195,6 @@ export default function RootLayout({
             enableSystem
           >
             <Toaster position="top-center" />
-            {/*
-              IntlProvider is async (reads locale from cookie via middleware header).
-              Wrapping in Suspense is the correct cacheComponents pattern: the outer
-              layout is a cacheable static shell; dynamic data streams in via Suspense.
-            */}
             <Suspense>
               <IntlProvider>
                 <SessionProvider>{children}</SessionProvider>

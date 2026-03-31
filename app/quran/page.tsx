@@ -22,7 +22,7 @@ export const metadata = createPageMetadata({
 
 export default async function QuranPage() {
   const t = await getTranslations('quran');
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yaqin.app';
   
   const breadcrumbSchema = createBreadcrumbSchema([
     { name: 'Home', url: siteUrl },

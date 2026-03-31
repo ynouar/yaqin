@@ -201,8 +201,8 @@ async function ingestQuran() {
     throw new Error("POSTGRES_URL is not defined");
   }
 
-  if (!process.env.OPENAI_API_KEY) {
-    throw new Error("OPENAI_API_KEY is not defined");
+  if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+    throw new Error("GOOGLE_GENERATIVE_AI_API_KEY is not defined");
   }
 
   // biome-ignore lint: Forbidden non-null assertion.
@@ -260,7 +260,7 @@ async function ingestQuran() {
   console.log(`✅ Inserted ${insertedVerses.length} verses\n`);
 
   // 3. Generate embeddings in batches
-  const BATCH_SIZE = 100;
+  const BATCH_SIZE = 25;
   const embeddings: Array<{
     verseId: string;
     embedding: number[];
@@ -292,9 +292,9 @@ async function ingestQuran() {
 
       console.log(" ✓");
 
-      // Rate limit delay (1 second between batches)
+      // Rate limit delay (30 seconds between batches to respect RPM limit)
       if (i + BATCH_SIZE < insertedVerses.length) {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 30000));
       }
     } catch (error) {
       console.log(" ✗");

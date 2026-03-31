@@ -9,7 +9,7 @@ import { convertToUIMessages } from "@/lib/utils";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = createPageMetadata({
-  title: "Chat - Criterion",
+  title: "Chat - Yaqin",
   description: "Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide.",
   path: "/chat",
   keywords: [

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { ArrowLeft, BookOpen, Sparkles, Search, MessageCircle } from "lucide-react";
-import { CriterionBranding } from "@/components/criterion-branding";
+import { YaqinBranding } from "@/components/criterion-branding";
 import { getAllTopicSlugs, getTopicBySlug, getRelatedTopics } from "@/lib/topics";
 import { findRelevantVerses } from "@/lib/ai/embeddings";
 import { findRelevantHadiths } from "@/lib/ai/embeddings";
@@ -80,7 +80,7 @@ export default async function TopicPage({ params }: TopicPageProps) {
       {/* Header */}
       <header className="border-b">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-          <CriterionBranding />
+          <YaqinBranding />
           <nav className="flex gap-4 md:gap-6 text-sm">
             <Link href="/" className="hover:underline">
               Chat

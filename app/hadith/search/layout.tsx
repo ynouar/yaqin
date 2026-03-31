@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "Sunnah search",
   ],
   openGraph: {
-    title: "Search Authentic Hadith - Criterion",
+    title: "Search Authentic Hadith - Yaqin",
     description:
       "Search 21,641 authentic hadiths from 6 major collections. Find hadiths about any topic.",
     type: "website",

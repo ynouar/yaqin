@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "semantic Quran search",
   ],
   openGraph: {
-    title: "Search the Quran - Criterion",
+    title: "Search the Quran - Yaqin",
     description:
       "Search 6,236 Quran verses using semantic search. Find verses about any topic.",
     type: "website",

@@ -1,7 +1,7 @@
 /**
- * Criterion MCP Server API Route
+ * Yaqin MCP Server API Route
  *
- * Exposes Criterion's semantic search capabilities through the Model Context Protocol.
+ * Exposes Yaqin's semantic search capabilities through the Model Context Protocol.
  * Deployed on Vercel Functions with HTTP transport (Streamable HTTP).
  *
  * Tools provided:
@@ -11,7 +11,7 @@
  *
  * Usage:
  * - Local testing: Use MCP Inspector at http://localhost:3000/api/mcp
- * - Production: https://criterion.life/api/mcp
+ * - Production: https://yaqin.app/api/mcp
  * - Configure in Cursor: .cursor/mcp.json or Claude Desktop config
  *
  * @see https://modelcontextprotocol.io/

@@ -16,6 +16,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const languages: { locale: Locale; nativeLabel: string; label: string }[] = [
+  { locale: "fr", nativeLabel: "Français", label: "French" },
   { locale: "en", nativeLabel: "English", label: "English" },
   { locale: "ar", nativeLabel: "العربية", label: "Arabic" },
   { locale: "ur", nativeLabel: "اردو", label: "Urdu" },

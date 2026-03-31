@@ -37,7 +37,7 @@ export const SURAH_METADATA: SurahMetadata[] = [
   { number: 22, name: 'الحج', transliteration: 'Al-Hajj', translation: 'The Pilgrimage', type: 'Medinan', verses: 78 },
   { number: 23, name: 'المؤمنون', transliteration: 'Al-Mu\'minun', translation: 'The Believers', type: 'Meccan', verses: 118 },
   { number: 24, name: 'النور', transliteration: 'An-Nur', translation: 'The Light', type: 'Medinan', verses: 64 },
-  { number: 25, name: 'الفرقان', transliteration: 'Al-Furqan', translation: 'The Criterion', type: 'Meccan', verses: 77 },
+  { number: 25, name: 'الفرقان', transliteration: 'Al-Furqan', translation: 'The Yaqin', type: 'Meccan', verses: 77 },
   { number: 26, name: 'الشعراء', transliteration: 'Ash-Shu\'ara', translation: 'The Poets', type: 'Meccan', verses: 227 },
   { number: 27, name: 'النمل', transliteration: 'An-Naml', translation: 'The Ant', type: 'Meccan', verses: 93 },
   { number: 28, name: 'القصص', transliteration: 'Al-Qasas', translation: 'The Stories', type: 'Meccan', verses: 88 },

@@ -5,7 +5,7 @@ import { SiteHeader } from '@/components/layout/site-header';
 import { createPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = createPageMetadata({
-  title: 'Islamic Topics - Quran & Hadith | Criterion',
+  title: 'Islamic Topics - Quran & Hadith | Yaqin',
   description:
     'Explore essential Islamic topics with verses from the Quran and authentic Hadiths. Learn about prayer, patience, charity, justice, and more.',
   path: '/topics',

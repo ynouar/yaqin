@@ -5,7 +5,7 @@ import { memo } from "react";
 import { useWindowSize } from "usehooks-ts";
 import { SidebarToggle } from "@/components/sidebar-toggle";
 import { Button } from "@/components/ui/button";
-import { CriterionBranding } from "./criterion-branding";
+import { YaqinBranding } from "./criterion-branding";
 import { PlusIcon } from "./icons";
 import { LanguageSwitcher } from "./language-switcher";
 import { useSidebar } from "./ui/sidebar";
@@ -30,7 +30,7 @@ function PureChatHeader({
       <SidebarToggle />
 
       <div className="order-1 flex-1 md:order-2">
-        <CriterionBranding />
+        <YaqinBranding />
       </div>
 
       {(!open || windowWidth < 768) && (

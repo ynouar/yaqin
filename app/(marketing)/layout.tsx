@@ -15,20 +15,20 @@ export default function MarketingLayout({
         {children}
       </main>
 
-      {/* Simple Footer */}
+      {/* Footer */}
       <footer className="border-t mt-auto">
         <div className="container mx-auto px-4 py-6 text-sm text-muted-foreground">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>© 2025 Criterion. Open source Islamic knowledge assistant.</p>
+            <p>© 2026 Yaqin — Sadaqah Jariyah. Assistant islamique open source.</p>
             <div className="flex gap-4">
               <Link href="/privacy" className="hover:underline">
-                Privacy
+                Confidentialité
               </Link>
               <Link href="/developers" className="hover:underline">
-                Developers
+                Développeurs
               </Link>
               <a
-                href="https://github.com/BalajSaleem/criterion"
+                href="https://github.com/ynouar/yaqin"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"

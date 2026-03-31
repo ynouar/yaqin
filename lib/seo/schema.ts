@@ -2,7 +2,7 @@
  * SEO Utilities and Structured Data Schemas
  */
 import socialImage from "@/app/opengraph-image.png";
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yaqin.app';
 
 /**
  * Organization Schema (JSON-LD)
@@ -11,8 +11,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Criterion',
-  alternateName: 'Criterion AI',
+  name: 'Yaqin',
+  alternateName: 'Yaqin AI',
   description: 'Intelligent AI assistant for exploring Islam. Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide.',
   url: siteUrl,
   logo: {
@@ -23,7 +23,7 @@ export const organizationSchema = {
   },
   foundingDate: '2024',
   sameAs: [
-    'https://github.com/BalajSaleem/criterion'
+    'https://github.com/ynouar/yaqin'
   ],
   contactPoint: {
     '@type': 'ContactPoint',
@@ -39,14 +39,14 @@ export const organizationSchema = {
 export const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
-  name: 'Criterion',
-  alternateName: 'Criterion - Islamic AI Assistant',
+  name: 'Yaqin',
+  alternateName: 'Yaqin - Islamic AI Assistant',
   url: siteUrl,
   description: 'Intelligent AI assistant for exploring Islam. Ask questions about Islam, the Quran, and Hadith. Get authentic answers from Islamic sources with an AI-powered guide. Search and find answers from Quranic verses and authentic Hadiths.',
   inLanguage: 'en',
   publisher: {
     '@type': 'Organization',
-    name: 'Criterion',
+    name: 'Yaqin',
     logo: {
       '@type': 'ImageObject',
       url: socialImage.src,
@@ -128,11 +128,11 @@ export function createArticleSchema(article: {
     dateModified: article.dateModified?.toISOString(),
     author: {
       '@type': 'Organization',
-      name: 'Criterion',
+      name: 'Yaqin',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Criterion',
+      name: 'Yaqin',
       logo: {
         '@type': 'ImageObject',
         url: socialImage.src,
@@ -171,12 +171,12 @@ export function createHadithArticleSchema(hadith: {
     },
     author: {
       '@type': 'Organization',
-      name: 'Criterion',
+      name: 'Yaqin',
       description: 'AI-powered Islamic guide providing authentic knowledge from the Quran and Hadith',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Criterion',
+      name: 'Yaqin',
       logo: {
         '@type': 'ImageObject',
         url: socialImage.src,
@@ -197,12 +197,12 @@ export function createHadithArticleSchema(hadith: {
 
 /**
  * SoftwareApplication Schema (JSON-LD)
- * Helps search engines understand Criterion as a web application
+ * Helps search engines understand Yaqin as a web application
  */
 export const softwareApplicationSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Criterion',
+  name: 'Yaqin',
   applicationCategory: 'EducationalApplication',
   operatingSystem: 'Web Browser',
   offers: {
@@ -219,7 +219,7 @@ export const softwareApplicationSchema = {
   url: siteUrl,
   author: {
     '@type': 'Organization',
-    name: 'Criterion',
+    name: 'Yaqin',
   },
   featureList: [
     'Search 6,236 Quranic verses',

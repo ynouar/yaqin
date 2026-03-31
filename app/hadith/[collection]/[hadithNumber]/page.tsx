@@ -93,7 +93,7 @@ export default async function HadithPage({ params }: PageProps) {
   }
 
   const collectionMeta = getCollectionMetadata(collection);
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yaqin.app';
   const authenticityInfo = getAuthenticityDisplay(hadith.grade || 'Unknown');
   const canonicalUrl = `${siteUrl}/hadith/${collection}/${hadithNum}`;
 

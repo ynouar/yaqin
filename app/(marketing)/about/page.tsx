@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { createPageMetadata } from '@/lib/seo/metadata';
 
 export const metadata = createPageMetadata({
-  title: 'About Criterion - Quran & Hadith Powered AI Assistant',
-  description: 'Learn about Criterion, an open-source AI assistant that helps people understand Islam through authentic sources. Built with RAG technology using 6,236 Quran verses and 21,641 Hadiths from 6 major collections.',
+  title: 'About Yaqin - Quran & Hadith Powered AI Assistant',
+  description: 'Learn about Yaqin, an open-source AI assistant that helps people understand Islam through authentic sources. Built with RAG technology using 6,236 Quran verses and 21,641 Hadiths from 6 major collections.',
   path: '/about',
   keywords: [
     'Islamic AI assistant',
@@ -18,10 +18,10 @@ export const metadata = createPageMetadata({
 export default function AboutPage() {
   return (
     <div className="prose prose-gray dark:prose-invert max-w-none">
-      <h1>About Criterion</h1>
+      <h1>About Yaqin</h1>
       
       <p className="lead">
-        Criterion is an AI-powered Islamic knowledge assistant that helps people 
+        Yaqin is an AI-powered Islamic knowledge assistant that helps people 
         understand Islam through authentic sources: the Quran and Hadith.
       </p>
 
@@ -29,7 +29,7 @@ export default function AboutPage() {
       <p>
         We believe that understanding Islam should be accessible to everyone—whether 
         you're a curious seeker, a new Muslim, or someone deepening their knowledge. 
-        Criterion bridges the gap between Islamic scholarship and modern technology, 
+        Yaqin bridges the gap between Islamic scholarship and modern technology, 
         making it easy to explore the Quran and Hadith through natural conversation.
       </p>
 
@@ -69,12 +69,12 @@ export default function AboutPage() {
 
       <h3>🌐 Open Source</h3>
       <p>
-        Criterion is completely open source. Our code, data sources, and methodology are 
+        Yaqin is completely open source. Our code, data sources, and methodology are 
         transparent and available for review, contribution, and learning.
       </p>
       <p>
         <a 
-          href="https://github.com/BalajSaleem/criterion"
+          href="https://github.com/ynouar/yaqin"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2"
@@ -100,7 +100,7 @@ export default function AboutPage() {
 
       <h2>Our Approach</h2>
       <p>
-        Criterion acts as a knowledgeable and compassionate <em>Da'i</em> (invitor to Islam):
+        Yaqin acts as a knowledgeable and compassionate <em>Da'i</em> (invitor to Islam):
       </p>
       <ul>
         <li><strong>Humble</strong> - We acknowledge limitations and encourage seeking scholars for complex issues</li>

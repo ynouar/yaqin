@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "chat": "Chat",
+    "quran": "Coran",
+    "hadith": "Hadith",
+    "topics": "Sujets",
+    "search": "Recherche",
+    "quranSearch": "Recherche Coran",
+    "hadithSearch": "Recherche Hadith",
+    "about": "À propos",
+    "faq": "FAQ",
+    "privacy": "Confidentialité",
+    "navigation": "Navigation",
+    "mobileNavigation": "Navigation mobile",
+    "openSearchMenu": "Ouvrir la recherche",
+    "openNavMenu": "Ouvrir le menu"
+  },
+  "chat": {
+    "placeholder": "Posez votre question sur l'Islam...",
+    "newChat": "Nouvelle conversation",
+    "waitForResponse": "Veuillez attendre que la réponse soit complète !",
+    "uploadError": "Échec de l'envoi du fichier, veuillez réessayer !",
+    "welcome": "Bienvenue sur Yaqin",
+    "getAnswersBefore": "Obtenez des réponses depuis le",
+    "and": "et la",
+    "quranLink": "Coran",
+    "sunnahLink": "Sunnah",
+    "suggestions": [
+      "Qu'est-ce que l'Islam et en quoi croient les musulmans ?",
+      "Qui est Allah ?",
+      "Que dit l'Islam sur Jésus (Aïssa) ?",
+      "Parle-moi du Prophète Muhammad ﷺ."
+    ]
+  },
+  "sidebar": {
+    "today": "Aujourd'hui",
+    "yesterday": "Hier",
+    "lastWeek": "7 derniers jours",
+    "lastMonth": "30 derniers jours",
+    "older": "Plus ancien",
+    "loginPrompt": "Connectez-vous pour sauvegarder vos conversations !",
+    "emptyHistory": "Vos conversations apparaîtront ici une fois que vous aurez commencé à discuter !",
+    "endOfHistory": "Vous avez atteint la fin de votre historique.",
+    "loadingChats": "Chargement des conversations...",
+    "deletingChat": "Suppression en cours...",
+    "chatDeleted": "Conversation supprimée",
+    "deleteFailed": "Échec de la suppression",
+    "deleteConfirmTitle": "Êtes-vous absolument sûr ?",
+    "deleteConfirmDesc": "Cette action est irréversible. La conversation sera définitivement supprimée.",
+    "cancel": "Annuler",
+    "continue": "Confirmer",
+    "loadingAuth": "Chargement...",
+    "authCheckFailed": "Erreur d'authentification, veuillez réessayer !",
+    "toggleDark": "Mode sombre",
+    "toggleLight": "Mode clair",
+    "loginToAccount": "Se connecter",
+    "signOut": "Se déconnecter",
+    "guest": "Invité",
+    "userAvatar": "Avatar utilisateur"
+  },
+  "quran": {
+    "title": "Le Saint Coran",
+    "description": "Parcourez les 114 sourates du Coran. Chaque sourate inclut le texte arabe complet et la traduction. Cliquez sur une sourate pour la lire intégralement.",
+    "verses": "versets",
+    "searchTitle": "Rechercher dans le Coran par thème",
+    "searchDesc": "Utilisez notre recherche sémantique pour trouver des versets sur n'importe quel sujet",
+    "searchCta": "Rechercher Coran & Hadith",
+    "breadcrumb": "Coran",
+    "home": "Accueil"
+  },
+  "hadith": {
+    "title": "Collections de Hadiths Authentiques",
+    "description": "Parcourez 21 641 hadiths authentiques issus de 6 collections majeures. Chaque hadith inclut le texte arabe, la traduction et le grade d'authenticité.",
+    "hadiths": "hadiths",
+    "highestAuth": "Authenticité maximale",
+    "highAuth": "Haute authenticité",
+    "searchTitle": "Rechercher des Hadiths par sujet",
+    "searchDesc": "Utilisez notre recherche sémantique pour trouver des hadiths sur n'importe quel sujet",
+    "searchCta": "Rechercher des Hadiths",
+    "breadcrumb": "Hadith",
+    "home": "Accueil"
+  }
+}

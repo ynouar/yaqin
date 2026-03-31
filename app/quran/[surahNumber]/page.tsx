@@ -76,7 +76,7 @@ export default async function SurahPage({ params, searchParams }: PageProps) {
     notFound();
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://criterion.life';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yaqin.app';
   
   // Breadcrumb schema
   const breadcrumbSchema = createBreadcrumbSchema([
