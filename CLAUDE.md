@@ -42,6 +42,20 @@ User Query
 
 ## Règles absolues de développement
 
+### Vigilance & Rigueur intellectuelle
+- Ne JAMAIS affirmer quelque chose sans en être certain — vérifier avant d'asserter
+- Avant de dire "Yaqin fait mieux que Criterion", vérifier sur une capture d'écran réelle
+- Toujours observer attentivement les screenshots fournis par l'utilisateur avant de répondre
+- En cas de doute : dire "je ne suis pas sûr" plutôt que d'inventer
+
+### Dette technique
+- Chaque modification doit être réversible et documentée
+- Ne jamais contourner un problème sans noter la dette créée
+- Avant toute nouvelle feature : vérifier qu'il n'y a pas de TODO/dette en attente
+- Garder la liste des tâches à jour (todo list) — ne pas laisser des tâches orphelines
+- Si une solution est temporaire (workaround) : la commenter avec `// TODO:` dans le code
+- Revue de dette technique à chaque session avant de commencer de nouvelles features
+
 ### Intégrité des données
 - Ne JAMAIS inventer ou modifier un hadith, un verset, ou une chaîne de transmission
 - Tout hadith affiché DOIT inclure : collection, numéro, grade, et sanad (si disponible)
