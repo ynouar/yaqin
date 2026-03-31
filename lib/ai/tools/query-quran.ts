@@ -30,7 +30,7 @@ export const queryQuran = tool({
         reference: `${v.surahNameEnglish} ${v.surahNumber}:${v.ayahNumber}`,
         surahArabic: v.surahNameArabic,
         arabic: v.textArabic,
-        english: v.textEnglish,
+        translation: v.textFrench || v.textEnglish,
         relevance: `${(v.similarity * 100).toFixed(1)}%`,
       };
 
@@ -40,7 +40,7 @@ export const queryQuran = tool({
           v.contextBefore.length > 0
             ? v.contextBefore
                 .map(
-                  (c) => `[${v.surahNumber}:${c.ayahNumber}] ${c.textEnglish}`
+                  (c) => `[${v.surahNumber}:${c.ayahNumber}] ${c.textFrench || c.textEnglish}`
                 )
                 .join("\n")
             : null;
@@ -49,7 +49,7 @@ export const queryQuran = tool({
           v.contextAfter.length > 0
             ? v.contextAfter
                 .map(
-                  (c) => `[${v.surahNumber}:${c.ayahNumber}] ${c.textEnglish}`
+                  (c) => `[${v.surahNumber}:${c.ayahNumber}] ${c.textFrench || c.textEnglish}`
                 )
                 .join("\n")
             : null;

@@ -16,6 +16,7 @@ import {
   hadithEmbedding,
   hadithText,
   quranEmbedding,
+  quranTranslation,
   quranVerse,
 } from "@/lib/db/schema";
 import { PerformanceTimer, timeAsync } from "@/lib/monitoring/performance";
@@ -78,8 +79,16 @@ async function getContextVerses(
       ayahNumber: quranVerse.ayahNumber,
       textArabic: quranVerse.textArabic,
       textEnglish: quranVerse.textEnglish,
+      textFrench: quranTranslation.text,
     })
     .from(quranVerse)
+    .leftJoin(
+      quranTranslation,
+      and(
+        eq(quranTranslation.verseId, quranVerse.id),
+        eq(quranTranslation.language, "fr")
+      )
+    )
     .where(
       and(
         eq(quranVerse.surahNumber, surahNumber),
@@ -125,11 +134,19 @@ export async function findRelevantVerses(userQuery: string, limit: number = 7) {
           surahNameArabic: quranVerse.surahNameArabic,
           textArabic: quranVerse.textArabic,
           textEnglish: quranVerse.textEnglish,
+          textFrench: quranTranslation.text,
           similarity,
         })
         .from(quranEmbedding)
         .innerJoin(quranVerse, eq(quranEmbedding.verseId, quranVerse.id))
-        .where(gt(similarity, 0.3)) // Minimum 30% similarity
+        .leftJoin(
+          quranTranslation,
+          and(
+            eq(quranTranslation.verseId, quranVerse.id),
+            eq(quranTranslation.language, "fr")
+          )
+        )
+        .where(gt(similarity, 0.3))
         .orderBy(desc(similarity))
         .limit(limit),
     { minSimilarity: 0.3, limit }

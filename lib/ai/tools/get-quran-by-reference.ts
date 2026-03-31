@@ -102,7 +102,7 @@ export const getQuranByReference = tool({
             surahNumber: parsed.surahNumber,
             ayahNumber: parsed.startAyah,
             contextWindow: contextWindow || 5,
-            language: "en",
+            language: "fr",
           });
 
           if (!verseData) {
@@ -136,7 +136,7 @@ export const getQuranByReference = tool({
             surahNumber: parsed.surahNumber,
             startAyah: parsed.startAyah,
             endAyah: parsed.endAyah,
-            language: "en",
+            language: "fr",
           });
 
           verses = rangeVerses.map((v) => ({
@@ -149,7 +149,7 @@ export const getQuranByReference = tool({
           const verse = await getVerseBySurahAndAyah({
             surahNumber: parsed.surahNumber,
             ayahNumber: parsed.startAyah,
-            language: "en",
+            language: "fr",
           });
 
           if (!verse) {

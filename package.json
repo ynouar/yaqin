@@ -21,6 +21,7 @@
     "clear:quran": "npx tsx scripts/clear-quran-data.ts",
     "ingest:quran": "npx tsx scripts/ingest-quran.ts",
     "ingest:quran:slovak": "npx tsx scripts/ingest-quran-slovak.ts",
+    "ingest:hamidullah": "npx tsx scripts/ingest-hamidullah.ts",
     "reembed:quran": "npx tsx scripts/reembed-quran.ts",
     "update:quran:sahih": "npx tsx scripts/update-quran-sahih-international.ts",
     "verify:quran:sahih": "npx tsx scripts/verify-sahih-international.ts",
