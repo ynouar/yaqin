@@ -1,371 +1,276 @@
-<h1 align="center">Criterion - Islamic Knowledge Assistant</h1>
+<h1 align="center">Yaqin — Premier Assistant Islamique IA</h1>
 
 <p align="center">
-    <strong>An AI-powered Da'i (invitor to Islam)</strong> bringing authentic Islamic guidance to seekers worldwide.
+    <strong>Un Da'i (guide) augmenté par intelligence artificielle</strong> — pour guider les chercheurs de vérité avec des sources authentiques.
 </p>
 
 <p align="center">
-    Built on the Quran and authentic Hadith. Free forever. For the sake of Allah.
+    Ancré dans le Coran et les Hadiths authentiques. Gratuit pour toujours. Pour la face d'Allah.
 </p>
 
 <p align="center">
   <a href="#mission"><strong>Mission</strong></a> ·
-  <a href="#features"><strong>Features</strong></a> ·
-  <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
-  <a href="#getting-started"><strong>Getting Started</strong></a> ·
-  <a href="#mcp-server"><strong>MCP Server</strong></a> ·
-  <a href="#documentation"><strong>Documentation</strong></a>
+  <a href="#fonctionnalités"><strong>Fonctionnalités</strong></a> ·
+  <a href="#stack-technique"><strong>Stack technique</strong></a> ·
+  <a href="#installation"><strong>Installation</strong></a> ·
+  <a href="#serveur-mcp"><strong>Serveur MCP</strong></a>
 </p>
 <br/>
 
 ## Mission
 
-Criterion exists to bring authentic Islamic knowledge to anyone seeking truth, using modern technology to make divine guidance accessible to all of humanity — **freely, forever, for the sake of Allah alone.**
+Yaqin existe pour rendre la connaissance islamique authentique accessible à tous — en utilisant la technologie moderne pour diffuser la guidance divine à l'humanité entière — **gratuitement, pour toujours, pour la face d'Allah seul.**
 
-### Our Four Pillars
+C'est une **Sadaqah Jariyah** (aumône continue) : chaque utilisateur guidé est une récompense qui se perpétue.
 
-1. **Truth & Authenticity** — Every response is grounded in verified sources (Quran and Sahih Hadith). We never fabricate or hallucinate.
-2. **Fundamentals & Simplicity** — We focus on core Islamic teachings that unite. We avoid sectarian debates and controversial topics.
-3. **For the Sake of Allah** — Criterion will always be free, with no monetization or organizational promotion. This is Sadaqah Jariyah.
-4. **State of the Art** — We use cutting-edge AI to deliver Islamic guidance effectively to the masses.
+### Nos quatre piliers
 
-👉 **[Read the full mission and vision in MISSION.md](./MISSION.md)**
+1. **Vérité & Authenticité** — Chaque réponse est ancrée dans des sources vérifiées (Coran et Hadiths Sahih). Zéro hallucination tolérée.
+2. **Fondamentaux & Clarté** — Nous nous concentrons sur les enseignements islamiques essentiels. Nous évitons les débats sectaires.
+3. **Pour la face d'Allah** — Yaqin sera toujours gratuit, sans publicité, sans monétisation.
+4. **Excellence technique** — Nous utilisons l'IA de pointe pour diffuser la guidance islamique efficacement.
 
-## Key Differentiators
+## Ce qui différencie Yaqin
 
-**Mission-Aligned:**
+**Vision :**
 
-- ✨ **Free Forever** — No paywalls, no ads, no monetization. Built fi sabilillah (for Allah's sake)
-- 📚 **Fundamentals-Focused** — Avoids sectarian debates, focuses on universally accepted Islamic teachings
-- 🛡️ **Trust-First** — Grade-filtered authentic Hadith (defaults to Sahih), verified sources only
-- 🤝 **Seeker-Oriented** — Designed for curious minds, new Muslims, and students of knowledge
-- 🕌 **Da'i Personality** — Compassionate, knowledgeable, humble guidance
+- ✨ **Gratuit pour toujours** — Pas de paywall, pas de pub, pas de monétisation. Construit fi sabilillah
+- 🇫🇷 **Francophone en premier** — La première plateforme d'IA islamique en français
+- 📚 **Fondamentaux** — Évite les débats sectaires, se concentre sur les enseignements universellement acceptés
+- 🛡️ **Confiance avant tout** — Hadiths filtrés par grade (Sahih par défaut), sources vérifiées uniquement
+- 🕌 **Personnalité Da'i** — Guide bienveillant, savant, humble
 
-**Technical Excellence:**
+**Excellence technique :**
 
-- 🎯 **Semantic Search** — Natural language queries return relevant verses from 6,236 Quran verses + 21,641 Hadith narrations
-- 📖 **Contextual Retrieval** — Top results include ±2 surrounding verses/narrations for proper context
-- 🌐 **Multilingual** — Read in English (fast) + Slovak (expandable to 10+ languages)
-- 🔗 **Accurate Citations** — All responses include source references with hyperlinks (Quran.com, Sunnah.com)
-- ⚡ **Fast** — <150ms query response time
+- 🎯 **Recherche sémantique** — Requêtes en langage naturel sur 6 236 versets + 21 641 narrations
+- 📖 **Récupération contextuelle** — Les meilleurs résultats incluent ±2 versets/narrations adjacents
+- 🌐 **Multilingue** — Français et anglais (extensible)
+- 🔗 **Citations précises** — Toutes les réponses citent les sources avec liens (Quran.com, Sunnah.com)
+- ⚡ **Rapide** — Temps de réponse <150ms
 
-## Features
+## Fonctionnalités
 
-### What Criterion Does
+✅ **Recherche sémantique Coran** — Posez des questions en langage naturel, obtenez les versets pertinents
+✅ **Recherche sémantique Hadith** — Avec filtrage par grade et collection
+✅ **Compréhension contextuelle** — Les meilleurs résultats incluent le contexte adjacent
+✅ **Citations précises** — Chaque réponse cite des sources réelles avec liens hypertextes
+✅ **Multilingue** — Français par défaut, anglais disponible
+✅ **URLs partageables** — `/quran/search?q=patience`, `/hadith/search?q=aumone`
+✅ **Streaming temps réel** — Génération progressive token par token
+✅ **RAG basé sur les outils** — Le LLM décide autonomement quand récupérer du Coran/Hadith
 
-✅ **Semantic Quran Search** — Ask natural language questions, get relevant verses  
-✅ **Semantic Hadith Search** — Search authentic Hadith with grade & collection filtering  
-✅ **Contextual Understanding** — Top results include surrounding context for proper meaning  
-✅ **Accurate Citations** — Every response cites real sources with hyperlinks  
-✅ **Multilingual Reading** — English (fast) + Slovak (single JOIN <200ms)  
-✅ **Shareable URLs** — `/quran/search?q=patience`, `/hadith/search?q=charity`, and `/quran/2/255` with metadata  
-✅ **Real-time Streaming** — Progressive response generation with token-by-token delivery  
-✅ **Tool-Based RAG** — LLM autonomously decides when to retrieve from Quran/Hadith
+## Stack technique
 
-### Technical Stack
+- [Next.js 16](https://nextjs.org) App Router avec React 19 & Tailwind CSS
+- [Vercel AI SDK](https://ai-sdk.dev) pour l'intégration LLM et le streaming
+- [Google Gemini 2.5 Flash](https://ai.google.dev) pour les réponses IA (gratuit)
+- [PostgreSQL](https://neon.tech) avec [pgvector](https://github.com/pgvector/pgvector) pour la recherche vectorielle
+- [Drizzle ORM](https://orm.drizzle.team) pour l'accès type-safe à la base de données
+- [Google Gemini Embeddings](https://ai.google.dev) gemini-embedding-001 (768 dimensions)
+- Index HNSW pour une recherche de similarité <150ms
+- [Auth.js](https://authjs.dev) pour l'authentification
+- Déployé sur [Vercel](https://vercel.com)
 
-- [Next.js 15](https://nextjs.org) App Router with React 19 & Tailwind CSS
-- [Vercel AI SDK](https://ai-sdk.dev) for LLM integration and streaming
-- [XAI Grok 4](https://x.ai) for intelligent natural language responses
-- [PostgreSQL](https://neon.tech) with [pgvector](https://github.com/pgvector/pgvector) for vector search
-- [Drizzle ORM](https://orm.drizzle.team) for type-safe database access
-- [Google Gemini](https://ai.google.dev) text-embedding-004 (768 dimensions)
-- HNSW indexes for <150ms similarity search
-- [Auth.js](https://authjs.dev) for authentication
-- Deployed on [Vercel](https://vercel.com)
-
-## How It Works
-
-### The RAG Pipeline
+## Pipeline RAG
 
 ```
-User Question
+Question de l'utilisateur
     ↓
-XAI Grok 4 LLM (decides which tools to use)
+Gemini 2.5 Flash (décide quels outils utiliser)
     ↓
-Tool Selection:
-  - queryQuran → 6,236 verses (top 7 for chat, top 20 for search)
-  - queryHadith → 21,641 hadiths from 6 collections (top 3 for chat, top 15 for search, with grade filtering)
+Sélection des outils :
+  - queryQuran → 6 236 versets (top 7 pour le chat)
+  - queryHadith → 21 641 hadiths de 6 collections (top 3 pour le chat)
     ↓
-Vector Search (768-dim Gemini embeddings)
+Recherche vectorielle (embeddings 768 dimensions)
     ↓
-Context Enhancement (top 3 get ±2 surrounding verses)
+Enrichissement contextuel (top 3 reçoivent ±2 versets adjacents)
     ↓
-LLM Generates Response with Citations
+Le LLM génère la réponse avec citations
     ↓
-Real-time Stream to User (Server-Sent Events)
+Stream temps réel vers l'utilisateur (Server-Sent Events)
 ```
 
-### Data
+## Données
 
-- **6,236 Quran verses** from all 114 Surahs
+- **6 236 versets coraniques** issus des 114 sourates
+  - Texte arabe (Tanzil)
+  - Traduction anglaise (Sahih International)
+  - Traduction française Hamidullah (v2)
+  - Embeddings 768 dimensions
 
-  - Arabic text (Tanzil Quran)
-  - English translation (master)
-  - Slovak translation (expandable)
-  - 768-dimensional embeddings (Gemini text-embedding-004)
+- **21 641 narrations de Hadith** issues de 6 collections majeures
+  - Sahih Bukhari (7 558)
+  - Sahih Muslim (2 920)
+  - Jami at-Tirmidhi (3 951)
+  - Sunan Abi Dawud (5 274)
+  - 40 Hadiths Nawawi (42)
+  - Riyad as-Salihin (1 896)
+  - Filtrage par grade (Sahih, Hasan, Da'if)
 
-- **21,641 Hadith narrations** from 6 major collections (Kutub al-Sittah subset)
-  - Sahih Bukhari (7,558)
-  - Sahih Muslim (2,920)
-  - Jami` at-Tirmidhi (3,951)
-  - Sunan Abi Dawud (5,274)
-  - 40 Hadith Nawawi (42)
-  - Riyad as-Salihin (1,896)
-  - Grade filtering (Sahih, Hasan, Da'if)
-  - 768-dimensional embeddings
+## Installation
 
-### Performance
+### Prérequis
 
-- **Quran search**: <150ms (English), <200ms (translated)
-- **Hadith search**: <150ms
-- **Vector search**: Powered by HNSW indexes
-- **Streaming**: Real-time token-by-token delivery
+- Node.js 18+ et pnpm
+- Base de données PostgreSQL (recommandé : [Neon](https://neon.tech) — gratuit)
+- Clés API :
+  - Clé Google AI Studio (Gemini — gratuit)
 
-## Getting Started
+### Étapes
 
-### Prerequisites
-
-- Node.js 18+ and pnpm
-- PostgreSQL database (recommend [Neon](https://neon.tech))
-- API Keys:
-  - XAI API Key (for Grok LLM)
-  - Google AI Studio API Key (for embeddings)
-
-### Installation
-
-1. **Clone the repository**
+1. **Cloner le dépôt**
 
 ```bash
-git clone <repo-url>
-cd criterion
+git clone https://github.com/ynouar/yaqin.git
+cd yaqin
 ```
 
-2. **Install dependencies**
+2. **Installer les dépendances**
 
 ```bash
 pnpm install
 ```
 
-3. **Set up environment variables**
+3. **Configurer les variables d'environnement**
 
-Create a `.env.local` file:
+Créer un fichier `.env.local` :
 
 ```bash
-# Database
+# Base de données
 POSTGRES_URL=postgresql://...
 
-# AI APIs
-XAI_API_KEY=xai-...
-GOOGLE_GENERATIVE_AI_API_KEY=...
+# API Google Gemini (embeddings + LLM)
+GOOGLE_GENERATIVE_AI_API_KEY=AIza...
 
-# Authentication (optional)
-AUTH_SECRET=...
+# Authentification
+AUTH_SECRET=  # openssl rand -base64 32
+
+# URL du site
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
-4. **Enable pgvector extension**
+4. **Activer l'extension pgvector**
 
 ```bash
-pnpm db:enable-pgvector
+npx tsx scripts/enable-pgvector.ts
 ```
 
-5. **Run database migrations**
+5. **Lancer les migrations**
 
 ```bash
 pnpm db:migrate
 ```
 
-6. **Ingest Quran data** (generates embeddings for 6,236 verses)
+6. **Ingérer les données Coran** (6 236 versets + embeddings)
 
 ```bash
 pnpm ingest:quran
 ```
 
-This will take 10-15 minutes to complete.
-
-7. **Test the Quran search**
+7. **Ingérer les Hadiths** (21 641 narrations + embeddings)
 
 ```bash
-pnpm test:quran
+pnpm ingest:hadith
 ```
 
-8. **Start the development server**
+8. **Lancer le serveur de développement**
 
 ```bash
 pnpm dev
 ```
 
-Your app should now be running on [localhost:3000](http://localhost:3000).
+L'application est disponible sur [localhost:3000](http://localhost:3000).
 
-## Available Commands
-
-### Development
+## Commandes disponibles
 
 ```bash
-pnpm dev          # Start dev server
-pnpm build        # Build for production
-pnpm start        # Start production server
+# Développement
+pnpm dev           # Serveur de développement
+pnpm build         # Build de production
+pnpm start         # Serveur de production
+
+# Base de données
+pnpm db:migrate    # Appliquer les migrations
+pnpm db:studio     # Interface graphique Drizzle
+
+# Ingestion des données
+pnpm ingest:quran  # Ingérer le Coran
+pnpm ingest:hadith # Ingérer les Hadiths
+pnpm clear:quran   # Effacer les données Coran
+pnpm clear:hadith  # Effacer les données Hadith
 ```
 
-### Database
+## Serveur MCP
 
-```bash
-pnpm db:generate  # Generate Drizzle schema
-pnpm db:migrate   # Run migrations
-pnpm db:studio    # Open Drizzle Studio (GUI)
-```
-
-### Data Ingestion & Testing
-
-```bash
-# Quran
-pnpm clear:quran         # Clear all Quran data
-pnpm ingest:quran        # Ingest Quran verses and generate embeddings
-pnpm ingest:quran:slovak # Ingest Slovak translation
-pnpm test:quran          # Test Quran search functionality
-
-# Hadith
-pnpm clear:hadith  # Clear all Hadith data
-pnpm ingest:hadith # Ingest Hadith and generate embeddings
-```
-
-## MCP Server
-
-Criterion exposes its semantic search capabilities through the **Model Context Protocol (MCP)**, allowing AI assistants like Claude Desktop and Cursor to search Quran and Hadith directly.
-
-**Quick Setup:**
+Yaqin expose ses capacités de recherche sémantique via le **Model Context Protocol (MCP)**, permettant à des assistants IA comme Claude Desktop de rechercher directement dans le Coran et les Hadiths.
 
 ```json
 {
   "mcpServers": {
-    "criterion": {
-      "url": "https://criterion.life/api/mcp"
+    "yaqin": {
+      "url": "https://yaqin.app/api/mcp"
     }
   }
 }
 ```
 
-**Available Tools:**
+**Outils disponibles :**
+- `search_quran` — Recherche sémantique dans 6 236 versets
+- `search_hadith` — Recherche dans 21 641 hadiths authentiques
+- `get_verse` — Récupérer un verset par référence (ex: "2:255")
 
-- `search_quran` — Search 6,236 Quran verses
-- `search_hadith` — Search 21,641 authentic Hadiths from 6 collections
-- `get_verse` — Retrieve specific verse by reference (e.g., "2:255")
-
-👉 **[Read full MCP documentation in MCP.md](./MCP.md)**
-
-## Project Structure
+## Structure du projet
 
 ```
-criterion/
+yaqin/
 ├── app/
-│   ├── (auth)/          # Authentication routes
-│   ├── (chat)/          # Chat interface and API
-│   │   └── api/chat/    # Main chat endpoint
-│   ├── search/          # Quran search page
-│   │   └── api/         # Quran search API
-│   ├── hadith/
-│   │   └── search/      # Hadith search page and API
-│   └── quran/           # Quran reading pages
+│   ├── (auth)/          # Authentification
+│   ├── (chat)/          # Interface chat et API
+│   ├── quran/           # Pages de lecture du Coran
+│   ├── hadith/          # Pages Hadith
+│   └── search/          # Recherche sémantique
 ├── lib/
 │   ├── ai/
-│   │   ├── embeddings.ts     # Core RAG logic
-│   │   ├── prompts.ts        # Da'i system prompts
-│   │   └── tools/
-│   │       ├── query-quran.ts   # Quran search tool
-│   │       └── query-hadith.ts  # Hadith search tool
+│   │   ├── embeddings.ts    # Logique RAG principale
+│   │   ├── prompts.ts       # Prompt système Da'i
+│   │   └── tools/           # queryQuran, queryHadith
 │   └── db/
-│       ├── schema.ts         # Database schema
-│       └── migrations/       # SQL migrations
-├── components/
-│   ├── chat.tsx              # Main chat UI
-│   ├── quran-verses.tsx      # Quran display component
-│   ├── hadith-narrations.tsx # Hadith carousel
-│   └── hadith/
-│       └── hadith-card.tsx   # Reusable hadith card
-├── scripts/
-│   ├── ingest-quran.ts       # Quran data ingestion
-│   ├── ingest-hadith.ts      # Hadith data ingestion
-│   └── test-*.ts             # Test scripts
-└── data/
-    ├── quran*.txt            # Quran translations
-    └── *-full.json           # Hadith collections
+│       ├── schema.ts        # Schéma base de données
+│       └── queries.ts       # Fonctions de requête
+├── components/              # Composants React
+├── messages/                # Traductions (fr, en, ar, ur, tr)
+├── scripts/                 # Scripts d'ingestion
+└── data/                    # Données sources (Coran, Hadiths)
 ```
 
-## Documentation
+## Attribution des données
 
-### Understanding Criterion
+- **Texte coranique** : [Tanzil.net](http://tanzil.net/) — Creative Commons Attribution 3.0
+- **Traduction française** : Muhammad Hamidullah
+- **Collections de Hadiths** : Sunnah.com, IslamicNetwork.com
+- **Embeddings** : Google Gemini gemini-embedding-001
 
-- **[MISSION.md](./MISSION.md)** — Our vision, values, and deeper purpose. Read this first to understand _why_ we build Criterion.
-- **[CRITERION_DETAILED.md](./CRITERION_DETAILED.md)** — Comprehensive technical documentation including architecture, implementation history, and performance metrics.
-- **[CRITERION.md](./CRITERION.md)** — Quick reference guide for setup and key concepts.
+## Nos engagements
 
-### Key Sections
+- ✅ **Ne jamais monétiser** la connaissance islamique
+- ✅ **Toujours citer les sources** avec les références exactes
+- ✅ **Ne jamais fabriquer** de versets ou de hadiths
+- ✅ **Se concentrer sur les fondamentaux** — éviter les débats sectaires
+- ✅ **Construire pour la communauté** — appartient à tous les musulmans
 
-| Document                  | Purpose                                                                 |
-| ------------------------- | ----------------------------------------------------------------------- |
-| **MISSION.md**            | Vision, values, pillars, and long-term goals                            |
-| **CRITERION_DETAILED.md** | Technical architecture, database schema, components, and best practices |
-| **CRITERION.md**          | Quick start, commands, and core concepts                                |
-| **README.md**             | Getting started, features, and project overview                         |
+## Contribuer
 
-## Architecture Overview
+Les contributions de développeurs, de savants et de membres de la communauté partageant notre mission sont les bienvenues. Consultez [CONTRIBUTING.md](./CONTRIBUTING.md) pour les directives.
 
-```
-components/
-├── Chat UI (QuranVerses, HadithNarrations, MessageActions)
-├── Search Pages (Quran and Hadith semantic search with filters)
-├── Hadith Components (reusable HadithCard for search and chat)
-├── Quran Pages (shared components for context, language selection)
-└── UI Components (buttons, inputs, etc.)
+## Licence
 
-lib/
-├── ai/
-│   ├── embeddings.ts (vector search logic)
-│   ├── prompts.ts (Da'i system prompts)
-│   └── tools/ (queryQuran, queryHadith, requestSuggestions)
-├── db/
-│   ├── schema.ts (Drizzle ORM definitions)
-│   └── queries.ts (database functions)
-└── monitoring/ (performance tracking)
-
-app/
-├── (chat)/api/chat (main chat endpoint)
-├── quran/search/ (Quran search page and API)
-├── hadith/search/ (Hadith search page and API)
-├── quran/ (Quran reading pages)
-└── (auth)/ (authentication)
-```
-
-## Data Attribution
-
-- **Quran Text**: [Tanzil.net](http://tanzil.net/) — Creative Commons Attribution 3.0
-- **Quran Translations**: Multiple sources with proper attribution
-- **Hadith Collections**: Sunnah.com, IslamicNetwork.com
-- **Embeddings**: Google Gemini text-embedding-004
-
-## Our Commitment
-
-Criterion is built with these commitments:
-
-- ✅ **Never monetize** Islamic knowledge
-- ✅ **Always cite sources** with proper references
-- ✅ **Never fabricate** verses or hadiths
-- ✅ **Focus on fundamentals** — avoid sectarian debates
-- ✅ **Build for the community** — this belongs to all Muslims and benefits all humanity
-- ✅ **Stay at the forefront** — leverage state-of-the-art technology
-
-## Contributing
-
-We welcome contributions from developers, scholars, and community members who share our mission. Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
-
-## License
-
-- **Quran Text**: Creative Commons Attribution 3.0 ([Tanzil.net](http://tanzil.net/))
-- **Hadith Data**: From verified Islamic sources with proper attribution
-- **Code**: See LICENSE file for details
+- **Texte coranique** : Creative Commons Attribution 3.0 ([Tanzil.net](http://tanzil.net/))
+- **Données Hadith** : Sources islamiques vérifiées avec attribution appropriée
+- **Code** : Voir le fichier LICENSE pour les détails
 
 ---
 
-**"Invite to the way of your Lord with wisdom and good instruction, and argue with them in a way that is best."** — Quran 16:125
+**« Invite au chemin de ton Seigneur par la sagesse et la belle exhortation »** — Coran 16:125
 
-_May Allah accept this work and make it a means of guidance for seekers everywhere. Ameen._
+_Qu'Allah accepte ce travail et en fasse un moyen de guidance pour les chercheurs de vérité. Âmeen._
