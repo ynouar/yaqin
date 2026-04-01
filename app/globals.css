@@ -329,3 +329,15 @@
   font-weight: 400;
   letter-spacing: 0.02em;
 }
+
+/* Blockquote styling — override Tailwind Typography italic
+   In Yaqin, blockquotes contain Quran/Hadith Arabic text exclusively */
+blockquote,
+blockquote p {
+  font-style: normal !important;
+  font-family:
+    "Noto Naskh Arabic", "Amiri", "Traditional Arabic", "Arabic Typesetting",
+    var(--font-geist), system-ui, sans-serif;
+  font-size: 1.25rem;
+  line-height: 2;
+}
