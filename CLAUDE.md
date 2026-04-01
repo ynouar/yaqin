@@ -42,6 +42,11 @@ User Query
 
 ## Règles absolues de développement
 
+### Git — Commits et Push
+- **JAMAIS** ajouter `Co-Authored-By: Claude` ou toute signature Claude dans les commits
+- **JAMAIS** push automatiquement — toujours demander confirmation explicite avant tout `git push`
+- Communiquer toujours en **français** avec l'utilisateur
+
 ### Vigilance & Rigueur intellectuelle
 - Ne JAMAIS affirmer quelque chose sans en être certain — vérifier avant d'asserter
 - Avant de dire "Yaqin fait mieux que Criterion", vérifier sur une capture d'écran réelle
