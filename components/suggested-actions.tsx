@@ -20,19 +20,20 @@ function PureSuggestedActions({ chatId, sendMessage }: SuggestedActionsProps) {
 
   return (
     <div
-      className="hidden md:grid w-full gap-1.5 sm:gap-2 sm:grid-cols-2"
+      className="hidden md:grid w-full auto-rows-fr gap-1.5 sm:gap-2 sm:grid-cols-2"
       data-testid="suggested-actions"
     >
       {suggestedActions.map((suggestedAction, index) => (
         <motion.div
           animate={{ opacity: 1, y: 0 }}
+          className="h-full"
           exit={{ opacity: 0, y: 20 }}
           initial={{ opacity: 0, y: 20 }}
           key={suggestedAction}
           transition={{ delay: 0.05 * index }}
         >
           <Suggestion
-            className="h-auto w-full whitespace-normal p-2 text-left text-sm sm:p-3 sm:text-base"
+            className="h-full w-full whitespace-normal p-2 text-left text-sm sm:p-3 sm:text-base"
             onClick={(suggestion) => {
               window.history.replaceState({}, "", `/chat/${chatId}`);
               sendMessage({

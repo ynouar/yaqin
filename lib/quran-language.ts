@@ -1,4 +1,4 @@
-export const SUPPORTED_QURAN_LANGUAGES = ["en", "sk"] as const;
+export const SUPPORTED_QURAN_LANGUAGES = ["en", "fr", "sk"] as const;
 export type QuranLanguage = (typeof SUPPORTED_QURAN_LANGUAGES)[number];
 
 export const LANGUAGE_NAMES: Record<
@@ -6,6 +6,7 @@ export const LANGUAGE_NAMES: Record<
   { native: string; english: string; flag: string; translator?: string }
 > = {
   en: { native: "English", english: "English", flag: "🇬🇧" },
+  fr: { native: "Français", english: "French", flag: "🇫🇷", translator: "Hamidullah" },
   sk: { native: "Slovenčina", english: "Slovak", flag: "🇸🇰", translator: "Al-Sbenaty" },
 };
 

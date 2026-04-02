@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { BookOpen, Sparkles, Search } from 'lucide-react';
+import { getLocale } from 'next-intl/server';
 import { getAllTopicsSorted, type Topic } from '@/lib/topics';
 import { SiteHeader } from '@/components/layout/site-header';
 import { createPageMetadata } from '@/lib/seo/metadata';
@@ -20,13 +21,15 @@ export const metadata = createPageMetadata({
   ],
 });
 
-export default function TopicsPage() {
+export default async function TopicsPage() {
+  const locale = await getLocale();
+  const isFr = locale === 'fr';
   const allTopics = getAllTopicsSorted();
 
-  // Group topics by category
+  // Group topics by category (translated)
   const topicsByCategory = allTopics.reduce<Record<string, Topic[]>>(
     (acc, topic) => {
-      const category = topic.category || 'Other';
+      const category = (isFr && topic.categoryFr) ? topic.categoryFr : (topic.category || 'Other');
       if (!acc[category]) {
         acc[category] = [];
       }
@@ -49,17 +52,18 @@ export default function TopicsPage() {
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 bg-primary/5 mb-6">
               <Sparkles className="h-4 w-4 text-primary" />
               <span className="text-sm font-medium text-primary">
-                {allTopics.length} Topics Available
+                {allTopics.length} {isFr ? 'Sujets Disponibles' : 'Topics Available'}
               </span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Explore Islamic Topics
+              {isFr ? 'Explorer les Sujets Islamiques' : 'Explore Islamic Topics'}
             </h1>
 
             <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-3xl mx-auto mb-8">
-              Discover what the Quran and authentic Hadiths teach about essential Islamic topics.
-              Each topic page includes relevant verses and narrations to deepen your understanding.
+              {isFr
+                ? "Découvrez ce que le Coran et les Hadiths authentiques enseignent sur les sujets islamiques essentiels. Chaque page inclut les versets et narrations pertinents."
+                : "Discover what the Quran and authentic Hadiths teach about essential Islamic topics. Each topic page includes relevant verses and narrations to deepen your understanding."}
             </p>
 
             <div className="flex flex-wrap justify-center gap-3">
@@ -68,14 +72,14 @@ export default function TopicsPage() {
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 <Search className="h-5 w-5" />
-                <span className="font-medium">Search Quran</span>
+                <span className="font-medium">{isFr ? 'Rechercher Coran' : 'Search Quran'}</span>
               </Link>
               <Link
                 href="/hadith/search"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 <Search className="h-5 w-5" />
-                <span className="font-medium">Search Hadith</span>
+                <span className="font-medium">{isFr ? 'Rechercher Hadith' : 'Search Hadith'}</span>
               </Link>
             </div>
           </div>
@@ -108,7 +112,7 @@ export default function TopicsPage() {
 
                     {/* Title */}
                     <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                      {topic.title}
+                      {(isFr && topic.titleFr) ? topic.titleFr : topic.title}
                     </h3>
 
                     {/* Arabic Title */}
@@ -123,12 +127,12 @@ export default function TopicsPage() {
 
                     {/* Description */}
                     <p className="text-sm text-zinc-600 dark:text-zinc-400 line-clamp-3">
-                      {topic.description}
+                      {(isFr && topic.descriptionFr) ? topic.descriptionFr : topic.description}
                     </p>
 
                     {/* Arrow indicator */}
                     <div className="mt-4 flex items-center text-primary text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span>Explore topic</span>
+                      <span>{isFr ? 'Explorer' : 'Explore topic'}</span>
                       <svg
                         className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform"
                         fill="none"
