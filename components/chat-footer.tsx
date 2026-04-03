@@ -35,7 +35,7 @@ export function ChatFooter() {
         </a>
         <span aria-hidden="true">·</span>
         <a
-          href="https://github.com/BalajSaleem/criterion"
+          href="https://github.com/ynouar/yaqin"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-foreground transition-colors"
