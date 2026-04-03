@@ -1,7 +1,8 @@
+import { getLocale } from "next-intl/server";
 import { createFAQSchema } from "@/lib/seo/schema";
 import { createPageMetadata } from "@/lib/seo/metadata";
 
-const faqs = [
+const faqsEn = [
   {
     question: "What is Yaqin?",
     answer:
@@ -60,7 +61,70 @@ const faqs = [
   {
     question: "Is my conversation private?",
     answer:
-      "Yes. Your chat conversations are private by default and are not indexed by search engines or shared publicly. To improve criterion, admins may review anonymized conversations. Please avoid sharing sensitive personal information in chats.",
+      "Yes. Your chat conversations are private by default and are not indexed by search engines or shared publicly. Please avoid sharing sensitive personal information in chats.",
+  },
+];
+
+const faqsFr = [
+  {
+    question: "Qu'est-ce que Yaqin ?",
+    answer:
+      "Yaqin est un assistant islamique open source propulsé par l'IA qui vous aide à comprendre l'Islam à travers des sources authentiques. Nous utilisons une recherche sémantique avancée sur 6 236 versets coraniques et 21 641 hadiths authentiques issus de 6 grandes collections pour fournir des réponses précises et contextualisées.",
+  },
+  {
+    question: "Les informations sont-elles authentiques ?",
+    answer:
+      "Oui. Tous les versets du Coran proviennent de traductions vérifiées, et les hadiths sont principalement issus de collections Sahih (authentiques) comme Sahih Bukhari et Sahih Muslim. Chaque réponse inclut des citations avec des liens directs vers les sources originales sur Quran.com et Sunnah.com.",
+  },
+  {
+    question: "Comment fonctionne l'IA ?",
+    answer:
+      "Nous utilisons la technologie RAG (Retrieval Augmented Generation). Lorsque vous posez une question, notre IA recherche dans les textes islamiques en utilisant la compréhension sémantique (pas seulement des mots-clés), récupère les versets et hadiths les plus pertinents, et génère une réponse ancrée dans ces sources authentiques.",
+  },
+  {
+    question: "Puis-je apprendre l'Islam ici si je ne suis pas musulman ?",
+    answer:
+      "Absolument ! Yaqin est conçu pour toute personne curieuse de l'Islam — que vous l'exploriez pour la première fois, envisagiez de vous convertir, ou souhaitiez approfondir votre compréhension. Nous fournissons des explications claires avec un contexte approprié et des sources authentiques.",
+  },
+  {
+    question: "Est-ce gratuit ?",
+    answer:
+      "Oui, Yaqin est entièrement gratuit et open source. Nous croyons que la connaissance islamique doit être accessible à tous, sans barrières.",
+  },
+  {
+    question: "Comment poser une question ?",
+    answer:
+      "Tapez simplement votre question en langage naturel dans l'interface de chat. Demandez par exemple 'Que dit l'Islam sur la patience ?' ou 'Parle-moi de la prière en Islam.' L'IA recherchera dans les sources pertinentes et fournira une réponse complète avec citations.",
+  },
+  {
+    question: "En quoi Yaqin est-il différent des autres sites islamiques ?",
+    answer:
+      "Contrairement aux sites islamiques traditionnels où vous parcourez du contenu, Yaqin vous permet de poser des questions naturellement et d'obtenir des réponses IA ancrées dans des sources authentiques. Nous fournissons également le contexte des versets (pas seulement des citations isolées) et utilisons la recherche sémantique pour comprendre le sens de votre question.",
+  },
+  {
+    question: "Puis-je rechercher des versets ou des sujets spécifiques ?",
+    answer:
+      "Oui ! Utilisez notre page de recherche pour trouver des versets coraniques et des hadiths par thème ou sujet. Vous pouvez aussi parcourir les 114 sourates dans la section Coran. L'IA recherche automatiquement ces sources lorsque vous posez des questions dans le chat.",
+  },
+  {
+    question: "Qui a créé Yaqin ?",
+    answer:
+      "Yaqin est un projet open source construit par des développeurs passionnés par la diffusion de la connaissance islamique à travers la technologie moderne. Le code est disponible sur GitHub pour que chacun puisse le consulter, y contribuer ou en apprendre.",
+  },
+  {
+    question: "Quelle est la fiabilité des traductions ?",
+    answer:
+      "Nous utilisons des traductions reconnues pour le Coran et les hadiths. Cependant, nous recommandons toujours de consulter des savants compétents pour les questions religieuses importantes, car les traductions ne peuvent jamais capturer pleinement la profondeur de l'arabe original.",
+  },
+  {
+    question: "Puis-je l'utiliser pour des avis religieux (fatwa) ?",
+    answer:
+      "Bien que Yaqin fournisse des sources islamiques authentiques, il ne doit pas être utilisé comme seul fondement pour des avis religieux. Pour des questions de droit islamique spécifiques, veuillez consulter des savants qualifiés. Yaqin est mieux utilisé pour apprendre et comprendre les enseignements islamiques.",
+  },
+  {
+    question: "Ma conversation est-elle privée ?",
+    answer:
+      "Oui. Vos conversations sont privées par défaut et ne sont pas indexées par les moteurs de recherche ni partagées publiquement. Évitez de partager des informations personnelles sensibles dans le chat.",
   },
 ];
 
@@ -79,21 +143,26 @@ export const metadata = createPageMetadata({
   ],
 });
 
-export default function FAQPage() {
+export default async function FAQPage() {
+  const locale = await getLocale();
+  const isFr = locale === "fr";
+  const faqs = isFr ? faqsFr : faqsEn;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(createFAQSchema(faqs)),
+          __html: JSON.stringify(createFAQSchema(faqsEn)),
         }}
       />
 
       <div className="prose prose-neutral dark:prose-invert max-w-none">
-        <h1>Frequently Asked Questions</h1>
+        <h1>{isFr ? "Questions Fréquentes" : "Frequently Asked Questions"}</h1>
         <p className="lead">
-          Everything you need to know about Yaqin and learning Islam through
-          our AI-powered assistant.
+          {isFr
+            ? "Tout ce que vous devez savoir sur Yaqin et l'apprentissage de l'Islam grâce à notre assistant IA."
+            : "Everything you need to know about Yaqin and learning Islam through our AI-powered assistant."}
         </p>
 
         <div className="space-y-8 mt-8">
@@ -106,16 +175,19 @@ export default function FAQPage() {
         </div>
 
         <div className="mt-4 p-4 bg-muted rounded-lg">
-          <h2 className="text-lg font-semibold">Still have questions?</h2>
+          <h2 className="text-lg font-semibold">
+            {isFr ? "Vous avez encore des questions ?" : "Still have questions?"}
+          </h2>
           <p className="mb-4">
-            Try asking in the chat interface - our AI can help answer specific
-            questions about Islamic teachings.
+            {isFr
+              ? "Posez-les directement dans le chat — notre IA peut vous aider à répondre à des questions spécifiques sur les enseignements islamiques."
+              : "Try asking in the chat interface - our AI can help answer specific questions about Islamic teachings."}
           </p>
           <a
             href="/"
             className="inline-block px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
           >
-            Start Chatting
+            {isFr ? "Commencer le chat" : "Start Chatting"}
           </a>
         </div>
       </div>
