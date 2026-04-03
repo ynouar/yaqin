@@ -31,6 +31,7 @@ export async function generateTitleFromUserMessage({
     - when the user looks back at their list of chats, the title should help them remember what the conversation was about
     - Just use plain text for the title, no special formatting, markdown, or punctuation
     - do not use quotes or colons
+    - IMPORTANT: generate the title in the same language as the user's message. If the user writes in French, the title must be in French. If in Arabic, in Arabic. Never translate.
     - the user's message is provided below in JSON format`,
     prompt: JSON.stringify(message),
   });
