@@ -1,9 +1,16 @@
+"use client";
+
+import { useLocale } from "next-intl";
+
 export function ChatFooter() {
+  const locale = useLocale();
+  const isFr = locale === "fr";
+
   return (
     <footer className="border-t bg-background py-2" role="contentinfo" aria-label="Chat page footer">
       <nav className="mx-auto flex max-w-4xl items-center justify-center gap-1 px-4 text-xs text-muted-foreground" aria-label="Footer navigation">
         <a href="/quran" className="hover:text-foreground transition-colors">
-          Quran
+          {isFr ? "Coran" : "Quran"}
         </a>
         <span aria-hidden="true">·</span>
         <a href="/hadith" className="hover:text-foreground transition-colors">
@@ -11,19 +18,19 @@ export function ChatFooter() {
         </a>
         <span aria-hidden="true">·</span>
         <a href="/topics" className="hover:text-foreground transition-colors">
-          Topics
+          {isFr ? "Sujets" : "Topics"}
         </a>
         <div className="sr-only">
           <a href="/quran/search" className="hover:text-foreground transition-colors">
-            Search Quran
+            {isFr ? "Recherche Coran" : "Search Quran"}
           </a>
           <a href="/hadith/search" className="hover:text-foreground transition-colors">
-            Search Hadith
+            {isFr ? "Recherche Hadith" : "Search Hadith"}
           </a>
         </div>
         <span aria-hidden="true">·</span>
         <a href="/about" className="hover:text-foreground transition-colors">
-          About
+          {isFr ? "À propos" : "About"}
         </a>
         <span aria-hidden="true">·</span>
         <a href="/faq" className="hover:text-foreground transition-colors">
@@ -31,7 +38,7 @@ export function ChatFooter() {
         </a>
         <span aria-hidden="true">·</span>
         <a href="/privacy" className="hover:text-foreground transition-colors">
-          Privacy
+          {isFr ? "Confidentialité" : "Privacy"}
         </a>
         <span aria-hidden="true">·</span>
         <a
@@ -39,7 +46,7 @@ export function ChatFooter() {
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-foreground transition-colors"
-          aria-label="View source code on GitHub (opens in new tab)"
+          aria-label={isFr ? "Voir le code source sur GitHub (nouvel onglet)" : "View source code on GitHub (opens in new tab)"}
         >
           GitHub
         </a>
