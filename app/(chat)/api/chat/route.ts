@@ -1,4 +1,5 @@
-import { geolocation } from "@vercel/functions";
+// TODO: geolocation Vercel-only — retourne des valeurs vides sur Railway
+const geolocation = (_req: Request) => ({ longitude: undefined, latitude: undefined, city: undefined, country: undefined });
 import {
   convertToModelMessages,
   createUIMessageStream,
