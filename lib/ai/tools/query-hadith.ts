@@ -67,7 +67,7 @@ export const queryHadith = tool({
           const names: Record<string, string> = {
             bukhari: "Sahih Bukhari",
             muslim: "Sahih Muslim",
-            tirmidhi: "Jami` at-Tirmidhi",
+            tirmidhi: "Jami' at-Tirmidhi",
             abudawud: "Sunan Abi Dawud",
             nawawi40: "40 Hadith Nawawi",
             riyadussalihin: "Riyad as-Salihin",
